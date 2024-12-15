@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StudyExternalSource index{% endblock %}
+
+{% block body %}
+    <h1>StudyExternalSource index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for study_external_source in study_external_sources %}
+            <tr>
+                <td>{{ study_external_source.description }}</td>
+                <td>
+                    <a href="{{ path('study_external_source_show', {'study': study_external_source.study}) }}">show</a>
+                    <a href="{{ path('study_external_source_edit', {'study': study_external_source.study}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_external_source_new') }}">Create new</a>
+{% endblock %}

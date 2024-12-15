@@ -1,0 +1,1203 @@
+
+
+<div class="row">
+<div class="col-md-1"></div>
+
+{% if is_allowed(app.user,'dsh_srch_dt') %}
+<div class="col-md-5">
+
+<div class="panel panel-success">
+  <div class="panel-heading">Search Data</div>
+  <div class="panel-body">
+ <form action="{{path('main')}}" method="GET" class="form-inline">
+  <div class="form-group">
+    <label for="searchdata">Name:</label>
+    <input type="text" class="form-control" id="searchdata" name="search">
+     <button type="submit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-search"></i> Search</button>
+  </div>
+  <br>
+  <br>
+  <br>
+<div class="advanced">
+    <a href="{{ path('advanced-search')}}" class="btn" id="advanced">Advanced Search>></a>
+  </div>
+
+</form>
+  <br>
+  </div>
+</div>
+
+</div>
+
+{% endif %}
+
+
+{% if is_allowed(app.user,'dsh_srch_drct') %}
+
+<div class="col-md-5">
+
+
+
+<div class="panel panel-success">
+  <div class="panel-heading">Search Directorate Offices/ Partner Institutes</div>
+  <div class="panel-body">
+{{form(directorateform)}}
+
+  </div>
+</div>
+
+
+</div>
+{% endif %}
+
+  {% if is_allowed(app.user,'vis_shw') %}
+
+<div class="row">
+<div class="col-md-12">
+   <div class="btn-group">
+    <a href="{{ path('home',{type:'bar','percent':'false'}) }}" class="btn btn-danger" >BarChart</a>
+    <a href="{{ path('home',{type:'pie','percent':'false'}) }}" class="btn btn-warning">PieChart</a>
+    <a href="{{ path('home',{type:'doughnut','percent':'false'}) }}" class="btn btn-success">Doughnut</a>
+
+</div>
+
+    <a href="{{ path('custom') }}" class="btn btn-success ">Custom</a>
+</div>
+
+
+
+
+
+
+<div class="row">
+
+<div class="col-md-7">
+<div class="col-md-10">
+  <div class="panel panel-default">
+  <div class="panel-body">
+
+  <form class="form-inline" action="{{path('home')}}" method="POST">
+  <div class="form-group">
+    <label for="from">Date Range:</label>
+    <input class="form-control date-range-picker" type="text" name="date1" id="id-date-range-picker-1" />
+  </div>
+
+  <button type="submit" class="btn btn-default btn-sm">Search</button>
+</form>
+
+ <canvas id="myChart" width="100" height="100"></canvas>
+
+
+  </div>
+  </div>
+</div>
+
+     </div>
+
+<div class="col-md-12">
+
+ <form class="form-inline" action="{{path('home')}}" method="POST">
+  <div class="form-group">
+    <label for="from">Date Range:</label>
+    <input class="form-control date-range-picker" type="text" name="date2" id="id-date-range-picker-1" />
+  </div>
+
+  <button type="submit" class="btn btn-default btn-sm">Search</button>
+</form>
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+  <canvas id="myChart2" width="100" height="100"></canvas>
+    </div>
+
+</div>
+
+</div>
+
+
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+  <canvas id="myChart22" width="100" height="100"></canvas>
+    </div>
+
+</div>
+
+     </div>
+     </div>
+     </div>
+
+
+ <div class="row">
+
+
+
+ <div class="col-md-12">
+
+<form class="form-inline" action="{{path('home')}}" method="POST">
+  <div class="form-group">
+    <label for="from">Date Range:</label>
+    <input class="form-control date-range-picker" type="text" name="date3" id="id-date-range-picker-1" />
+  </div>
+
+  <button type="submit" class="btn btn-default btn-sm">Search</button>
+</form>
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+
+  <canvas id="myChart3" width="100" height="100"></canvas>
+    </div>
+
+</div>
+</div>
+c
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+        <canvas id="myChart32" width="100" height="100"></canvas>
+          </div>
+
+      </div>
+
+     </div>
+     </div>
+
+
+
+ <div class="col-md-12">
+
+<form class="form-inline" action="{{path('home')}}" method="POST">
+  <div class="form-group">
+    <label for="from">Date Range:</label>
+    <input class="form-control date-range-picker" type="text" name="date4" id="id-date-range-picker-1" />
+  </div>
+
+  <button type="submit" class="btn btn-default btn-sm">Search</button>
+</form>
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+
+
+        <canvas id="myChart4" width="100" height="100"></canvas>
+          </div>
+          </div>
+          </div>
+
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+
+
+        <canvas id="myChart42" width="100" height="100"></canvas>
+          </div>
+
+      </div>
+
+     </div>
+
+
+
+
+
+     </div>
+     </div>
+
+
+     <div class="row">
+
+
+      <div class="col-md-12">
+
+
+<form class="form-inline" action="{{path('home')}}" method="POST">
+  <div class="form-group">
+    <label for="from">Date Range:</label>
+    <input class="form-control date-range-picker" type="text" name="date5" id="id-date-range-picker-1" />
+  </div>
+
+  <button type="submit" class="btn btn-default btn-sm">Search</button>
+</form>
+
+
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+          <canvas id="myChart5" width="100" height="100"></canvas>
+          </div>
+          </div>
+          </div>
+
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+
+        <canvas id="myChart52" width="100" height="100"></canvas>
+          </div>
+
+      </div>
+
+     </div>
+
+
+     </div>
+
+      <div class="col-md-12">
+ <form class="form-inline" action="{{path('home')}}" method="POST">
+  <div class="form-group">
+    <label for="from">Date Range:</label>
+    <input class="form-control date-range-picker" type="text" name="date6" id="id-date-range-picker-1" />
+  </div>
+
+  <button type="submit" class="btn btn-default btn-sm">Search</button>
+</form>
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+          <canvas id="myChart6" width="100" height="100"></canvas>
+          </div>
+          </div>
+          </div>
+
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+        <canvas id="myChart62" width="100" height="100"></canvas>
+          </div>
+
+      </div>
+
+     </div>
+
+
+     </div>
+
+
+
+
+
+
+
+     </div>
+
+
+     </div>
+
+  {% endif %}
+
+
+{% set myd =[] %}
+{% for dd in dataset3 %}
+{% if dd.name not in myd %}
+{% set myd = myd|merge([dd.name]) %}
+{% endif %}
+{% endfor %}
+
+
+{% block javascripts %}
+
+
+    		<script src="{{ asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+              <script src="{{asset('assets/js/moment.min.js')}}"></script>
+             <script   src="{{asset('assets/js/daterangepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+
+<script type="text/javascript">
+$('.date-range-picker').daterangepicker({
+					'applyClass' : 'btn-sm btn-success',
+					'cancelClass' : 'btn-sm btn-default',
+					locale: {
+						applyLabel: 'Apply',
+						cancelLabel: 'Cancel',
+            format: 'YYYY/MM/DD'
+					}
+				})
+				.prev().on(ace.click_event, function(){
+					$(this).next().focus();
+				});
+
+
+</script>
+ <script type="text/javascript">
+
+    $('form').submit(function(){
+        $('.btn-submit').attr('data-dismiss','modal');
+
+
+
+
+    });
+
+
+    </script>
+
+
+
+
+    <script type="text/javascript">
+
+
+
+
+
+
+var ctx = document.getElementById('myChart');
+
+
+
+var myChart = new Chart(ctx, {
+    type: '{{ type }}',
+    data: {
+        labels:  [ {% for l in label %}
+                          "{{ l }}",
+                      {% endfor %}],
+        datasets: [{
+            label:  [ {% for d in label %}
+                        "{{ d }}",
+                    {% endfor %}],
+            data:  [ {% for d in datal %}
+                        {{ d }},
+                    {% endfor %}],
+            backgroundColor: [
+                'rgba(32, 99, 200, 1.0)',
+                'rgba(54, 162, 235, 1.0)',
+                'rgba(255, 206, 200, 1.0)',
+                'rgba(10, 192, 192, 1.0)',
+                'rgba(153, 102, 255, 1.0)',
+                'rgba(255, 159, 64, 1.0)'
+            ],
+
+
+            borderWidth: 1
+        }]
+    },
+    options: {
+
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
+
+
+
+
+// graph 2
+
+
+
+
+var ctx = document.getElementById('myChart2');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:  [ {% for l in label %}
+                          "{{ l[:10] ~ '...' }}",
+                      {% endfor %}],
+        datasets: [
+          {
+            label: [ {% for l in label %}
+                          "{{ l }}",
+                      {% endfor %}],
+            data:  [ {% for d in datal %}
+                        {{ d }},
+                    {% endfor %}],
+
+            backgroundColor: 'rgba(32, 99, 200, 1.0)',
+
+
+
+        },
+
+
+
+        ]
+    },
+    options: {
+       title: {
+            display: true,
+            text: 'Submitted Data By Directorate',
+            position: 'bottom'
+        },
+
+        scales: {
+            yAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+// graph 2 2
+
+
+
+
+var ctx = document.getElementById('myChart22');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:  [ {% for l in label %}
+                          "{{ l[:10] ~ '...' }}",
+                      {% endfor %}],
+        datasets: [
+
+
+          {
+
+            label: [ {% for l in label %}
+                          "{{ l[:10] ~ '...' }}",
+                      {% endfor %}],
+            data:  [ {% for d in datal %}
+                        {{ d }},
+                    {% endfor %}],
+
+            backgroundColor: 'rgba(32, 99, 200, 1.0)',
+
+
+
+        },
+
+
+
+        ]
+    },
+    options: {
+      title: {
+            display: true,
+            text: 'Submitted Data By Directorate',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+
+//graph 3
+
+
+var ctx = document.getElementById('myChart3');
+
+{% set workunit = [] %}
+{% for item in dataset3 %}
+    {% if item.name not in workunit %}
+    {% set workunit = workunit|merge([item.name]) %}
+    {% endif %}
+{% endfor %}
+{% set year = [] %}
+{% for item in dataset3 %}
+    {% if item.year not in year %}
+    {% set year = year|merge([item.year]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in year %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset3 %}
+
+              {% if da.year == d and da.name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba({{ random(50, 200) }}, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+
+      title: {
+            display: true,
+            text: 'Submitted Data By Duration & Directorate (Stacked Bar Chart)',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+
+// graph 3 2
+
+
+
+
+var ctx = document.getElementById('myChart32');
+
+{% set workunit = [] %}
+{% for item in dataset3 %}
+    {% if item.name not in workunit %}
+    {% set workunit = workunit|merge([item.name]) %}
+    {% endif %}
+{% endfor %}
+{% set year = [] %}
+{% for item in dataset3 %}
+    {% if item.year not in year %}
+    {% set year = year|merge([item.year]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in year %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset3 %}
+
+              {% if da.year == d and da.name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+      title: {
+            display: true,
+            text: 'Submitted Data By Duration & Directorate',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+// graph 4 1
+
+var ctx = document.getElementById('myChart4');
+
+{% set workunit = [] %}
+{% for item in dataset4 %}
+    {% if item.workunit_name not in workunit %}
+    {% set workunit = workunit|merge([item.workunit_name]) %}
+    {% endif %}
+{% endfor %}
+{% set demo_name = [] %}
+{% for item in dataset4 %}
+    {% if item.demo_name not in demo_name %}
+    {% set demo_name = demo_name|merge([item.demo_name]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in demo_name %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset4 %}
+
+              {% if da.demo_name == d and da.workunit_name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+ title: {
+            display: true,
+            text: 'Submitted Data By Demographic Group & Directorate (Stacked Bar Chart)',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+
+// graph 4 2
+
+var ctx = document.getElementById('myChart42');
+
+{% set workunit = [] %}
+{% for item in dataset4 %}
+    {% if item.workunit_name not in workunit %}
+    {% set workunit = workunit|merge([item.workunit_name]) %}
+    {% endif %}
+{% endfor %}
+{% set demo_name = [] %}
+{% for item in dataset4 %}
+    {% if item.demo_name not in demo_name %}
+    {% set demo_name = demo_name|merge([item.demo_name]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in demo_name %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset4 %}
+
+              {% if da.demo_name == d and da.workunit_name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+      title: {
+            display: true,
+            text: 'Submitted Data By Demographic Group & Directorate',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+// graph 5 1
+
+var ctx = document.getElementById('myChart5');
+
+{% set workunit = [] %}
+{% for item in dataset5 %}
+    {% if item.workunit_name not in workunit %}
+    {% set workunit = workunit|merge([item.workunit_name]) %}
+    {% endif %}
+{% endfor %}
+{% set study_name = [] %}
+{% for item in dataset5 %}
+    {% if item.study_name not in study_name %}
+    {% set study_name = study_name|merge([item.study_name]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in study_name %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset5 %}
+
+              {% if da.study_name == d and da.workunit_name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+      title: {
+            display: true,
+            text: 'Submitted Data By Study Design & Directorate (Stacked Bar Chart)',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+// graph 5 2
+
+
+var ctx = document.getElementById('myChart52');
+
+{% set workunit = [] %}
+{% for item in dataset5 %}
+    {% if item.workunit_name not in workunit %}
+    {% set workunit = workunit|merge([item.workunit_name]) %}
+    {% endif %}
+{% endfor %}
+{% set study_name = [] %}
+{% for item in dataset5 %}
+    {% if item.study_name not in study_name %}
+    {% set study_name = study_name|merge([item.study_name]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in study_name %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset5 %}
+
+              {% if da.study_name == d and da.workunit_name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+      title: {
+            display: true,
+            text: 'Submitted Data By Study Design & Directorate',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+// graph 6 1
+
+var ctx = document.getElementById('myChart6');
+
+{% set workunit = [] %}
+{% for item in dataset6 %}
+    {% if item.workunit_name not in workunit %}
+    {% set workunit = workunit|merge([item.workunit_name]) %}
+    {% endif %}
+{% endfor %}
+{% set coverage_sex = [] %}
+{% for item in dataset6 %}
+    {% if item.coverage_sex not in coverage_sex %}
+    {% set coverage_sex = coverage_sex|merge([item.coverage_sex]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in coverage_sex %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset6 %}
+
+              {% if da.coverage_sex == d and da.workunit_name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+      title: {
+            display: true,
+            text: 'Submitted Data By Sex & Directorate (Stacked Bar Chart)',
+            position: 'bottom'
+        },
+        scales: {
+            yAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:true,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+// graph 6 2
+var ctx = document.getElementById('myChart62');
+
+{% set workunit = [] %}
+{% for item in dataset6 %}
+    {% if item.workunit_name not in workunit %}
+    {% set workunit = workunit|merge([item.workunit_name]) %}
+    {% endif %}
+{% endfor %}
+{% set coverage_sex = [] %}
+{% for item in dataset6 %}
+    {% if item.coverage_sex not in coverage_sex %}
+    {% set coverage_sex = coverage_sex|merge([item.coverage_sex]) %}
+    {% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in workunit %}
+                          "{{ dd[:10] ~ '...' }}",
+                      {% endfor %}],
+
+        datasets: [
+
+                {% for d in coverage_sex %}
+
+          {
+
+            label: '{{ d[:10] ~ '...' }}',
+            data: [
+              {% set has=0 %}
+              {% for w in workunit %}
+
+              {% for da in dataset6 %}
+
+              {% if da.coverage_sex == d and da.workunit_name == w  %}
+              {{ da.total }} ,
+              {% set has=1 %}
+              {% endif %}
+               {%  endfor %}
+               {% if has==0 %}
+               0,
+               {% endif %}
+               {% endfor %}
+             ],
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+
+        },
+
+
+         {% endfor %}
+
+        ]
+        },
+    options: {
+       title: {
+            display: true,
+            text: 'Submitted Data By Sex & Directorate',
+            position: 'bottom'
+        },
+
+        scales: {
+            yAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }],
+            xAxes: [{
+               stacked:false,
+                ticks: {
+          beginAtZero: true
+        }
+            }]
+        }
+    }
+});
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+{% endblock %}

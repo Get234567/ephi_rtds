@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Variable index{% endblock %}
+
+{% block body %}
+    <h1>Variable index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>LabelDescription</th>
+                <th>ValueCode</th>
+                <th>ValueLevel</th>
+                <th>RangeOfValue</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for variable in variables %}
+            <tr>
+                <td>{{ variable.id }}</td>
+                <td>{{ variable.name }}</td>
+                <td>{{ variable.labelDescription }}</td>
+                <td>{{ variable.valueCode }}</td>
+                <td>{{ variable.valueLevel }}</td>
+                <td>{{ variable.rangeOfValue }}</td>
+                <td>
+                    <a href="{{ path('variable_show', {'id': variable.id}) }}">show</a>
+                    <a href="{{ path('variable_edit', {'id': variable.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('variable_new') }}">Create new</a>
+{% endblock %}

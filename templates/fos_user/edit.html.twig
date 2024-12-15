@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+{% block breadcrumb %}
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="{{ path('home') }}">Home</a>
+	</li>
+	<li>
+    <i class="ace-icon fa fa-users"></i>
+		<a href="{{ path('fos_user_index') }}">User list</a>
+	</li>
+	<li class="active">Edit</li>
+
+{% endblock %}
+{% block pageheader %}
+	<a class="btn btn-success inline" href="{{ path('fos_user_index') }}">back to list</a>
+
+{% endblock %}
+{% block body %}
+	<div class="row">
+		<div class="col-xs-12">
+			{% for message in app.flashes('warning') %}
+				<div class="alert alert-danger">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+		</div>
+	</div>
+    <div class="row">
+	{{ include('fos_user/_form.html.twig', {'button_label': 'Update','class':'fa fa-refresh'}) }}
+	<br>
+	{{ include('fos_user/_delete_form.html.twig') }}
+    <div>
+{% endblock %}

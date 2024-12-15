@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+
+
+   {% endblock %}
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+                            <li> Setting</li>
+
+							<li class="active">{{ "Data_request_approve" }}</li>
+{% endblock %}
+{% block pageheader %}
+
+    <form action="{{path( 'dataapprove_type_index')}}" class="form-inline pull-right" method="GET">
+
+
+															<div class="input-group">
+															  <input type="text" class="form-control" id="searchdata" user_id="search" placeholder="Search here">
+                            	                              <div class="input-group-btn">
+																	<button type="submit" class="btn btn-success btn-sm">
+																		<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+																	</button>
+
+
+															</div>
+														</div>
+
+												</form>
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('warning') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+<div class="space-6"></div>
+    <div class="row">
+    <div class="col-md-5">
+        <div class="widget-box widget-color-blue2">
+            <div class="widget-header">
+            <h4 class="widget-title lighter smaller">New {{ "Username" }} entry</h4>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-8">
+                    {{ form_start(form) }}
+                      <div class="form-group">
+                    <label>
+                    Username </label>
+                    {{ form_widget(form.user_id,{'attr':{'placeholder':'Please enter ' ~ user_id ~ ' user_id here' }}) }}
+                       <div class="help-block with-errors"></div>
+        </div>
+{% if form.parent %}
+        <div class="form-group">
+            <label>{{ form_label(form.parent) }}</label>
+            {{ form_widget(form.parent,{'attr':{'class':''}})}}
+            <div class="help-block with-errors"></div>
+        </div>
+        {% endif %}
+                    {# {{ form_label(form.work_unit_id,) }} #}
+                     <div class="form-group"> <label>Work unit</label>
+                    {{ form_widget(form.work_unit_id,{'attr':{'placeholder':'Please enter ' ~ user_id ~ ' Work unit here','class':'form-control ckeditor'}}) }}
+   <div class="help-block with-errors"></div>
+        </div>
+   <button class="btn btn-sm btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+                    </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-md-7">
+          <div class="widget-box widget-color-blue2">
+            <div class="widget-header">
+            <h4 class="widget-title lighter smaller">List of available {{ 'Data_request_approve' }} </h4>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-8">
+                        <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>username</th>
+                <th>Work unit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set n=1 %}
+        {% for row in data %}
+            <tr>
+                <td>{{ n }}</td>
+                {% set n=n+1 %}
+                <td>{{ row.UserId }}</td>
+                <td>{{ row.WorkUnitId }}</td>
+                <td>
+                    <a href="{{ path('dataapprove_type_show', {'id': row.id}) }}" class="btn btn-sm btn-success"><span class="fa fa-eye" title="View detail"></span></a>
+                    <a href="{{ path( 'dataapprove_type_edit', {'id': row.id}) }}" class="btn btn-sm btn-warning"><span class="fa fa-edit" title="Edit"></span></a>
+
+                    {{ include('dataapprove/_delete_form.html.twig') }}
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+    {% if data %}
+     <div class="pull-right">{{ knp_pagination_render(data) }}</div>
+{% endif %}
+                    </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+{% endblock %}

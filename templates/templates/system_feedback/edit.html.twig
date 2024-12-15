@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SystemFeedback{% endblock %}
+
+{% block body %}
+    <h1>Edit SystemFeedback</h1>
+
+    {{ include('system_feedback/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('system_feedback_index') }}">back to list</a>
+
+    {{ include('system_feedback/_delete_form.html.twig') }}
+{% endblock %}

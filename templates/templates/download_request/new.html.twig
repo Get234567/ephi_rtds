@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DownloadRequest{% endblock %}
+
+{% block body %}
+    <h1>Create new DownloadRequest</h1>
+
+    {{ include('download_request/_form.html.twig') }}
+
+    <a href="{{ path('download_request_index') }}">back to list</a>
+{% endblock %}

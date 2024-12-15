@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumb %}
+  <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home')}}">Home</a>
+							</li>
+  <li>
+								<a href="{{ path('study_index')}}">Study</a>
+							</li>
+							<li class="active">Edit study</li>
+{% endblock %}
+{% block pageheader %}
+ {% if owner is defined %}
+    <a href="{{ path('myreview') }}" class="btn btn-sm btn-success">back to list</a>
+    {% elseif reviewer is defined %}
+    <a href="{{ path('myreview') }}" class="btn btn-sm btn-success">back to list</a>
+    {% else %}
+        <a href="{{ path('study_index') }}" class="btn btn-sm btn-success">back to list</a>
+    {% endif %}
+    {# <a href="{{ path('study_index') }}" class="btn btn-sm btn-success">back to list</a> #}
+{% endblock %}
+
+{% block body %}
+
+{% if is_granted('ROLE_ADMI') %}
+	    {{ include('study/_form.html.twig', {'button_label': 'Update','edit' : '0'}) }}
+{% elseif study.status == 2 and is_study_owner(app.user,study) %}
+	{{ include('study/edit_form.html.twig', {'button_label': 'Update','edit' : '0'}) }}
+{% elseif study.status > 2 %}
+  {{ include('study/_form.html.twig', {'button_label': 'Update','edit' : '0'}) }}
+
+{% else  %}
+			 {{ include('study/create_form.html.twig', {'button_label': 'Update','edit' : '1'}) }}
+{% endif %}
+
+
+{% if is_granted('ROLE_ADMIN1') %}
+    {{ include('study/_delete_form.html.twig') }}
+{% endif %}
+
+{% endblock %}

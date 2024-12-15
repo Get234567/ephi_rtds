@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ResearcherResearchTeam index{% endblock %}
+
+{% block body %}
+    <h1>ResearcherResearchTeam index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Team Name</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for researcher_research_team in researcher_research_teams %}
+            <tr>
+                <td>{{ researcher_research_team.id }}</td>
+                <td>{{ researcher_research_team.researchTeam.name }}</td>
+                <td>{{ researcher_research_team.researcher.name }}</td>
+                <td>
+                    <a href="{{ path('researcher_research_team_show', {'id': researcher_research_team.id}) }}">show</a>
+                    <a href="{{ path('researcher_research_team_edit', {'id': researcher_research_team.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('researcher_research_team_new') }}">Add new</a>
+{% endblock %}

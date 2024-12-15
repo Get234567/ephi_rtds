@@ -1,0 +1,315 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EPHI
+{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block body %}
+	<!-- PAGE CONTENT BEGINS -->
+
+	<div class="row">
+		<div class="space-6"></div>
+
+
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="widget-box transparent" id="recent-box">
+				<div class="widget-header">
+					<h4 class="widget-title lighter smaller">
+						<i class="ace-icon fa fa-list"></i>
+					</h4>
+
+					<div class="widget-toolbar no-border">
+						<ul class="nav nav-tabs" id="recent-tab">
+
+
+							{% if  is_allowed(app.user,'std_new')  %}
+
+								<li {% if studies %} class="active" {% endif %}>
+									<a href="{{ path('myresearch')}}">My Research</a>
+								</li>
+
+							{% endif %}
+							{% if  is_allowed(app.user,'dtst_new') %}
+
+								<li {% if datasets %} class="active" {% endif %}>
+
+									<a href="{{ path('mydataset')}}">My Dataset</a>
+								</li>
+							{% endif %}
+							{% if  is_allowed(app.user,'dtst_new')  or is_allowed(app.user,'std_new') %}
+								<li {% if requests %} class="active" {% endif %}>
+
+									<a href="{{ path('myrequest')}}">My Request</a>
+								</li>
+							{% endif %}
+
+						</ul>
+					</div>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main padding-4">
+						<div class="tab-content padding-8">
+							{% if studies %}
+
+
+								<div id="task-tab" class="tab-pane active">
+									<h4 class="smaller lighter green">
+										<form action="{{path('myresearch')}}" class="form-inline" method="GET">
+											<div class="input-group">
+												<input type="text" class="form-control" name="search" placeholder="Search here" autofocus>
+												<div class="input-group-btn">
+													<button type="submit" class="btn btn-success btn-sm">
+														<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+													</button>
+												</div>
+											</div>
+											<a href="{{ path('create_my_study') }}" class="btn btn-sm btn-success pull-right">new Study</a>
+
+										</form>
+									</h4>
+									<div class="hr hr8"></div>
+
+									<table class="table ">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Study</th>
+												<th>Description</th>
+												<th style="width:300px; ">Action</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody>
+
+
+											{% set i =1  %}
+											{% for study in studies %}
+												<tr {% if study.status == -1 %} class="bg-danger" {% endif %}>
+													<td>
+														{{i }}{% set i = i+1  %}</td>
+													<td>{{ study.title }}</td>
+													<td>
+
+														{{ study.description|raw }}
+													</td>
+													<td>
+														<a class="btn btn-sm btn-success" href="{{ path('my_study_show', {'id': study.id}) }}">View</a>
+														{% if is_study_owner(app.user,study,"edit") or study.status != 4 %}
+															<a class="btn btn-sm btn-warning" href="{{ path('my_study_edit', {'id': study.id}) }}">edit</a>
+														{% endif %}
+														{% if is_study_owner(app.user,study,"attch") or study.status != 4 %}
+															<a href="{{ path('study_attachment', {'id': study.id}) }}" class="btn btn-sm btn-success">Attachment</a>
+														{% endif %}
+														{% if is_study_owner(app.user,study,"delete") or study.status != 4 %}
+
+															<form class="inline" method="post" action="{{ path('xxx2', {'id': study.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+																<input type="hidden" name="_method" value="DELETE">
+																<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ study.id) }}">
+																<button title="" class="btn btn-sm btn-danger">Delete</button>
+															</form>
+														{% endif %}
+													</td>
+
+													<td>
+
+
+														{% if study.Status == null %}
+															<span class="label label-warning">Pending</span>
+														{% elseif study.Status == 1 %}
+															<span class="label label-success">Ongoing</span>
+														{% elseif study.status == -1 %}
+															<span class="label label-danger">Rejected</span>
+														{% elseif study.status == 4 %}
+															<span class="label label-success">Completed</span>
+														{% elseif study.status == 3 %}
+															<span class="label label-success">Waiting for last approval</span>
+														{% endif %}
+
+
+													</td>
+
+
+												</tr>
+											{% else %}
+												<tr>
+													<td colspan="16">no records found</td>
+												</tr>
+
+											{% endfor %}
+										</tbody>
+									</table>
+
+
+								</div>
+							{% endif %}
+							{% if  datasets %}
+
+
+								<div id="member-tab" class="tab-pane active">
+									<form action="{{path('mydataset')}}" class="form-inline" method="GET">
+
+
+										<div class="input-group">
+											<input type="text" class="form-control" name="search" placeholder="Search here" autofocus>
+											<div class="input-group-btn">
+												<button type="submit" class="btn btn-success btn-sm">
+													<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+												</button>
+											</div>
+										</div>
+										<a href="{{ path('dataset_my_new') }}" class="btn btn-sm btn-success pull-right">new Dataset</a>
+									</form>
+									<div class="hr hr8"></div>
+
+									<table class="table table-striped table-responsive table-hover" style=" border:1px solid #dddddd">
+										<thead>
+
+											<tr>
+												<th>#</th>
+												<th>Dataset</th>
+												<th>Description</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+									</td>
+
+								</tr>
+							</thead>
+							<tbody>
+
+
+								{% set i =1  %}
+								{% for dataset in datasets %}
+							  {% if dataset.owner == owner %}
+
+								  {% endif %}
+									<tr>
+										<td>
+											{{i }}{% set i = i+1  %}</td>
+										<td>{{ dataset.name }}</td>
+										<td>
+
+											{{ dataset.description|raw }}
+										</td>
+										<td>
+											<a class="btn btn-sm btn-success" href="{{ path('my_dataset_show', {'id': dataset.id}) }}">View</a>
+										{% if dataset.approved != 1 %}
+
+
+											<a class="btn btn-sm btn-warning" href="{{ path('my_dataset_edit', {'id': dataset.id}) }}">edit</a>
+											<a href="{{ path('dataset_attachment', {'id': dataset.id}) }}" class="btn btn-sm btn-success">Attachment</a>
+{% endif %}
+										</td>
+
+
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="16">no records found</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						{# <div class="pull-right">{{ knp_pagination_render(datasets) }}</div> #}
+
+						<div class="hr hr-double hr8"></div>
+					</div>
+					<!-- /.#member-tab -->
+				{% endif %}
+				{% if  requests %}
+
+
+					<div id="comment-tab" class="tab-pane tab-pane active">
+
+						<div class="comments">
+
+							<div class="hr hr8"></div>
+
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Request Type</th>
+										<th>Item Type</th>
+										<th>Requested Date</th>
+										<th>Approved Date</th>
+										<th>Remark</th>
+										<th>Status</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									{% set i =1  %}
+									{% for request in requests  %}
+
+
+										{% if request.Status == 0 %}
+
+											{# {% if request.Itemtype == "Study" and request.item. %}  #}
+											<tr>
+												<td>
+													{{i }}{% set i = i+1  %}</td>
+												<td>{{ request.RequestType }}</td>
+
+
+												<td>{{ request.Itemtype }}</td>
+
+
+												<td>{{ request.RequestedDate ? request.RequestedDate|date('d-M-Y') : '' }}</td>
+												<td>{{ request.ApprovedDate ? request.ApprovedDate|date('d-M-Y') : '' }}</td>
+												<td>{{ request.Remark|raw }}</td>
+												<td>
+													{% if request.Status ==0 %}
+														<span class="label label-warning">Pending</span>
+														{# {% elseif request.Status ==1 %}
+																												                                                        <span class="label label-success">Approved</span>
+																												                                                    {% else %}
+																												                                                        <span class="label label-danger">Rejected</span> #}
+													{% endif %}
+
+												</td>
+
+
+												<td>
+													<a href="{{ path('dataset_show', {'id': request.id}) }}"></a>
+													<a href="{{ path('dataset_edit', {'id': request.id}) }}"></a>
+												</td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+
+
+									{% if  i ==1 %}
+										<tr>
+											<td colspan="16">no records found</td>
+										</tr>
+									{% endif %}
+
+								</tbody>
+							</table>
+
+
+							<div class="pull-right">{{ knp_pagination_render(requests) }}</div>
+						</div>
+
+						<div class="hr hr8"></div>
+
+
+						<div class="hr hr-double hr8"></div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		<!-- /.widget-main -->
+	</div>
+	<!-- /.widget-body -->
+</div>
+<!-- /.widget-box --></div><!-- /.col --></div><!-- /.row --><!-- PAGE CONTENT ENDS -->{% block javascripts %}{% endblock %}
+
+
+{% endblock %}

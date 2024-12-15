@@ -1,0 +1,249 @@
+{% block stylesheets %}
+    <link href="{{asset('assets/css/smart_wizard.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/css/smart_wizard_theme_circles.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/css/smart_wizard_theme_arrows.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/css/smart_wizard_theme_dots.css')}}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+{{ form_start(form,{'attr':{'id': 'myForm','role':'form','data-toggle':'validator'} }) }}
+
+
+<div class="widget-box widget-color-blue2">
+    <div class="widget-header widget-header-blue widget-header-flat">
+        <h4 class="widget-title lighter">
+            Study</h4>
+
+        <div class="widget-toolbar"></div>
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            <div id="fuelux-wizard-container">
+                <div>
+                    <ul class="steps">
+                        <li data-step="1" class="active">
+                            <span class="step">1</span>
+                            <span class="title">Step 1</span>
+                        </li>
+
+                        <li data-step="2">
+                            <span class="step">2</span>
+                            <span class="title">Step 2</span>
+                        </li>
+
+                        <li data-step="3">
+                            <span class="step">3</span>
+                            <span class="title">
+                                Step 3</span>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                <hr/>
+
+                <div class="step-content pos-rel">
+                    <div class="step-pane active" data-step="1" id="step1" role="form" data-toggle="validator">
+                        <div class="form-group">
+                            <label>{{ form_label(form.title) }}</label>
+                            {{ form_widget(form.title,{'attr':{'class':'form-control'}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.irbCode) }}</label>
+                            {{ form_widget(form.irbCode,{'attr':{'class':'form-control'}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.yearConducted) }}</label>
+                            {{ form_widget(form.yearConducted , {'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.yearPublished) }}</label>
+                            {{ form_widget(form.yearPublished,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.budget) }}</label>
+                            {{ form_widget(form.budget,{'attr':{'class':'form-control'}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="step-pane" data-step="2" id="step2" role="form" data-toggle="validator">
+
+                            <div class="form-group">
+                                    <label>{{ form_label(form.comment) }}</label>
+                                    {{ form_widget(form.comment,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                            </div>
+<div class="form-group">
+                            <label>{{ form_label(form.objective) }}</label>
+                            {{ form_widget(form.objective,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.researchQuestion) }}</label>
+                            {{ form_widget(form.researchQuestion,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.remark) }}</label>
+                            {{ form_widget(form.remark,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.summary) }}</label>
+                            {{ form_widget(form.summary,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.description) }}</label>
+                            {{ form_widget(form.description,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+
+                    </div>
+                    <div class="step-pane" data-step="3" id="step3" role="form" data-toggle="validator">
+                        <div class="form-group">
+                            <label>{{ form_label(form.geography) }}</label>
+                            {{ form_widget(form.geography,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.timePeriodCoverageStart) }}</label>
+                            {{ form_widget(form.timePeriodCoverageStart,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.timePeriodCoverageEnd) }}</label>
+                            {{ form_widget(form.timePeriodCoverageEnd,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.publisher) }}</label>
+                            {{ form_widget(form.publisher,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.studyType) }}</label>
+                            {{ form_widget(form.studyType,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form_label(form.workUnit) }}</label>
+                            {{ form_widget(form.workUnit,{'attr':{'class':''}})}}
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+            <div class="wizard-actions">
+                <button class="btn btn-prev">
+                    <i class="ace-icon fa fa-arrow-left"></i>
+                    Prev
+                </button>
+
+                <button class="btn btn-success btn-next" data-last="Finish">
+                    Next
+                    <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.widget-main -->
+    </div>
+
+    <!-- /.widget-body -->
+</div>
+
+
+{{ form_end(form) }}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script src="{{ asset('assets/js/jquery-1.11.3.min.js')}}"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement)
+            document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+
+    <!-- page specific plugin scripts -->
+    <script src="{{ asset('assets/js/wizard.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.validate.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery-additional-methods.min.js')}}"></script>
+    <script src="{{ asset('assets/js/bootbox.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.maskedinput.min.js')}}"></script>
+    <script src="{{ asset('assets/js/select2.min.js')}}"></script>
+
+    <!-- ace scripts -->
+    <script src="{{ asset('assets/js/ace-elements.min.js')}}"></script>
+    <script src="{{ asset('assets/js/ace.min.js')}}"></script>
+    <script src="{{ asset('assets/j/validator.min.js')}}"></script>
+
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var $validation = true;
+            $('#fuelux-wizard-container').ace_wizard({
+                // step: 2 //optional argument. wizard will jump to step "2" at first
+                // buttons: '.wizard-actions:eq(0)'
+            }).on('actionclicked.fu.wizard', function (e, info) {
+                var elmForm = $("#step" + info.step);
+                elmForm.validator('validate');
+                var elmErr = elmForm.children('.has-error');
+                if (elmErr && elmErr.length > 0) { // Form validation failed
+                    e.preventDefault();
+                }
+
+
+            }).on('changed.fu.wizard', function (e) {
+                alert("yes");
+$('#myForm').removeClass('has-error');
+               //e.preventDefault();
+
+            }).on('finished.fu.wizard', function (e) {
+                alert("false");
+                var elmForm = $("#myForm");
+                if (elmForm) {
+                    elmForm.validator('validate');
+                    var elmErr = elmForm.find('.has-error');
+                    if (elmErr && elmErr.length > 0) {
+                        alert('Oops we still have error in the form');
+                        return false;
+                    } else {
+                        elmForm.submit();
+                        return false;
+                    }
+                }
+
+                bootbox.dialog({
+                    message: "Thank you! Your information was successfully saved!",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-success"
+                        }
+                    }
+                });
+            }).on('stepclick.fu.wizard', function (e) {
+                // e.preventDefault();//this will prevent clicking and selecting steps
+            });
+
+
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}" />
+{% endblock %}
+
+
+{% block title %}StudyDatasetLinkRequest index{% endblock %}
+
+{% block body %}
+    <h1>StudyDatasetLinkRequest index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RequestedAt</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for study_dataset_link_request in study_dataset_link_requests %}
+            <tr>
+                <td>{{ study_dataset_link_request.id }}</td>
+                <td>{{ study_dataset_link_request.requestedAt ? study_dataset_link_request.requestedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ study_dataset_link_request.Status }}</td>
+                <td>
+                    <a href="{{ path('study_dataset_link_request_show', {'id': study_dataset_link_request.id}) }}">show</a>
+                    <a href="{{ path('study_dataset_link_request_edit', {'id': study_dataset_link_request.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_dataset_link_request_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    	<script src="{{asset('assets/js/select2.min.js')}}"></script>
+    <script>
+    $(function(){
+
+          $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+
+    })
+    </script>
+{% endblock %}

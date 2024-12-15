@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New GeospatialPoints{% endblock %}
+    {% block stylesheets %}
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""/>
+
+      <link rel="stylesheet" href="{{asset('assets/css/L.Control.Locate.min.css')}}" />
+
+    {% endblock %}
+
+
+{% block body %}
+    <h1>Create new GeospatialPoints</h1>
+
+   <div class="row" style="">
+            <div style="width: 500px; height:300px" class="col-md-7" id="mapid"></div>
+
+            <div class="col-md-4">
+                <form action="{{ path('geospatial_points_new') }}" method="post" class="form">
+                    <div class="form-group" >
+
+                        <input type="hidden" name="location_name_f" id="location_name_f">
+                        <input type="checkbox" checked="true" name="start_registering" id="start_maping">
+                        <input type="hidden"  name="location_detail_f" id="location_detail_f">
+
+                        <input type="hidden" name="ge_loc" id="ge_loc">
+
+
+                        <label for="" class="form-conrol-label">Start Drawing</label>
+                    </div>
+
+                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#geo_detail">  Add </button>
+                         <button type="button" class="btn btn-danger" onclick="deleteLast()"  data-target="">  Delete </button>
+                         <button type="submit" class="btn">Save</button>
+                </form>
+            </div>
+</div>
+
+
+
+
+     <!-- Modal -->
+  <div class="modal fade" id="geo_detail" tabindex="-1" role="dialog" aria-labelledby="geo_detailLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="geo_detailLabel">Location Detail</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Location Name</label>
+                <input class="form-control" type="text" name="location_name" id="location_name">
+            </div>
+            <div class="form-group">
+                <label for="name">Location Detail</label>
+                <input class="form-control" type="text" name="location_detail" id="location_detail">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button onclick="savedata()" type="button" class="btn btn-success">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+   {% block javascripts %}
+
+
+
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+    <script src="{{asset('assets/js/Leaflet.SelectAreaFeature.js')}}"></script>
+      <script src="{{asset('assets/js/L.Control.Locate.min.js')}}" charset="utf-8"></script>
+   <script>
+
+   var map = L.map('mapid').setView([7.6750099, 36.8029539], 13);
+var selectfeature = map.selectAreaFeature.enable();
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+L.control.locate().addTo(map);
+
+function deleteLast(e) {
+    selectfeature.removeLastArea();
+}
+
+var checkbox=document.getElementById("start_maping").onchange=function (e) {
+    if(e.target.checked ){
+        selectfeature.enable()
+        }
+    else{
+        selectfeature.disable();
+    }
+} ;
+
+
+    function savedata(e) {
+        var location_name=document.getElementById("location_name");
+        var location_detail=document.getElementById("location_detail");
+
+        var location_name_f=document.getElementById("location_name_f");
+        var location_detail_f=document.getElementById("location_detail_f");
+        location_name_f.value=location_name.value;
+        location_detail_f.value=location_detail.value;
+
+
+        var ge_loc=document.getElementById("ge_loc");
+    // var ge_locval=ge_loc.value;
+    var singlelatlngs=selectfeature.getAreaLatLng()
+    //  latlngs.push(selectfeature.getAreaLatLng());
+    // console.log(JSON.stringify(latlngs));
+    var encoded=JSON.stringify(singlelatlngs);
+    var decoded=JSON.parse(encoded);
+    var geo_data={
+        'name':location_name_f.value,
+        'points':encoded
+    };
+
+    var encoded=JSON.stringify(geo_data);
+    // var decoded=JSON.parse(encoded);
+
+    ge_loc.value=encoded;
+    // var polygon = L.polygon(decoded, {color: 'red',title:'Jimma'}).addTo(map);
+    // map.fitBounds(polygon.getBounds());
+
+
+    }
+
+
+
+   </script>
+
+
+    {% endblock %}

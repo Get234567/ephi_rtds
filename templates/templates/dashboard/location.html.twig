@@ -1,0 +1,94 @@
+{% extends 'dashboard.html.twig' %}
+
+
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+{% endblock %}
+{% block body %}
+
+<ul class="breadcrumb">
+  <li><a href="{{path('main')}}">Home</a></li>
+  {% if datasets %}
+  <li><a href="{{path('main',{ search: datasets[0].name })}}">Search</a></li>      
+  {% endif %}
+
+  <li class="active">Search Reasults</li>
+ 
+</ul>
+
+
+ <form action="{{path('main')}}" class="form-inline" method="GET">
+  <div class="form-group">
+    
+    <input type="text" class="form-control" id="searchdata" name="search">
+     <button type="submit" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-search"></i> Search</button>
+  </div>
+ 
+</form>
+
+<div class="row">
+
+<div class="col-md-1"></div>
+<div class="col-md-8">
+
+{% if datasets %}
+<h4>Didn't find what you were looking for?<a href="{{path('advanced-search')}}"> Try advanced search.</a></h4>
+<h2>Search Reasults</h2>
+<h5>About  {{datasets| length }} results </h5>
+
+
+<p><strong>Related searches </strong>
+  {% for data in datasets %}
+ {% if data.dataset %}
+   
+  {% for d in data.dataset.keywords  %}
+             <a href="{{path('main',{ dataType:d })}}">{{d }}</a>|
+   {% endfor %}
+ {% endif %}
+
+
+   {% endfor %}
+<hr style="border:5px solid #438EB9;"/>
+{% set letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'|split('') %}
+    <span class="h5">Search Location By Start Letter>> &nbsp;&nbsp;&nbsp; </span>
+    <a href="{{path('loca',{ location:'location' })}}"> All</a>|
+   {% for l in letters %}
+     
+   <a href="{{path('loca',{ location:l })}}">{{l}}</a>|
+ 
+   {% endfor %}
+
+
+
+
+   {% for data in datasets %}
+   {% if data.dataset %}
+     
+       <h3><li><a href="{{path('showdetail',{ id:data.dataset.id })}}">{{data.dataset.name}}</a></li></h3>
+       <p style="text-align:center">
+       <a href="{{path('loca',{ id:data.id })}}">{{data.name}}</a>
+       </p>
+   {% endif %}
+      {% endfor %}
+{% else %}
+  <h4 class="txt-danger">Empty Search Reasult</h4>
+{% endif %}
+
+  
+
+     </div>
+     </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{parent()}}
+    
+    
+   
+    
+
+
+{% endblock %}

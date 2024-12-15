@@ -1,0 +1,56 @@
+
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    		
+
+{% endblock %}
+
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home')}}">Home</a>
+							</li>
+						
+              <li class="active">Site Setting</li>
+{% endblock %}
+
+{% block pageheader %}
+
+    
+{% endblock %}
+{% block body %}
+ <div class="row">
+ 
+{{  form_start(form) }}
+      
+        {% for message in app.flashes('sitemessage')  %}
+            <div class="alert alert-success">{{ message }}</div>
+          {% endfor %}
+
+        {{ form(form) }}
+        <!-- /.box-header -->
+       
+         
+                  
+    {{  form_end(form) }}
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+  
+    <script>
+    CKEDITOR.replace('site_Objective');
+    CKEDITOR.replace('site_Mission');
+    CKEDITOR.replace('site_Vision');
+    CKEDITOR.replace('site_Help');
+    CKEDITOR.replace('site_AboutUs');
+    CKEDITOR.replace('site_ContactUs');
+    {# CKEDITOR.replace('site_termsOfReference'); #}
+    {# CKEDITOR.replace('site_emailMessage'); #}
+
+</script>
+
+{% endblock %}
+
+ 

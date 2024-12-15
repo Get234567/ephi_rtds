@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SystemFeedback{% endblock %}
+
+{% block body %}
+    <h1>Create new SystemFeedback</h1>
+
+    {{ include('system_feedback/_form.html.twig') }}
+
+    <a href="{{ path('system_feedback_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,846 @@
+{% block stylesheets %}
+    <link href="{{asset('assets/css/smart_wizard.css')}}" rel="stylesheet" type="text/css"/>
+      <link href="{{asset('assets/css/smart_wizard.css')}}" rel="stylesheet" type="text/css" />
+
+    <link href="{{asset('assets/css/smart_wizard_theme_arrows.css')}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <link rel="stylesheet" href="{{asset('assets/css/L.Control.Locate.min.css')}}"/>
+{% endblock %}
+
+{{ form_start(form,{'attr':{'id': 'myForm','role':'form','data-toggle':'validator'} }) }}
+
+<div class="widget-box widget-color-blue2">
+    <div class="widget-header widget-header-blue widget-header-flat">
+        <h4 class="widget-title lighter">
+            Dataset</h4>
+
+        <div class="widget-toolbar"></div>
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            {{ form_start(form,{'attr':{'id': 'myForm','role':'form','data-toggle':'validator'} }) }}
+            <div id="smartwizard">
+                <ul>
+                    <li>
+                        <a href="#step-1">Step 1<br/>
+                                <small></small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-2">Step 2<br/>
+                                    <small></small>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-3">Step 3<br/>
+                                        <small></small>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#step-4">Step 4<br/>
+                                            <small></small>
+                                        </a>
+                                    </li>
+
+
+                                    </ul>
+
+
+                                    <div>
+                                        <div id="step-1">
+
+                                            <div id="form-step-0" role="form" data-toggle="validator">
+
+                                                <input type="hidden" name="location_detail_f" id="location_detail_f">
+                                                <input type="hidden" name="location_name_f" id="location_name_f">
+                                                <input type="hidden" name="ge_loc" id="ge_loc">
+                                                <div class="form-group col-sm-6">
+                                                    <label class="col-sm-5 control-label no-padding-right">Dataset Name</label>
+                                                    {{ form_widget(form.name,{'attr':{'class':'form-control'}}) }}
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group col-sm-6">
+                                                    <label class="col-sm-5 control-label no-padding-right" for="format">{{ form_label(form.format) }}</label>
+                                                    {{ form_widget(form.format,{'attr':{'class':'form-control'}}) }}
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="col-sm-5 control-label no-padding-right">{{ form_label(form.coverageLocation) }}</label>
+                                                    {{ form_widget(form.coverageLocation,{'attr':{'class':'form-control'}}) }}
+
+                                                    <div class="help-block with-errors"></div>
+                                                     <button type="button"  class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#geo_detail">
+                                                    Geo Location
+                                                </button>
+                                                </div>
+
+                                                {# <div class="form-group col-sm-6">
+                                                    <label class="col-sm-5 control-label no-padding-right">Age Group</label>
+
+                                                    {{ form_widget(form.coverageAge,{'attr':{'class':'form-control'}}) }}
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div> #}
+
+                                                <div class="form-group col-sm-6">
+                                                    <label class="col-sm-5 control-label no-padding-right">{{ form_label(form.coverageSex) }}</label>
+
+                                                    {{ form_widget(form.coverageSex,{'attr':{'class':'form-control'}}) }}
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group col-sm-6">
+                                                    <label>{{ form_label(form.dataType) }}</label>
+
+
+                                                    {{ form_widget(form.dataType,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+
+
+                                                <div class="form-group col-sm-6">
+                                                    <label class="col-sm-6 control-label no-padding-right">{{ form_label(form.keywords) }}</label><br>
+
+
+                                                    {{ form_widget(form.keywords,{'attr':{'class':'form-control', 'data-role':'tagsinput'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                                          <div class="form-group col-sm-6">
+                                                                                                    <label class="col-sm-6 control-label no-padding-right">Additional Material</label><br>
+
+                                                                                                    {{ form_widget(form.codeBook,{'attr':{'class':'codeBookcheck'}}) }} It has additional material<br>
+
+                                                                                                    <div class="help-block with-errors"></div>
+                                                                                                </div>
+
+
+                                                                                                <div class="form-group col-sm-6 hidden" id="filediv">
+                                                                                                    <label class="col-sm-6 control-label no-padding-right">Additional Material Name</label>
+/
+
+                                                                                                    {{ form_widget(form.codeBookFileName,{'attr':{'class':'codeBook'}}) }}
+
+
+                                                                                                    <div class="help-block with-errors"></div>
+                                                                                                </div>
+
+
+
+                                                <div class="form-group col-sm-6">
+                                                    <label>Data Quality assessment</label>
+
+
+                                                    {{ form_widget(form.qualityassessment,{'attr':{'class':'qualityassessment'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div  id="qualityassessmentdiv" {% if form.qualityassessment %}
+                                                    class="hidden form-group"
+                                              {% else %}
+                                                    class="form-group col-md-6"
+                                                {% endif %}>
+                                                <label>Quality</label>
+
+
+                                                {{ form_widget(form.quality,{'attr':{'class':'form-control quality'}}) }}
+
+
+                                                <div class="help-block with-errors"></div>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <div id="step-2">
+
+                                            <div id="form-step-1" role="form" data-toggle="validator">
+
+
+                                                <div class="form-group">
+                                                    <label>Recommended Citations</label>
+
+
+                                                    {{ form_widget(form.recommended,{'attr':{'class':'ckeditor'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="">
+                                                    <label>{{ form_label(form.cleaned) }}</label>
+
+
+                                                    {{ form_widget(form.cleaned,{'attr':{'class':'cleaned'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div  id="cleandiv" {% if form.cleaned %}
+                                                    class="hidden form-group"
+                                          {% else %}
+                                                    class="form-group"
+                                                {% endif %}>
+                                                    <label>{{ form_label(form.cleanedFormat) }}</label>
+
+
+                                                    {{ form_widget(form.cleanedFormat,{'attr':{'class':'form-control cleanedformat'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ form_label(form.rawFormat) }}</label>
+
+
+                                                    {{ form_widget(form.rawFormat,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+
+                                                <div class="form-group timecov">
+                                                    <label>Date Data Collection Started</label>
+
+                                                    {{ form_widget(form.timePeriodCoverageStart,{'attr':{'class':'form-control tpcs','title':'Please enter valid year' }}) }}
+                                                    {# {{ getYears(1900, 2020) | raw}} #}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                          <div class="form-group timecov">
+                                                    <label>Date Data Collection End</label>
+
+
+                                                    {{ form_widget(form.timePeriodCoverageEnd,{'attr':{'class':'form-control tpce','title':'Please enter valid year'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div id="step-3">
+
+                                            <div id="form-step-2" role="form" data-toggle="validator">
+
+
+
+                                                <div class="form-group">
+                                                    <label>{{ form_label(form.title) }}</label>
+
+
+                                                    {{ form_widget(form.title,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="">
+                                                    <label>{{ form_label(form.published) }}</label>
+
+
+                                                    {{ form_widget(form.published,{'attr':{'class':'published'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div  id="publisheddiv" {% if form.published %}
+                                                    class="hidden form-group"
+                                          {% else %}
+                                                    class="form-group"
+                                                {% endif %}>
+                                                <label>{{ form_label(form.publicationYear) }}</label>
+
+
+                                                {{ form_widget(form.publicationYear,{'attr':{'class':'publicationYear'}}) }}
+
+
+                                                <div class="help-block with-errors"></div>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label>{{ form_label(form.sugestedCitation) }}</label>
+
+
+                                                    {{ form_widget(form.sugestedCitation,{'attr':{'class':'form-control ckeditor'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>{{ form_label(form.description) }}</label>
+
+
+                                                    {{ form_widget(form.description,{'attr':{'class':'form-control ckeditor'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Date Data Archived</label>
+
+
+                                                    {{ form_widget(form.recievedDate,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Date Data Cataloged</label>
+
+
+                                                    {{ form_widget(form.catalogCompletedDate,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>{{ form_label(form.abstract) }}</label>
+
+
+                                                    {{ form_widget(form.abstract,{'attr':{'class':'form-control ckeditor'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div id="step-4">
+
+                                            <div id="form-step-3" role="form" data-toggle="validator">
+
+                                                <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.studyDesign) }}</label>
+
+
+                                                    {{ form_widget(form.studyDesign,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Age Group</label>
+
+
+                                                    {{ form_widget(form.coverageType,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                {# <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.datasetCategory) }}</label>
+
+
+                                                    {{ form_widget(form.datasetCategory,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div> #}
+
+                                                <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.geospatial) }}</label>
+
+
+                                                    {{ form_widget(form.geospatial,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Microdata availability</label>
+
+
+                                                    {{ form_widget(form.microdataTabulationStatus,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.publisher) }}</label>
+
+
+                                                    {{ form_widget(form.publisher,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                  <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.recordType) }}</label>
+
+
+                                                    {{ form_widget(form.recordType,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+
+                                                  <div class="form-group col-md-6">
+                                                    <label>Data Generating Unit </label>
+
+
+                                                    {{ form_widget(form.workunit,{'attr':{'class':''}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label>PI Name</label>
+                                                  {{ form_widget(form.PIName,{'attr':{'class':'form-control'}})}}
+                                                  <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label>PI Phone</label>
+                                                  {{ form_widget(form.PIPhone,{'attr':{'class':'form-control'}})}}
+                                                  <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label>PI Email</label>
+                                                  {{ form_widget(form.PIEmail,{'attr':{'class':'form-control'}})}}
+                                                  <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label>Funding Source</label>
+                                                  {{ form_widget(form.Funding,{'attr':{'class':'form-control'}})}}
+                                                  <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Level Of Access</label>
+
+
+                                                    {{ form_widget(form.confidentiality,{'attr':{'class':'form-control'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.isRestricted) }}</label>
+                                                    {{ form_widget(form.isRestricted,{'attr':{'class':'restricted'}}) }}
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                 <div  id="restricteddiv"
+                                                  {% if form.isRestricted %}
+                                                    class="hidden form-group"
+                                          {% else %}
+                                                    class="form-group"
+                                                {% endif %}>
+                                                <div class=" form-group col-md-12">
+
+
+                                                    <label>{{ form_label(form.DescriptionOfRestriction) }}</label>
+
+
+                                                    {{ form_widget(form.DescriptionOfRestriction,{'attr':{'class':'ckeditor  restrictedformat'}}) }}
+                                                    <div class="help-block with-errors"></div>
+
+                                                </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label>{{ form_label(form.isExternal) }}</label>
+
+
+                                                    {{ form_widget(form.isExternal,{'attr':{'class':'form-control external'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+
+
+                                                 <div  id="externaldiv" {% if form.isExternal %}
+                                                    class="hidden form-group"
+                                          {% else %}
+                                                    class="form-group"
+                                                {% endif %}>
+                                                <div class=" form-group col-md-12">
+
+
+                                                    <label>{{ form_label(form.ExternalLink) }}</label>
+
+
+                                                    {{ form_widget(form.ExternalLink,{'attr':{'class':'ckeditor  externalformat'}}) }}
+
+
+                                                    <div class="help-block with-errors"></div>
+
+                                                </div>
+                                                </div>
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+                                {{ form_end(form) }}
+                            </div>
+                            <!-- /.widget-main -->
+                        </div>
+
+                        <!-- /.widget-body -->
+                    </div>
+
+
+                    <div class="modal fade" id="geo_detail" tabindex="-1" role="dialog" aria-labelledby="geo_detailLabel" aria-hidden="true">
+                        <div class="modal-dialog  modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="geo_detailLabel">Location Detail</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body ">
+
+                                    <div class="row" style="">
+                                        <div style=" height:300px" class="col-md-12" id="mapid"></div>
+
+                                        <div class="col-md-4">
+
+                                            <div class="form-group">
+
+
+                                                <input type="checkbox" checked="true" name="start_registering" id="start_maping">
+
+
+                                                <label for="" class="form-conrol-label">Start Drawing</label>
+                                            </div>
+
+
+                                            <button type="button" class="btn btn-danger" onclick="deleteLast()" data-target="">
+                                                Delete
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Location Name</label>
+                                        <input class="form-control" type="text" name="location_name" id="location_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Location Detail</label>
+                                        <input class="form-control" type="text" name="location_detail" id="location_detail">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="savedata()" class="btn btn-primary" data-dismiss="modal">Save</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% block javascripts %}
+                       <script src="{{ asset('assets/j/jquery.min.js') }}"></script>
+                         <script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <script src="{{asset('assets/js/Leaflet.SelectAreaFeature.js')}}"></script>
+      <script src="{{asset('assets/js/L.Control.Locate.min.js')}}" charset="utf-8"></script>
+
+
+   <script src="{{ asset('assets/j/validator.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.smartWizard.min.js')}}"></script>
+    <script type="text/javascript">
+
+      $('.tpcs').change(function(){
+
+           var end=$('.tpce').val();
+
+           var start=$(this).val();
+
+           if(end < start){
+               var elmForm = $(".timecov");
+               var elmErr = elmForm.addClass('has-error');
+               $('.tpcs').val('');
+
+           }
+
+           else{
+               var elmForm = $(".timecov");
+               var elmErr = elmForm.removeClass('has-error');
+           }
+       });
+       $('.tpce').change(function(){
+           var start=$('.tpcs').val();
+           var end=$(this).val();
+
+
+            if(end < start){
+               var elmForm = $(".timecov");
+               var elmErr = elmForm.addClass('has-error');
+               $('.tpce').val('');
+
+
+           }
+           else{
+               var elmForm = $(".timecov");
+               var elmErr = elmForm.removeClass('has-error');
+           }
+       });
+
+        $(document).ready(function () {
+
+
+            $('.codeBookcheck').change(function(){
+                 if($(this).is(':checked')){
+                $('#filediv').removeClass('hidden');
+            $(".codeBook").prop('required',true);
+                }
+                else {
+                $('#filediv').addClass('hidden');
+  $(".codeBook").prop('required',false);
+  $(".codeBook").val('');
+                }});
+
+            $('.cleaned').change(function(){
+
+                 if($(this).is(':checked')){
+                $('#cleandiv').removeClass('hidden');
+            $(".cleanedformat").prop('required',true);
+                }
+                else {
+                $('#cleandiv').addClass('hidden');
+  $(".cleanedformat").prop('required',false);
+  $(".cleanedformat").val('');
+                }
+
+
+            });
+            $('.qualityassessment').change(function(){
+
+                 if($(this).is(':checked')){
+                $('#qualityassessmentdiv').removeClass('hidden');
+            $(".quality").prop('required',true);
+                }
+                else {
+                $('#qualityassessmentdiv').addClass('hidden');
+        $(".quality").prop('required',false);
+        $(".quality").val('');
+                }
+
+
+            });
+
+            $('.published').change(function(){
+
+                 if($(this).is(':checked')){
+                $('#publisheddiv').removeClass('hidden');
+            $(".publicationYear").prop('required',true);
+                }
+                else {
+                $('#publisheddiv').addClass('hidden');
+        $(".publicationYear").prop('required',false);
+        $(".publicationYear").val('');
+                }
+
+
+            });
+
+
+ $('.restricted').change(function(){
+//$(".restrictedformat").prop('required',false);
+
+                 if(!$(this).is(':checked')){
+                $('#restricteddiv').addClass('hidden');
+            $(".restrictedformat").prop('required',true);
+                }
+                else {
+                $('#restricteddiv').removeClass('hidden');
+  $(".restrictedformat").prop('required',false);
+  $(".restrictedformat").val('');
+                }
+
+
+            });
+
+
+ $('.external').change(function(){
+//$(".externalformat").prop('required',false);
+                 if(!$(this).is(':checked')){
+                $('#externaldiv').addClass('hidden');
+           $(".externalformat").prop('required',true);
+                }
+                else {
+                $('#externaldiv').removeClass('hidden');
+  $(".externalformat").prop('required',false);
+  $(".externalformat").val('');
+                }
+
+
+         });
+
+            // Toolbar extra buttons
+            var btnFinish = $('<button></button>').text('Finish').addClass('btn btn-info btn-finish hidden').on('click', function () {
+                if (!$(this).hasClass('disabled')) {
+                    var elmForm = $("#myForm");
+                    if (elmForm) {
+                        elmForm.validator('validate');
+                        var elmErr = elmForm.find('.has-error');
+                        if (elmErr && elmErr.length > 0) {
+                            alert('Please fill all required fields before you submit!!');
+                            return false;
+                        } else {
+                            elmForm.submit();
+                            return false;
+                        }
+                    }
+                }
+            });
+
+            var btnCancel = $('<button></button>').text('Reset').addClass('btn btn-danger').on('click', function () {
+                $('#smartwizard').smartWizard("reset");
+                $('#myForm').find("input, textarea").val("");
+            });
+
+            // Smart Wizard
+            $('#smartwizard').smartWizard({
+                selected: 0,
+                theme: 'arrows',
+                transitionEffect: 'fade',
+                toolbarSettings: {
+                    toolbarPosition: 'bottom',
+                    toolbarExtraButtons: [btnFinish]
+                },
+                anchorSettings: {
+                    markDoneStep: true, // add done css
+                    markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
+                    removeDoneStepOnNavigateBack: true, // While navigate back done step after active step will be cleared
+                    enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+                }
+            });
+
+            $("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
+
+                var elmForm = $("#form-step-" + stepNumber);
+                // stepDirection === 'forward' :- this condition allows to do the form validation
+                // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+                if (stepDirection === 'forward' && elmForm) {
+                    elmForm.validator('validate');
+                    var elmErr = elmForm.children('.has-error');
+                    if (elmErr && elmErr.length > 0) { // Form validation failed
+                        return false;
+                    }
+                }
+                return true;
+            });
+
+            $("#geo_detail").on('shown.bs.modal', function(){
+
+                var map = L.map('mapid').setView([9.04784, 38.7306], 15);
+             selectfeature = map.selectAreaFeature.enable();
+
+
+        L.control.locate().addTo(map);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+                });
+
+
+            $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) { // Enable finish button only on last step
+
+                 console.log(stepNumber);
+                 console.log(stepDirection);
+                if (stepNumber == 3 && stepDirection == 'forward') {
+
+                   $('.sw-btn-next').addClass('hidden');
+                   $('.btn-finish').removeClass('hidden');
+
+                } else {
+
+                    $('.btn-finish').addClass('hidden');
+                    $('.sw-btn-next').removeClass('hidden');
+
+                }
+            });
+
+        });
+          var selectfeature;
+
+                        function deleteLast(e) {
+                            selectfeature.removeLastArea();
+                        }
+
+                        var checkbox=document.getElementById("start_maping").onchange=function (e) {
+                            if(e.target.checked ){
+                                selectfeature.enable()
+                                }
+                            else{
+                                selectfeature.disable();
+                            }
+                        } ;
+
+
+                            function savedata(e) { // alert("Saving Data");
+                                var location_name = document.getElementById("location_name");
+                                var location_detail = document.getElementById("location_detail");
+
+                                var location_name_f = document.getElementById("location_name_f");
+                                var location_detail_f = document.getElementById("location_detail_f");
+                                location_name_f.value = location_name.value;
+                                location_detail_f.value = location_detail.value;
+
+
+                                var ge_loc = document.getElementById("ge_loc");
+                                // var ge_locval=ge_loc.value;
+                                var singlelatlngs = selectfeature.getAreaLatLng()
+                                // latlngs.push(selectfeature.getAreaLatLng());
+                                // console.log(JSON.stringify(latlngs));
+                                var encoded = JSON.stringify(singlelatlngs);
+                                var decoded = JSON.parse(encoded);
+                               // alert("Geo" + encoded);
+                                var geo_data = {
+                                    'name': location_name_f.value,
+                                    'points': encoded
+                                };
+
+                                var encoded = JSON.stringify(geo_data);
+                                // var decoded=JSON.parse(encoded);
+
+                                ge_loc.value = encoded;
+                                //alert("Geo" + geo_data);
+                                // var polygon = L.polygon(decoded, {color: 'red',title:'Jimma'}).addTo(map);
+                                // map.fitBounds(polygon.getBounds());
+
+
+                            }
+
+
+    </script>
+
+        <script  type="text/javascript">
+
+
+
+
+        </script>
+
+
+
+                        <!-- inline scripts related to this page -->
+
+                    {% endblock %}

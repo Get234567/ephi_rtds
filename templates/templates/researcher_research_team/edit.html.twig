@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ResearcherResearchTeam{% endblock %}
+
+{% block body %}
+    <h1>Edit ResearcherResearchTeam</h1>
+
+    {{ include('researcher_research_team/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('researcher_research_team_index') }}">back to list</a>
+
+    {{ include('researcher_research_team/_delete_form.html.twig') }}
+{% endblock %}

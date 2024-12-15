@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+
+{% block search %}{% endblock %}
+{% block breadcrumb %}
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="{{ path('home') }}">Home</a>
+    </li>
+    <li>
+        <a href="{{ path('study_index') }}">Study</a>
+    </li>
+    <li class="active">Attachment</li>
+{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="widget-box widget-color-blue2">
+                <div class="widget-header">
+                    <h4 class="widget-title lighter smaller">New
+                                                Attachment</h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main padding-8">
+                        {{ form(form) }}
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-8 ">
+               <div class="widget-box widget-color-blue2">
+                <div class="widget-header">
+                    <h4 class="widget-title lighter smaller">List of Attachments</h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main padding-8">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Study Label</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for attachment in attachments %}
+                            <tr>
+                                <td>{{ attachment.id }}</td>
+                                <td>{{ attachment.label }}</td>
+
+                                <td>
+                                <form method="post" action="{{ path('download_study') }}" class="form-inline">
+                                <input name="attachment" value="{{ attachment.id}}" hidden />
+                                    <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-download"></i> download</button>
+                        <a class="btn btn-warning btn-sm " href="{{ path('study_attachment_edit', {'id': attachment.id}) }}"><i class="fa fa-pencil"></i> edit</a>
+
+                                </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">no records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    {% endblock %}

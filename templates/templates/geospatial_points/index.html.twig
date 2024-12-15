@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GeospatialPoints index{% endblock %}
+
+{% block body %}
+    <h1>GeospatialPoints index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Points</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for geospatial_point in geospatial_points %}
+            <tr>
+                <td>{{ geospatial_point.id }}</td>
+                <td>{{ geospatial_point.name }}</td>
+                <td>{{ geospatial_point.description }}</td>
+                <td>{{ geospatial_point.points }}</td>
+                <td>
+                    <a href="{{ path('geospatial_points_show', {'id': geospatial_point.id}) }}">show</a>
+                    <a href="{{ path('geospatial_points_edit', {'id': geospatial_point.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('geospatial_points_new') }}">Create new</a>
+{% endblock %}

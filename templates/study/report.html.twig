@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta charset="utf-8"/>
+
+		<meta name="description" content="overview &amp; stats"/>
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+		<style>
+table {
+  border-collapse: collapse;
+}
+
+			th {
+				font-size: 11px;
+
+			}
+			table, th, td {
+  border: 1px solid black;
+}
+
+div {
+  width: 100%;
+  border: 1px solid #c3c3c3;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-content: center;
+  align-content: center;
+}
+		</style>
+
+	</head>
+	{% set mile = 0 %}
+
+	{% set milen = 0 %}
+
+	{% set totaltask = 0 %}
+	{% set donetask = 0 %}
+	{% for item in tasks %}
+		{% set totaltask = totaltask + 1 %}
+		{% if item.done == 2 %}
+			{% set donetask = donetask + 1  %}
+			{% if mile < item.milestone.id  %}
+
+				{% set mile = item.milestone.id %}
+				{% set milen = item.milestone.name %}
+
+			{% endif %}
+
+		{% endif %}
+
+
+	{% endfor %}
+	<body style="background-color: fff!important;">
+
+		<div>
+
+			<h4 class="smaller center block">{{ study.title }}
+			</h4>
+
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered" style="width:100%;">
+					<tbody>
+						<tr>
+							<th style="width:200px">ID</th>
+							<td>EPHI-000{{ study.id }}</td>
+						</tr>
+						<tr>
+							<th>Title</th>
+							<td>{{ study.title }}</td>
+						</tr>
+
+						<tr>
+							<th>Irb Code</th>
+							<td>{{ study.irbCode }}</td>
+						</tr>
+						<tr>
+							<th>Research Question</th>
+							<td>{{ study.researchQuestion|raw }}</td>
+						</tr>
+						<tr>
+							<th>PI</th>
+							<td>
+								<ul class="list-group">
+									<li class="list-unstyled">Name:
+										{{ study.PIName }}</li>
+
+									<li class="list-unstyled">Phone:
+										{{ study.PIPhone }}</li>
+
+									<li class="list-unstyled">Email:
+										{{ study.PIEmail }}</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>Co-PI</th>
+							<td>
+								<ul class="list-group">
+									<li class="list-unstyled">Name:
+										{{ study.COPIName }}</li>
+
+									<li class="list-unstyled">Phone:
+										{{ study.COPIPhone }}</li>
+
+									<li class="list-unstyled">Email:
+										{{ study.COPIEmail }}</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>Year Conducted</th>
+							<td>{{ study.yearConducted ? study.yearConducted|date('Y') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Year Published</th>
+							<td>{{ study.yearPublished ? study.yearPublished|date('Y') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Budget</th>
+							<td>{{ study.budget }} {{ study.cur }}</td>
+						</tr>
+						<tr>
+							<th>TimePeriod Coverage Start</th>
+							<td>{{ study.timePeriodCoverageStart ? study.timePeriodCoverageStart|date('Y-m-d') : '' }}</td>
+						</tr>
+						<tr>
+							<th>TimePeriod Coverage End</th>
+							<td>{{ study.timePeriodCoverageEnd ? study.timePeriodCoverageEnd|date('Y-m-d') : '' }}</td>
+						</tr>
+
+						<tr>
+							<th>Comment</th>
+							<td>{{ study.comment|raw }}</td>
+						</tr>
+						<tr>
+							<th>Objective</th>
+							<td>{{ study.objective | raw }}</td>
+						</tr>
+
+						<tr>
+							<th>Remark</th>
+							<td>{{ study.remark|raw }}</td>
+						</tr>
+						<tr>
+							<th>Summary</th>
+							<td>{{ study.summary|raw }}</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ study.description | raw }}</td>
+						</tr>
+						<tr>
+							<th>Geography</th>
+							<td>{{ study.geography }}</td>
+						</tr>
+						<tr>
+							<th>Funding Sources</th>
+							<td>{{ study.fundingsource|join(',') }}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</div>
+		<br>
+		<br>
+		<br>
+			<table class="table table-bordered" style="width:100%;">
+			<tbody>
+				<tr class="bg-success">
+					<td colspan="2" class="center">
+						<strong>Study Status</strong>
+					</td>
+				</tr>
+				<tr>
+					<th>Proposal submitted</th>
+					<td>{{ study.ResearchProposal ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Ethical Clearance submitted</th>
+					<td>{{ study.EthicalClearance ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Milestone</th>
+					<td>{{ milen }}</td>
+				</tr>
+				<tr>
+					<th>Total Number of proposed tasks</th>
+					<td>
+						<span class="badge badge-success">{{ totaltask }}</span>
+					</td>
+				</tr>
+				<tr>
+					<th>Total number of completed tasks</th>
+					<td>
+						<span class="badge badge-success">{{ donetask }}</span>
+					</td>
+				</tr>
+				<tr>
+					<th>Number of Study attachment</th>
+					<td>
+						<span class="badge badge-success">{{ attachments | length }}</span>
+					</td>
+				</tr>
+				<tr>
+					<th>Status</th>
+					<td>
+						{% if study.status %}
+							{% if study.status == 1 or study.status == 2 or study.status == 3 %}
+								<span class="label label-success">
+									Ongoing
+								</span>
+							{% elseif study.status == 4  %}
+								<span class="label label-success">
+									Completed
+								</span>
+							{% elseif study.status == -1  %}
+								<span class="label label-danger">
+									Rejected
+								</span>
+
+							{% endif %}
+
+						{% else %}
+							<span class="label label-warning">Pending</span>
+
+						{% endif %}
+
+
+					</td>
+				</tr>
+				<tr class="bg-success">
+					<td colspan="2" class="center">
+						<strong>Date:
+						</strong>
+						<span class="pull-right">{{   'now' | date('Y-m-d') }}
+							{{   'now' | date('H:i') }}</span>
+					</td>
+				</tr>
+
+
+			</tbody>
+		</table>
+	</body>
+</html>

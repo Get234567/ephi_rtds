@@ -1,0 +1,713 @@
+/*
+CSS for customized DHL research guides
+Last updated: 06/01/2017 js
+DHL colors are:
+Grey -> #E2E2E2
+Blue -> #3F4A74
+Pink -> #E64D61
+Green -> #62b0c1
+*/
+/* Hidden information*/
+/*- All pages*/
+/*--Information associated with internal research guide, when added into a box*/
+.s-lg-guide-list-info {
+    display: none;
+}
+/* subtitle in carousels */
+.s-lib-cpane-caption > p {
+display:none;
+}
+
+/*- Homepage*/
+
+/*-- Information associated with a subject (slide down menu)*/
+.alert.alert-info.margin-top-med {
+    display: none;
+}
+
+.s-ui-helptip {
+    display: none;
+}
+
+/* Remove elements in breadcrumb*/
+#s-lib-bc-customer {
+    display: none;
+}
+
+#s-lib-bc-site:before {
+    content: none;
+}
+
+/* Remove Springshare brand*/
+#s-lib-footer-rights,#s-lib-footer-brand,#s-lib-footer-support-link {
+    display: none;
+}
+
+/*Libguides styles*/
+/*- All pages*/
+/* -- Skiplink out of view*/
+
+#skiplink,#skiplink a {
+    position: absolute;
+    top: -9999px;
+    color: #FFF;
+}
+
+/*Breadcrumb*/
+#s-lib-bc .breadcrumb{
+    margin:10px 0 0 0;
+}
+
+/* Various navigation bars*/
+#s-lg-hp-nav,#s-lg-profile-nav,#s-lg-srch-nav {
+    background-color: #fff;
+    border-bottom: 1px solid #3F4A74;
+    border-top: none;
+    border-left: none;
+    border-top: right;
+	border-radius:0px;
+}
+
+/* Buttons */ 
+.nav-pills>li.active>button, .nav-pills>li.active>button:focus, .nav-pills>li.active>button:hover {
+    background-color: #3F4A74;
+}
+
+.btn-link
+{
+color: #3F4A74;
+}
+.nav .s-lg-index-nav-btn>button {
+color: #3F4A74;
+}
+
+/* Panels*/
+.panel-default > .panel-heading {
+    background-color: #e2e2e2;
+    border: 1px solid #e2e2e2;
+}
+
+/*table*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,th {
+    border: 1px solid #E2E2E2;
+    padding: 5px;
+}
+
+/*Ask Dag widget button*/
+.btn.btn-primary.s-la-searchform-button {
+    background-color: #3F4A74 !important;
+}
+
+.btn.btn-primary.s-la-searchform-button:hover {
+    background-color: #fff !important;
+    color: #3F4A74 !important;
+}
+
+/*Links in assets and widgets*/
+.ui-widget-content a {
+    color: #495587;
+}
+
+/* -- Box titles*/
+.s-lib-box .s-lib-box-title {
+    font-size: 15px;
+}
+
+/* -- Custom Navigation menu for UN docs, etc */
+.panel-dhl {
+    display: block;
+    background-color: #4fa83c;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    padding: 2px 5px;
+}
+
+.panel-dhl>a {
+    color: #fff;
+    text-decoration: none!important;
+}
+
+.panel-dhl:hover {
+    background-color: #e2e2e2;
+}
+
+.panel-dhl:hover > a {
+    text-decoration: none;
+    color: #3F4A74;
+}
+
+
+
+/*-- Homepage */
+/* custom boxes header*/
+.s-lib-public-side-header h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #3F4A74;
+    border-bottom: 1px solid #3F4A74;
+}
+
+/* --- Search-box*/
+#s-lg-box-2679339,#s-lg-box-2593057,#s-lg-box-2679278,#s-lg-box-2654205,#s-lg-box-2654151,#s-lg-box-4365880 {
+    border-color: #3F4A74 !important;
+}
+
+#s-lg-box-2679339 .s-lib-box-title,#s-lg-box-2593057 .s-lib-box-title,#s-lg-box-2679278 .s-lib-box-title,#s-lg-box-2654205 .s-lib-box-title,#s-lg-box-2654151 .s-lib-box-title,#s-lg-box-4365880 .s-lib-box-title {
+    background-color: #4fa83c;
+    background-image: none;
+    color: #fff;
+    border-bottom: 1px solid #4fa83c;
+    border-radius: 0;
+}
+
+
+/*--A-Z List*/
+#az-search-col-1 > .navbar-default {
+    background-color: #3F4A74;
+	border-color: #3F4A74;
+}
+
+/* base styles **********************************************************************************/
+body {
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    background-color: #fff;
+}
+
+a {
+    color: #495587;
+
+}
+
+/* h3 Modified for Research Guides
+- h4 added for research guides*/
+h3,h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+h3 {
+    color: #3F4A74;
+}
+
+h4 {
+    color: #E64D61;
+}
+
+blockquote {
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 20px;
+    color: #666;
+}
+
+/* Header and footer **************************************************************************************/
+#brand-bar {
+    background-image: linear-gradient(
+90deg, #86de61, #0f6d0ff5);
+    margin: 0;
+    padding: 0;
+    border: none !important;
+    border-bottom: #00adef solid 5px !important;
+    height: 41px;
+    min-height: inherit;
+    z-index: 499;
+}
+
+#brand-bar.navbar-fixed-top {
+    top: inherit;
+}
+
+#brand-bar #un_brand>a:before {
+    font-family: FontAwesome;
+    color: #000;
+    content: "\f015";
+    font-size: 18.07px;
+    line-height: .9;
+    margin-right: 7.8px;
+    float: left;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#logo_row {
+    margin-top: 60px;
+}
+
+#logo_row .row {
+    background-color: #3F4A74;
+}
+
+#logo_row .row #social_icons {
+    background-color: #2cbaeb;
+}
+
+#logo_row img {
+    margin: 10px 0 5px;
+    width: 100%;
+}
+
+#logo_row div {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.triangle-topright {
+    background-color: #fff;
+    height: 0;
+    border-top: 29px solid transparent;
+    border-right: 12px solid #4fa83c;
+}
+
+.triangle-topleft {
+    background-color: #fff;
+    height: 0;
+    border-top: 29px solid #4fa83c;
+    border-right: 12px solid transparent;
+}
+
+.triangle-topright-salmon {
+    background-color: #fff;
+    height: 0;
+    border-top: 29px solid transparent;
+    border-right: 12px solid #2cbaeb;
+}
+
+.triangle-topleft-salmon {
+    background-color: #fff;
+    height: 0;
+    border-top: 29px solid #2cbaeb;
+    border-right: 12px solid transparent;
+}
+
+#triangle-container {
+    background-color: #4fa83c;
+}
+
+#triangle-container div {
+    float: left;
+    color: #fff;
+}
+
+#triangle-container .header-bar {
+    font-size: 12px;
+    background-color: #4fa83c;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 6px;
+}
+
+.header-bar a {
+    color: #fff;
+    padding-left: 90px;
+}
+
+#triangle-container #social-icons {
+    background-color: #2cbaeb;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 20px;
+/* Added for research guides*/
+    line-height: 1.4;
+    max-height: 29px;
+}
+
+#social-icons i {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul.language-switcher-locale-url > li > a {
+    font-size: 12.35px;
+    line-height: 17.03px;
+    font-weight: 400;
+    letter-spacing: .03em;
+    color: rgb(253, 253, 253);
+}
+
+#unorg_header > div > a {
+    font-size: 18.35px;
+    line-height: 17.03px;
+    font-weight: 400;
+    letter-spacing: .03em;
+    color: rgb(252, 250, 250);
+}
+
+#un_brand {
+    padding-top: 10px;
+    padding-left: 0;
+}
+
+#unorg_header {
+    font-size: 11px;
+}
+
+#lang_bar {
+    padding-right: 0;
+}
+
+#language_switcher_label {
+    float: left;
+    text-align: left;
+    color: #000;
+}
+
+#language_switcher .navbar-toggle {
+    float: right;
+    margin-right: 0;
+}
+
+#language_switcher .navbar {
+    margin-bottom: 0;
+    float: right;
+}
+
+#language_switcher .navbar-toggle .icon-bar {
+    background-color: #000;
+/*#ffffff;*/
+}
+
+#language_switcher #language_switcher_label {
+    margin-top: 10px;
+}
+
+#language-navbar-collapse {
+    margin-top: 10px;
+}
+
+#language-navbar-collapse ul li {
+    margin: 5px;
+    display: inline;
+}
+
+/* menu *****************************************************************************************/
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Made more specific to avoid modifying Springshare bootstrap elements*/
+#menu-navbar-collapse ul.nav.navbar-nav>li>a
+{
+    padding: 0 10px;
+}
+
+#menu_container {
+    z-index: 2000 !important;
+    background-color: #fff;
+}
+
+#menu_container a {
+    color: #4fa83c;
+    font-size:13.5px;
+}
+
+#menu_container .nav {
+    padding-left: 5px;
+}
+
+#menu_container .icon-bar {
+    background-color: #3F4A74;
+}
+
+#menu_container ul.dropdown-menu > li > a.active {
+    color: #fff;
+    background-color: #3F4A74;
+}
+
+/* footer ***************************************************************************************/
+.footer_menu {
+    background-color: #fff;
+}
+
+.footer_menu ul {
+    margin-bottom: 20px;
+}
+
+.footer_menu h5 {
+    margin-top: .2em;
+    margin-bottom: .3em;
+    color: #495587;
+    font-weight: 400;
+}
+
+.footer_menu ul li {
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+    font-size: .9em;
+    padding-bottom: .3em;
+}
+
+.footer_menu ul li a {
+    color: #000;
+}
+
+#footer_menu_1 {
+    margin-top: 20px;
+}
+
+#footer_fun_fact {
+    background-color: #3F4A74;
+    color: #fff;
+    font-size: 2.3em;
+    padding: 20px 35px;
+    text-align: center;
+}
+
+/* UN footer (from WSS ) *************************************************************************/
+
+/*!Bootstrap Made more specific to avoid modifying bootstrapped element in Springshare*/
+.footer>.list-inline > .col-md-12 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.footer>.list-inline .nav > li {
+    position: relative;
+    display: block;
+}
+
+.footer>.list-inline {
+    margin-top: 50px;
+}
+
+.navbar-toggle {
+    float: left;
+}
+
+.footer .list-inline .footer-brand {
+    height: 21px;
+    margin-top: -6px;
+    margin-bottom: 10px;
+    background: url(../../../../../www.un.org/sites/www.un.org/themes/bootstrap_un/images/un-logo-footer.png) left top no-repeat;
+}
+
+.footer .list-inline .footer-brand a {
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 21px;
+    letter-spacing: -.02em;
+    color: #4d4d4d;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    padding-left: 30px;
+}
+
+.footer #block-menu-menu-footer-links ul.nav li {
+    float: left;
+    padding-right: 6.5px;
+    margin-right: 5.85px;
+    border-right: #737373 solid 1px;
+    line-height: 1;
+}
+
+.footer #block-menu-menu-footer-links ul.nav li.last {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+}
+
+.footer ul.nav {
+    list-style: none;
+    padding-left: 2px;
+    padding-bottom: 26px;
+}
+
+.footer ul.nav li {
+    padding: 0;
+    margin: 0 0 6.5px;
+}
+
+.footer ul.nav li a {
+    padding: 0;
+    margin: 0;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.46153846;
+}
+
+.footer ul.nav li {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0;
+}
+
+.footer_menu ul {
+    padding: 0;
+}
+
+#un_footer ul.nav {
+    list-style: none;
+}
+
+#un_footer ul.nav li {
+    float: left;
+}
+
+#un_footer ul.nav li a {
+    color: #3F4A74;
+    padding: 0 10px 0 0;
+    font-size: 12px;
+}
+
+/* CSS Statements that only apply on webkit-based browsers (Chrome, Safari, etc.) */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #triangle-container #social-icons {
+        border-bottom: 1px solid #E64D61;
+    }
+}
+
+/* MEDIA < 1200px *******************************************************************************/
+/*@media (max-width: 1200px) {*/
+/* 1200px ÷ 16 */
+@media (max-width: 75em) {
+    #logo_row img {
+        margin: 20px 0 5px;
+        width: 100%;
+    }
+}
+
+/* MEDIA < 992px *******************************************************************************/
+/*@media (max-width: 992px) {*/
+/* 992px ÷ 16 */
+@media (max-width: 62em) {
+    .img-responsive {
+        width: 100%;
+    }
+
+    ul.language-switcher-locale-url > li > a {
+        color: #3F4A74;
+    }
+
+    #language-navbar-collapse {
+        margin-top: 0;
+    }
+
+    #language_switcher .navbar-toggle {
+        margin-right: -5px;
+        margin-top: 0;
+    }
+
+    #menu_container .navbar-toggle {
+        margin-left: -15px;
+    }
+
+    #logo_row img {
+        margin: 10px 0 5px;
+        width: 100%;
+    }
+}
+
+/* MEDIA < 768px *******************************************************************************/
+/*@media (max-width: 768px) {*/
+/* 768px ÷ 16 */
+@media (max-width: 48em) {
+    #language_switcher .navbar {
+        float: left;
+    }
+
+    #language_switcher .navbar-toggle {
+        float: left;
+        margin-right: 0;
+    }
+
+    .language-switcher-locale-url {
+        padding-left: 10px;
+        margin-top: -5px;
+    }
+
+    #logo_row img {
+        margin: 20px 0 5px 10px;
+        width: 100%;
+    }
+
+    .table-responsive {
+        border: 0;
+    }
+
+    .table-responsive>.table>thead>tr>th,.table-responsive>.table>tbody>tr>td {
+        white-space: normal;
+    }
+}
+
+/* MEDIA > 992px *******************************************************************************/
+/*@media (min-width: 992px) {*/
+/* 992px ÷ 16 */
+@media (min-width: 62em) {
+    #logo_row .vert-bottom {
+        margin-top: 53px;
+    }
+
+    .footer_menu ul {
+        padding: .4em 0 0;
+    }
+
+    h5:nth-child(3) {
+        margin-top: 2em;
+    }
+
+    #un_footer ul.nav li a {
+        padding: 10px 7px;
+    }
+
+    #main_row_1,#main_row_2 {
+        padding-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .footer_menu ul {
+        margin-bottom: 0;
+    }
+
+    #footer {
+        padding-top: 10px;
+        border-top: 1px solid #3F4A74;
+        margin-top: 20px;
+    }
+
+    #footer_menu_1 {
+        margin-top: 0;
+    }
+
+    #unorg_header {
+        font-size: 12.6px;
+    }
+
+    #triangle-container #opening-hours {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #triangle-container #social-icons {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* MEDIA < 600px *******************************************************************************/
+/*@media (max-width: 600px) {*/
+/* 600px ÷ 16 */
+@media (max-width: 37.5em) {
+    
+}
+
+/* MEDIA < 480px *******************************************************************************/
+/*@media (max-width: 480px) {*/
+/* 480px ÷ 16 */
+@media (max-width: 30em) {
+    
+}
+
+/* MEDIA < 320px *******************************************************************************/
+/*@media (max-width: 320px) {*/
+/* 320px ÷ 16 */
+@media (max-width: 20em) {
+    
+}

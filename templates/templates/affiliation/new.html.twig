@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affiliation{% endblock %}
+{% block breadcrumb %}
+  <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home')}}">Home</a>
+							</li>
+							<li href="{{ path('affiliation_index')}}">Affiliation</li>
+							<li class="active">New</li>
+{% endblock %}
+{% block nopageheader %}
+    <a class="btn btn-primary" href="{{ path('affiliation_new') }}">Create new</a>
+{% endblock %}
+{% block body %}
+    <h1>Create new Affiliation</h1>
+
+    {{ include('affiliation/_form.html.twig') }}
+
+    <a href="{{ path('affiliation_index') }}">back to list</a>
+{% endblock %}

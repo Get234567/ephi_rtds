@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block nopageheader %}
+    <a class="btn btn-primary" href="{{ path('affiliation_index') }}">back to list</a>
+  
+{% endblock %}
+
+{% block body %}
+<div class="col-md-8">
+    <h1>Edit Affiliation</h1>
+
+    {{ include('affiliation/_form.html.twig', {'button_label': 'Update'}) }}
+
+  
+    {{ include('affiliation/_delete_form.html.twig') }}
+
+</div>
+{% endblock %}

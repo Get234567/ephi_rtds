@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserPermission index{% endblock %}
+
+{% block body %}
+    <h1>UserPermission index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_permission in user_permissions %}
+            <tr>
+                <td>{{ user_permission.id }}</td>
+                <td>{{ user_permission.name }}</td>
+                <td>{{ user_permission.description }}</td>
+                <td>{{ user_permission.createdAt ? user_permission.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user_permission.updatedAt ? user_permission.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('user_permission_show', {'id': user_permission.id}) }}">show</a>
+                    <a href="{{ path('user_permission_edit', {'id': user_permission.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_permission_new') }}">Create new</a>
+{% endblock %}

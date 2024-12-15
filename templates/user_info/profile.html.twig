@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Profile
+{% endblock %}
+
+{% block pageheader %}
+	<h1>
+								{{ user.UserInfo.name }}
+                                <small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+								
+								</small>
+								
+							</h1>
+{% endblock %}
+{% block body %}
+
+
+
+
+    <div class="">
+
+				<div id="user-profile-1" class="user-profile row">
+										<div class="col-xs-12 col-sm-3 center">
+											<div>
+												<span class="profile-picture">
+													{% if  app.user.UserInfo %}
+														<img id="avatar" class="editable img-responsive editable-click editable-empty" alt="{{ app.user.UserInfo.Name }}'s " src="{{ asset('profile_pic/' ~ app.user.UserInfo.image) }}">
+												
+													{% endif %}
+													</span>
+
+												<div class="space-4"></div>
+												<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+													<div class="inline position-relative">
+														<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+															<i class="ace-icon fa fa-circle light-green"></i>
+															&nbsp;
+															<span class="white">{% if user %}
+                                                            {% if user.UserInfo %}
+                                                                {{ user.UserInfo.Name }}
+                                                            {% endif %}
+															<span class="white">
+                                                            {% else %}
+                                                                NoName
+                                                            {% endif %}
+                                                            </span>
+														</a>
+
+													
+													</div>
+												</div>
+											</div>
+
+											<div class="space-6"></div>
+
+											<div class="profile-contact-info">
+												
+												<div class="space-6"></div>
+
+												<div class="profile-social-links align-center">
+													<a href="#" class="tooltip-info" title="" data-original-title="Visit my Facebook">
+														<i class="middle ace-icon fa fa-facebook-square fa-2x blue"></i>
+													</a>
+
+													<a href="#" class="tooltip-info" title="" data-original-title="Visit my Twitter">
+														<i class="middle ace-icon fa fa-twitter-square fa-2x light-blue"></i>
+													</a>
+
+													<a href="#" class="tooltip-error" title="" data-original-title="Visit my Pinterest">
+														<i class="middle ace-icon fa fa-pinterest-square fa-2x red"></i>
+													</a>
+												</div>
+											</div>
+
+											<div class="hr hr12 dotted"></div>
+
+											
+											<div class="hr hr16 dotted"></div>
+										</div>
+
+										<div class="col-xs-12 col-sm-9">
+											<div class="center">
+											
+
+												
+
+						
+
+											
+
+
+												
+											</div>
+
+											<div class="space-12"></div>
+
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Name </div>
+
+													<div class="profile-info-value">
+														<span class="editable editable-click" id="username">{% if user %} {{ user.UserInfo.name }}
+                                                            {% else %}
+                                                                
+                                                        {% endif %}</span>
+                                                       
+                                                            
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Address </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker light-orange bigger-110"></i>
+														<span  id="country">{{ user.UserInfo.address }}</span>
+															</div>
+												</div>
+
+												
+
+												
+
+												
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Affiliation</div>
+
+													<div class="profile-info-value">
+														<span  id="about">{{ user.UserInfo.Affiliation }}</span>
+													</div>
+												</div>
+											</div>
+
+											<div class="space-20"></div>
+
+											
+											<div class="hr hr2 hr-double"></div>
+
+											<div class="space-6"></div>
+
+											
+										</div>
+									</div>
+								</div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Study index
+{% endblock %}
+{% block breadcrumb %}
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="#">Home</a>
+    </li>
+    <li class="active">Study</li>
+{% endblock %}
+{% block search %}{% endblock %}
+{% block pageheader %}
+    <div>
+        {% if is_allowed(app.user,'std_sbmt_fnshd') %}
+            <a class="btn btn-sm btn-success pull-left" href="{{ path('study_new')}}">Add Study</a>
+
+        {% endif %}
+
+        <form action="{{path('study_index')}}" class="form-inline pull-right" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search here" autofocus>
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock %}
+{% block body %}
+<div class="space-8"></div>
+    <table class="table table-striped table-responsive table-hover" style=" border:1px solid #dddddd">
+        <thead>
+            <tr>
+                <th row="10">
+                    {# <input type="checkbox" id="checkAll"> #}
+                </th>
+                <th>Study</th>
+                <th>Description</th>
+                <th>Period</th>
+                <th style="width:220px; ">Action</th>
+            </tr>
+        </thead>
+        <tbody>{% set i =1  %}
+            {% for study in studies %}
+                <tr>
+                     <td>{#<input type="checkbox" class="" name="action"/> #}
+                        {{i }}{% set i = i+1  %}</td>
+                    <td >{{ study.title }}</td>
+                    <td>
+
+
+                            {% set d = study.description |  length > 500 ? study.description | slice(0,500) ~ '...'  : study.description  %}
+                            {{ d | raw }}
+
+
+                    </td>
+                    <td >{{ study.yearConducted ? study.yearConducted|date('M Y') : '' }}
+                            -
+                            {{ study.yearPublished ? study.yearPublished|date('M Y') : '' }}
+                            <br/>
+  {{ study.geography }}
+</td>
+                    <td>
+                        <a title="Show detail" href="{{ path('study_show', {'id': study.id}) }}" class="btn  btn-success"><span class="fa fa-eye"></span></a>
+
+                        {% if is_allowed(app.user,'std_edit') or is_study_owner(app.user,study) %}
+                        {% if study.status !=  4 or is_allowed(app.user,'std_edit') %}
+
+
+                             <a title="Attachement" href="{{ path('study_attachment', {'id': study.id}) }}" class="btn  btn-success"><span class="fa fa-paperclip"></span></a>
+
+                            <a title="Edit" href="{{ path('study_edit', {'id': study.id}) }}" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                              {% endif %}
+                             {% endif %}
+                        {% if is_allowed(app.user,'std_del') or is_study_owner(app.user,study) %}
+                        {% if study.status != 4 or is_allowed(app.user,'std_del') %}
+                        <form class="inline" method="post" action="{{ path('xxx', {'id': study.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ study.id) }}">
+    <button title="Delete" class="btn btn-danger"><span class="fa fa-close"></span></button>
+</form>
+{% endif %}
+                        {% endif %}
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="16">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pull-right">{{ knp_pagination_render(studies) }}</div>
+   {% if 1 == 0 %}
+
+
+    <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Multiple Action<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                Classify</li>
+            <li>
+                Tag</li>
+            <li>
+                Adjust Group</li>
+            <li>
+                Delete</li>
+        </ul>
+    </div>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    {{parent() }}<script>
+        $("#checkAll").click(function () {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+    </script>
+{% endblock %}

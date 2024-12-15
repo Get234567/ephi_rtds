@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StudyExternalSource{% endblock %}
+
+{% block body %}
+    <h1>StudyExternalSource</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Description</th>
+                <td>{{ study_external_source.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_external_source_index') }}">back to list</a>
+
+    <a href="{{ path('study_external_source_edit', {'study': study_external_source.study}) }}">edit</a>
+
+    {{ include('study_external_source/_delete_form.html.twig') }}
+{% endblock %}

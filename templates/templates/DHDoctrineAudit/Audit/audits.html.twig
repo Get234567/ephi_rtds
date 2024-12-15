@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% import '@DHDoctrineAudit/Audit/bootstrap.html.twig' as bootstrap %}
+{% import '@DHDoctrineAudit/Audit/helper.html.twig' as helper %}
+
+{% block breadcrumb %}
+
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="{{ path('home') }}">Home</a>
+    </li>
+    <li class="active">Audit</li>
+
+{% endblock %}
+
+{% block pageheader %}
+
+   
+
+
+{{ form_start(form,{'attr':{'class':'form-inline pull-right'}}) }}
+<label>username:</label>
+{{ form_widget(form.Name,{'attr':{'class':'form-control'}}) }}
+<label>Table:</label>
+{{ form_widget(form.Table,{'attr':{'class':'form-control'}}) }}
+<label>operation:</label>
+{{ form_widget(form.operation,{'attr':{'class':'form-control','label':'operation'}})  }}
+{{ form_widget(form.Search,{'attr':{'class':'btn btn-primary btn-sm'}}) }}
+{{ form_end(form) }}
+
+<br>
+
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="card border-0">
+        <div class="card-body">
+
+            <div class="widget-box widget-color-blue2">
+                <div class="widget-header">
+                    <h4 class="widget-title lighter smaller">{{ audited|length }}
+                        audited tables
+                    </h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main padding-8">
+                        <table class="table table-hover">
+                            <thead class=>
+
+                                <th>Table</th>
+                                <th>Activity</th>
+                                <th width="10%"></th>
+                            </thead>
+                            <tbody>
+                                {% for entity, table in audited %}
+                                    <tr>
+                                         {% set t = table|escape| replace({'_': " ", "," : "."}) %}  
+                                         {% if t == "fos user" %}
+                                         {% set t = "user" %}
+                                         {% endif %}
+                                        <td>{{ t  }}</td>
+                                        <td>{{ bootstrap.badge(reader.getAuditsCount(entity) ~ ' operations') }}</td>
+                                        <td>
+                                            <a class="btn btn-success" href="{{ path('dh_doctrine_audit_show_entity_history', {'entity': helper.namespaceToParam(entity| split('\\')[2])}) }}">View audits</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock body %}

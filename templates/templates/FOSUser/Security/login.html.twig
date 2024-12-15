@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <style>
+  .modal-dialog {
+      height: 50%;
+      width: 50%;
+      margin-top: 50px;
+      float: Center;
+      margin: auto
+
+  }
+
+  .modal-header {
+      color: white;
+      background-color: #007bff
+  }
+
+  textarea {
+      border: none;
+      box-shadow: none !important;
+      -webkit-appearance: none;
+      outline: 0px !important
+  }
+
+  .openmodal {
+      margin-left: 35%;
+      width: 25%;
+      margin-top: 50%;
+      float: Center;
+
+  }
+
+  .icon1 {
+      color: #007bff
+  }
+
+  a {
+      margin: auto
+  }
+
+  input {
+      color: #007bff
+  }
+  h2{
+    text-align:center;
+    padding: 20px;
+  }
+  /* Slider */
+
+  .slick-slide {
+      margin: 0px 20px;
+  }
+
+  .slick-slide img {
+      width: 100%;
+  }
+
+  .slick-slider
+  {
+      position: relative;
+      display: block;
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+              user-select: none;
+      -webkit-touch-callout: none;
+      -khtml-user-select: none;
+      -ms-touch-action: pan-y;
+          touch-action: pan-y;
+      -webkit-tap-highlight-color: transparent;
+  }
+
+  .slick-list
+  {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+  }
+  .slick-list:focus
+  {
+      outline: none;
+  }
+  .slick-list.dragging
+  {
+      cursor: pointer;
+      cursor: hand;
+  }
+
+  .slick-slider .slick-track,
+  .slick-slider .slick-list
+  {
+      -webkit-transform: translate3d(0, 0, 0);
+         -moz-transform: translate3d(0, 0, 0);
+          -ms-transform: translate3d(0, 0, 0);
+           -o-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+  }
+
+  .slick-track
+  {
+      position: relative;
+      top: 0;
+      left: 0;
+      display: block;
+  }
+  .slick-track:before,
+  .slick-track:after
+  {
+      display: table;
+      content: '';
+  }
+  .slick-track:after
+  {
+      clear: both;
+  }
+  .slick-loading .slick-track
+  {
+      visibility: hidden;
+  }
+
+  .slick-slide
+  {
+      display: none;
+      float: left;
+      height: 100%;
+      min-height: 1px;
+  }
+  [dir='rtl'] .slick-slide
+  {
+      float: right;
+  }
+  .slick-slide img
+  {
+      display: block;
+  }
+  .slick-slide.slick-loading img
+  {
+      display: none;
+  }
+  .slick-slide.dragging img
+  {
+      pointer-events: none;
+  }
+  .slick-initialized .slick-slide
+  {
+      display: block;
+  }
+  .slick-loading .slick-slide
+  {
+      visibility: hidden;
+  }
+  .highcharts-figure, .highcharts-data-table table {
+      min-width: 320px;
+      max-width: 660px;
+      margin: 1em auto;
+  }
+
+  .highcharts-data-table table {
+  	font-family: Verdana, sans-serif;
+  	border-collapse: collapse;
+  	border: 1px solid #EBEBEB;
+  	margin: 10px auto;
+  	text-align: center;
+  	width: 100%;
+  	max-width: 500px;
+  }
+  .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+  }
+  .highcharts-data-table th {
+  	font-weight: 600;
+      padding: 0.5em;
+  }
+  .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+      padding: 0.5em;
+  }
+  .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+  }
+  .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+  }
+
+  </style>
+<meta charset="utf-8">
+
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="{{ asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{{ asset('assets/gelan/favicon.ico') }}" type="image/vnd.microsoft.icon">
+        <title>RTDS | Health Data Repository and Research Tracking System</title>
+		 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@700&display=swap" rel="stylesheet">
+
+<style>
+.footer {
+position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(49, 181, 84,0.75);
+  color: white;
+  text-align: center;
+}
+</style>
+<style>
+h2{
+  text-align:center;
+  padding: 20px;
+}
+/* Slider */
+
+.slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    width: 100%;
+}
+
+.slick-slider
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 320px;
+    max-width: 660px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+</style>
+<style>
+#loader {
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid rgb(49, 81, 84,0.99);
+  border-radius: 50%;
+  border-top: 16px solid rgb(49, 181, 84,0.99);
+  border-right: 16px solid rgb(149, 181, 84,0.99);
+  border-bottom: 16px solid rgb(49, 181, 184,0.99);
+  box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.4);
+
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-50px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-50px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+text.shadow {
+	font-family: 'Roboto Slab', serif;
+}
+#Top {
+  display: none;
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(49, 181, 84,0.75);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+#chartdiv {
+  max-width: 100%;
+  height: 800px;
+  background-color: rgb(30,95,130,0.85);
+}
+
+#observablehq-f684d1cb{
+  float: left;
+
+  width: 50%;
+
+  }
+#observablehq-2e815726{
+  float: right;
+
+  width: 50%;
+
+}
+/*#observablehq-195b4500{
+  display: none;
+  float: right;
+  margin: 5px;
+  width: 50%;
+  height: 500px;
+}
+#observablehq-de3b6cd1{
+  display: none;
+  float: right;
+  margin: 5px;
+  width: 50%;
+  height: 500px;
+}*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 49px;
+  height: 23px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+
+.slider {
+
+  background-color: #fff;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 1.7px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #e39400;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #e39400;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous">
+
+
+
+  </script>
+
+<!-- Bootstrap CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script src="https://kit.fontawesome.com/655f728102.js" crossorigin="anonymous"></script>
+
+ <!--  <script type="text/javascript" src="../../emplate/lib/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../../template/lib/jquery.popover.js"></script> -->
+<!-- <script type="text/javascript" src="../../template/lib/jquery.fileDownload.js"></script> -->
+
+<script type="text/javascript">
+      $(document).ready(function () {
+        VizHub.init({
+          title: "Health-related SDGs",
+          shortener: "//ihmeuw.org/shorten.php",
+          components: ["visualizations","share","help","download"],
+          language: "41",
+          languages: []        });
+      });
+			$(document).ready(function(){
+    $('.customer-logos').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    });
+});
+
+		</script>
+		<style>
+		button {
+		background-color: rgb(49, 191, 84,0.99);
+		border: none;
+		font-weight: bold;
+		color: #FFFFFF;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		border-radius: 4px;
+		font-size: 16px;
+		margin-top: 10px;
+		padding: 5px;
+		opacity: 0.85;
+		transition: 0.3s;
+		margin-bottom: 5px;
+
+
+		}
+		button:hover {opacity: 1;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+
+		.shadow {
+		font-family: 'Bungee Outline', cursive;
+		}
+
+		</style>
+    <style type="text/css">
+#container_post, #loader1, #container_ethiopia, #container_model, #container_model_co, #container_model_ho, #container_model_cr, #container_model_de, #container_model_in, #container_model_co_in, #container_model_ho_in, #container_model_cr_in, #container_model_de_in, #container_model_in1, #container_model_co_in1, #container_model_ho_in1, #container_model_cr_in1, #container_model_de_in1, #chart_death, #chart_case, #container_sd_aa,  #container_sex,#container_age, #container_fatality_africa, #container_sym, #container_real_death_sero, #container_real_case_sero, #container_com, #container_com_age,  #container_hh_aa,  #container_rh_aa, #container_sd, #container_kenya, #container_rwanda, #container_mozamique,#container_malawi, #container_zambia, #container_case_fatality, #container_post_africa, #container1, #container2, #container3 {
+height: 500px;
+}
+
+
+.highcharts-figure, .highcharts-data-table table {
+min-width: 310px;
+max-width: 800px;
+margin: 1em auto;
+}
+
+.highcharts-data-table table {
+font-family: Verdana, sans-serif;
+border-collapse: collapse;
+border: 1px solid #EBEBEB;
+margin: 10px auto;
+text-align: center;
+width: 100%;
+max-width: 500px;
+}
+.highcharts-data-table caption {
+padding: 1em 0;
+font-size: 1.2em;
+color: #555;
+}
+.highcharts-data-table th {
+font-weight: 600;
+padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+background: #f1f7ff;
+}
+
+
+
+#dd {
+margin-top: 20px;
+}
+
+.navbar a:hover{
+background: rgb(10, 81, 124,0.85);
+color: white;
+}
+
+.navbar .navbar-nav .nav-link.active {
+background: #f1f7ff;
+
+}
+
+.navbar a:hover{
+background: rgb(10, 81, 124,0.85);
+color: white;
+
+}
+
+
+
+
+.card-body .nav .nav-item .nav-link.active {
+background-color:  rgb(0, 171, 84, 0.25);
+
+}
+</style>
+
+      <style>
+      .nav-menu .nav-active {
+        z-index: 9999999999 !important;
+        border-radius: 10px;
+    }
+
+
+      .nav-menu,.nav-menu ul,.nav-menu li,.nav-menu a { margin: 0; padding: 0; line-height: normal; list-style: none; display: block; position: relative; }
+      .nav-menu ul { opacity: 0; position: absolute; top: 100%; left: -9999px; z-index: 999; -webkit-transition: opacity .3s; transition: opacity .3s; }
+      .nav-menu li:hover > ul { left: 0; opacity: 1; z-index: 1000; }
+      .nav-menu ul li:hover > ul { top: 0; left: 100%; }
+      .nav-menu li { cursor: default; float: left; white-space: nowrap; }
+      .nav-menu ul li { float: none; }
+      .nav-active {
+        height:auto;
+      background-color: #red;
+      color: black;
+      padding: 12px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      }
+
+      .nav-menu {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      padding: 0px;
+      }
+
+      .nav-menu-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      }
+
+      .nav-menu-content a {
+      color: white;
+      padding: 12px 16px;
+    font-size: 15px;
+      text-decoration: none;
+      display: block;
+      }
+
+      .nav-menu-content a:hover {
+        background: rgb(10, 81, 124,0.85);
+        color: white;
+        width: 5px;
+          height: 5px;
+          transition: all 20ms linear;
+      }
+
+      .nav-menu:hover .nav-menu-content {
+      display: block;
+      }
+
+      .nav-menu:hover .nav-active {
+        background: rgb(10, 81, 124,0.85);
+    color: white;
+      }
+      /* sub width */
+      .nav-menu ul { min-width: 12em; -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.25); box-shadow: 2px 2px 2px rgba(0,0,0,0.25); }
+      .nav-menu{
+         z-index: 1000;
+         color: white;
+         font-size: 12px;
+      }
+      /* center */
+      .nav-center { float: right; right: 50%; }
+      .nav-center > li { left: 50%; }
+
+      /* root */
+      .nav-menu a {
+        padding: 0 10px;
+        color: white;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 16px;
+        text-decoration: none;
+      }
+
+      /* root: active */
+      .nav-menu > li > .nav-active {   background: rgb(10, 81, 124,0.85);
+      color: white; }
+
+      /* root: hover/persistence */
+      .nav-menu a:hover,.nav-menu a:focus,.nav-menu li:hover a {
+        background: rgb(10, 81, 124,0.85);
+      color: white;
+      text-decoration: none;
+    line-height: normal;
+      }
+
+      /* 2 */
+      .nav-menu li li a,.nav-menu li:hover li a {
+        padding: 8px 10px;
+            background: rgb(49, 181, 84,0.75);
+        color: white;
+        text-decoration: none;
+        font-size: 12px;
+        line-height: normal;
+      }
+
+      /* 2: hover/persistence */
+      .nav-menu li:hover li a:hover,.nav-menu li:hover li a:focus,.nav-menu li:hover li:hover a {
+          background: rgb(49, 181, 84,0.75);
+          color: white;
+          text-decoration: none;
+      }
+
+      /* 3 */
+      .nav-menu li:hover li:hover li a {
+            background: rgb(49, 181, 84,0.75);
+      color: white;
+      text-decoration: none;
+      }
+
+      /* 3: hover/persistence */
+      .nav-menu li:hover li:hover li a:hover,.nav-menu li:hover li:hover li a:focus,.nav-menu li:hover li:hover li:hover a {
+        background: rgb(10, 81, 124,0.85);
+      color: white;
+      text-decoration: none;
+      }
+
+      /* 4 */
+      .nav-menu li:hover li:hover li:hover li a {
+        background: rgb(10, 81, 124,0.85);
+      color: white;
+      text-decoration: none;
+      }
+
+      /* 4: hover */
+      .nav-menu li:hover li:hover li:hover li a:hover,.nav-menu li:hover li:hover li:hover li a:focus {
+        background: rgb(10, 81, 124,0.85);
+      color: white;
+      text-decoration: none;
+      }
+
+      /* vertical */
+      .nav-vertical { max-width: 220px; }
+      .nav-vertical ul { top: 0; left: -9999px; }
+      .nav-vertical li { width: 100%; float: none; }
+      .nav-vertical li:hover > ul { left: 100%; }
+      </style>
+
+    <link rel="stylesheet" href="{{asset('assets/css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+              <link rel="stylesheet" href="{{asset('assets/css/ace-part2.min.css')}}" class="ace-main-stylesheet" />
+            <![endif]-->
+
+    <!--[if lte IE 9]>
+              <link rel="stylesheet" href="{{asset('assets/css/ace-ie.min.css')}}" />
+            <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script src="{{asset('asset/js/ace-extra.min.js')}}"> </script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+            <script src="{{asset('assets/js/html5shiv.min.js')}}"></script>
+            <script src="{{asset('assets/js/respond.min.js')}}"></script>
+            <![endif]-->
+
+            <style>
+            * {box-sizing: border-box;}
+
+            body {
+              margin: 0;
+
+            }
+
+            .headerw {
+              position: static;
+            z-index: 9999999999 !important;
+            color:white;
+            font-size: 18px;
+              background-color:  rgb(49, 181, 84,0.75);
+              padding: 5px 5px;
+                margin-top: 0px;
+                  border-radius: 0px;
+                  flex-flow: row nowrap;
+
+            }
+
+
+            .headerw a {
+              float: left;
+              color: white;
+              text-align: center;
+              padding: 12px;
+              text-decoration: none;
+              font-size: 18px;
+              line-height: 20px;
+              border-radius: 0px;
+            }
+
+
+            .headerw a.logo {
+              margin-top: 0px;
+              float: left;
+            font-size:22px;
+            Cursor:text !important; Text-Decoration: None !important;
+            text-decoration: none;
+            font-family: 'Arial';
+                text-align: left;
+                color: white;
+                padding: 2px 1px;
+
+            }
+            .headerw a.logo:hover {
+
+            opacity:1.0;
+
+            box-shadow:none;
+            background-color: unset !important;
+               color: unset !important;
+
+            }
+            .headerw a.logologo {
+              margin-top: 6px;
+              float: left;
+                text-align: left;
+                color: white;
+                padding: 1px 2px;
+
+
+            }
+            .headerw-galo {
+              display: inline-block;
+              margin-right: -8px;
+              margin-top: 0px;
+            float: right;
+            top: auto;
+            vertical-align: top;
+            font-size: 15px;
+              text-align: right;
+              color: white;
+              top:0%;
+              margin: -4px;
+            font-family: 'Arial';
+            flex-flow: row nowrap;
+               display: inline-flex;
+
+
+            }
+            .headerw a:hover {
+              background: rgb(10, 81, 124,0.85);
+              color: white;
+              text-decoration: none;
+
+            }
+
+
+
+            .headerw a.active {
+              background-color: dodgerblue;
+              color: black;
+            }
+
+            .headerw-right {
+              float: right;
+            }
+
+            @media screen and (max-width: 500px) {
+              .headerw a {
+                float: none;
+                display: block;
+                text-align: left;
+              }
+
+              .headerw-right {
+                float: none;
+              }
+            }
+            </style>
+
+            <body>
+              <div class="headerw animatedq fadeInDownq clearfix" style="color:white;">
+              <a href="https://rtds.ephi.gov.et" class="logologo"><img src="{{ asset('assets/images/ephi.png') }}"  style="width: 50px; height: 53px" /></a>
+                <a href="#default" class="logo">  Ethiopian Public Health Institute | <br><br>
+                      Health Data Repository and Research Tracking System
+                    </a>
+                                  <div class="headerw-galo"><a href="https://www.ephi.gov.et/"  target="_blank">
+                        EPHI  </a>
+                        <a href="https://ndmc.ephi.gov.et" target="_blank">
+                        NDMC
+
+                        <a href="https://vizhub.ephi.gov.et" target="_blank">
+                        H-DAV</a> </div><br>
+              <div class="headerw-galo" style="color:white; fontSize:10px;">
+                <nav style="color:white;">
+                    <ul class="nav-menu" style="color:white;fontSize:10px;"><b>
+                      <li><a href="{{path('main')}}">Home</a></li>
+
+                      <li style="color:white;"><a href="{{path('keyword_index',{ letter:'%' })}}">Keywords</a></li>
+                      <li style="color:white;"> <a href="https://rtds.ephi.gov.et/survey/">DCP</a></li>
+                      <li style="color:white;"><a href="https://rtds.ephi.gov.et/public/?search=%25">Dataset</a></li>
+
+                      <li><a href="#" data-toggle="modal" data-target="#pub" class="nav-link dropdown-toggle" class="nav-active">Publications <i class="fa fa-caret-down"></i> </a></b>
+                        <ul>
+                          <li><a href="#" class="nav-menu-content">Manuals</a>
+                            <ul>
+                            <li>  <a href="https://rtds.ephi.gov.et/public//RDTSUserManual.pdf"  target="_blank" class="nav-menu-content">Research Tracking System</a></li>
+                            </ul>
+                          </li>
+                         
+                            <ul>
+                                <li><a href="#" data-toggle="modal" data-target="#myModalndmc" class="nav-menu-content">NDMC Weekly Update</a></li>
+
+                        <li><a href="#" data-toggle="modal" data-target="#npi" class="nav-menu-content">NPI Weekly Update</a></li>
+
+                        <li><a href="#"  data-toggle="modal" data-target="#sitrep" class="nav-menu-content">SITREP Report</a></li>
+                            </ul>
+                          </li>
+
+                                  <li><a href="https://forum.ephi.gov.et"  target="_blank" class="nav-menu-content">Published articles </a></li>
+                          <li>  <a href="#" data-toggle="modal" data-target="#technical" class="nav-menu-content">Technical Reports</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#guide" class="nav-menu-content">Guidelines and Protocols</a></li>
+                          <li>  <a href="#" data-toggle="modal" data-target="#gov" class="nav-menu-content">Government Documents</a></li>
+                            <li><a href="#" class="nav-menu-content">Book & Text</a></li>
+
+                        </ul>
+                      </li>
+                      <li> <a href="#" data-toggle="modal" data-target="#dssp">Data Sharing</a></li>
+
+                      {% if is_granted('ROLE_USER') %}
+              <li><a href="{{path('home')}}">
+
+                 Dashboard</a></li>
+              {% else %}
+              <li><a href="{{path('fos_user_security_login')}}" class="btn btn-warning pull-right" style="margin-left: 10px; margin-right: 10px;height:47px;width:65px;">
+                 Login</a></li>
+
+              {% endif %}
+                    </ul>
+                  </nav>
+              </div>
+              </div>
+
+
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+						<div class="space-6"></div>
+
+						<div class="position-relaive">
+							<div id="login-box" class="login-box visible widget-box no-border">
+								<div class="widget-body">
+									<div class="widget-main bg-light">
+
+											<div class="center">
+									<h1>
+										<span class="text-success">Login</span>
+									</h1>
+
+								</div>
+
+
+										<div class="row">
+											<div class="col-xs-12">
+												{% for message in app.flashes('warning') %}
+													<div class="alert alert-danger">
+														{{ message }}
+													</div>
+												{% endfor %}
+
+											</div>
+										</div>
+												<div class="space-6"></div>
+	 {% trans_default_domain 'FOSUserBundle' %}
+
+												<form action="{{ path("fos_user_security_check") }}" method="post">
+	                                              {% if csrf_token %}
+	        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	    {% endif %}
+
+
+	{% if error %}
+	    <div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+													<fieldset>
+														<label class="block clearfix">
+															<span class="block input-icon input-icon-right">
+
+																<input type="text" class="form-control" placeholder="Username" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+	                                                            <i class="ace-icon fa fa-user"></i>
+															</span>
+														</label>
+
+														<label class="block clearfix">
+															<span class="block input-icon input-icon-right">
+
+																<input type="password" class="form-control" placeholder="Password" id="password" name="_password" required="required" autocomplete="current-password" />
+	                                                            <i class="ace-icon fa fa-lock"></i>
+															</span>
+														</label>
+
+														<div class="space"></div>
+
+														<div class="clearfix">
+															<label class="inline">
+	                                                            <input type="checkbox"  class="ace" id="remember_me" name="_remember_me" value="on" />
+																<span class="lbl"> Remember Me</span>
+															</label>
+															<button type="submit" class="width-35 pull-right btn btn-sm btn-success" id="_submit" name="_submit" value="{{ 'login'|trans }}">
+																<i class="ace-icon fa fa-key"></i>
+																<span class="bigger-110">Login</span>
+															</button>
+														</div>
+
+														<div class="space-4"></div>
+													</fieldset>
+												</form>
+
+
+
+
+
+											</div><!-- /.widget-main -->
+
+											<div class="toolbar clearfix success">
+												<div>
+													<a href="{{ path('fos_user_resetting_request') }}"  class="forgot-password-link">
+														<i class="ace-icon fa fa-arrow-left"></i>
+														Forgot password
+													</a>
+												</div>
+											{% if can_reg %}
+
+
+												<div>
+													<a href="{{ path('fos_user_registration_register') }}"  class="user-signup-link">
+														Signup here
+														<i class="ace-icon fa fa-arrow-right"></i>
+													</a>
+												</div>
+												{% endif %}
+											</div>
+										</div><!-- /.widget-body -->
+									</div><!-- /.login-box -->
+
+									<div id="forgot-box" class="forgot-box widget-box no-border">
+										<div class="widget-body">
+											<div class="widget-main">
+												<h4 class="header red lighter bigger">
+													<i class="ace-icon fa fa-key"></i>
+													Retrieve Password
+												</h4>
+
+												<div class="space-6"></div>
+												<p>
+													Enter your email and to receive instructions
+												</p>
+
+												<form>
+													<fieldset>
+														<label class="block clearfix">
+															<span class="block input-icon input-icon-right">
+																<input type="email" class="form-control" placeholder="Email" />
+																<i class="ace-icon fa fa-envelope"></i>
+															</span>
+														</label>
+
+														<div class="clearfix">
+															<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+																<i class="ace-icon fa fa-lightbulb-o"></i>
+																<span class="bigger-110">Send Me!</span>
+															</button>
+														</div>
+													</fieldset>
+												</form>
+											</div><!-- /.widget-main -->
+
+											<div class="toolbar center">
+												<a href="#" data-target="#login-box" class="back-to-login-link">
+													Back to login
+													<i class="ace-icon fa fa-arrow-right"></i>
+												</a>
+											</div><br><br>
+										</div><!-- /.widget-body -->
+									</div><!-- /.forgot-box -->
+
+															</div><!-- /.position-relative -->
+
+
+							</div>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+
+				</div><!-- /.main-content -->
+
+
+
+
+
+
+			<!-- basic scripts -->
+
+			<!--[if !IE]> -->
+			<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+			<!-- <![endif]-->
+
+			<!--[if IE]>
+	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<![endif]-->
+			<script type="text/javascript">
+				if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			</script>
+
+			<!-- inline scripts related to this page -->
+			<script type="text/javascript">
+				jQuery(function($) {
+				 $(document).on('click', '.toolbar a[data-target]', function(e) {
+					e.preventDefault();
+					var target = $(this).data('target');
+					$('.widget-box.visible').removeClass('visible');//hide others
+					$(target).addClass('visible');//show target
+				 });
+				});
+
+
+
+				//you don't need this, just used for changing background
+				jQuery(function($) {
+				 $('#btn-login-dark').on('click', function(e) {
+					$('body').attr('class', 'login-layout');
+					$('#id-text2').attr('class', 'white');
+					$('#id-company-text').attr('class', 'blue');
+
+					e.preventDefault();
+				 });
+				 $('#btn-login-light').on('click', function(e) {
+					$('body').attr('class', 'login-layout light-login');
+					$('#id-text2').attr('class', 'grey');
+					$('#id-company-text').attr('class', 'blue');
+
+					e.preventDefault();
+				 });
+				 $('#btn-login-blur').on('click', function(e) {
+					$('body').attr('class', 'login-layout blur-login');
+					$('#id-text2').attr('class', 'white');
+					$('#id-company-text').attr('class', 'light-blue');
+
+					e.preventDefault();
+				 });
+
+				});
+        </script>
+        </div>
+    <div class="footer">
+      <div class="footer-inner">
+          <div class="footer-content">
+              <span class="bigger-120">
+                  <span class="blue bolder">EPHI RTDMS</span>
+                  &copy;
+                  {{ "now"|date('Y') }}
+
+              </span>
+              Total Site visits {{ site_visit_count() }}
+          </div>
+      </div>
+  </div>
+
+
+      <script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"> </script>
+
+      <!-- <![endif]-->
+
+      <!--[if IE]>
+                  <script src="{{asset('assets/js/jquery-1.11.3.min.js')}}"></script>
+                  <![endif]-->
+      <script type="text/javascript">
+          if ('ontouchstart' in document.documentElement)
+              document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+      </script>
+      <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+
+      <!-- page specific plugin scripts -->
+
+      <!-- ace scripts -->
+      <script src="{{asset('assets/js/ace-elements.min.js')}}"></script>
+      <script src="{{asset('assets/js/ace.min.js')}}"></script>
+      <style>
+     button {
+    background-color: rgb(49, 191, 84,0.99);
+      border: none;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 4px;
+      font-size: 18px;
+      margin-top: 10px;
+      padding: 5px;
+      opacity: 0.85;
+      transition: 0.3s;
+      margin-bottom: 10px;
+
+
+     }
+     button:hover {opacity: 1;
+     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+     }
+
+    .shadow {
+      font-family: 'Bungee Outline', cursive;
+    }
+
+     </style>
+
+      <!-- inline scripts related to this page -->
+      {% block javascripts %}
+
+      {% endblock %}
+  </body>
+  </body>
+
+  		<div id="myModalndmc" class="modal fade" role="dialog">
+  				<!--Modal--><br><br><br>
+  				<div class="modal-dialog">
+  						<!--Modal Content-->
+  						<div class="modal-content">
+  								<!-- Modal Header-->
+  								<div class="class-header">
+  									<div class="card btn-success" style='background-color:#46AB55'>
+  										<h3>NDMC Weekly Update</h3></div>
+  										<!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  								</div> <!-- Modal Body-->
+  								<div class="modal-body text-center">
+
+  									<p>	In this section covid-19 situational updates including a total number of cases, total deaths, and recovered cases described. The global and regional burden of Covid- 19 was also described here.  In this covid -19 weekly update, all newly released covid 19 updates were incorporated. In addition to this home-based isolation and care weekly reports, number of admissions from home-based to hospital, number of cases discharged from hospital to home-based care were clearly described.  Training, supplies, and any events that occurred related to covid 19 were described in detail.
+  								</p>
+
+  								<div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19" class="btn btn-success">Proceed <i class="fa fa-link"></i> </a>  </div>
+  						</div>
+  				</div>
+  </div>
+  </div>
+  </div>
+  <div id="npi" class="modal fade" role="dialog">
+  	 <!--Modal--><br><br><br>
+  	 <div class="modal-dialog">
+  			 <!--Modal Content-->
+  			 <div class="modal-content">
+  					 <!-- Modal Header-->
+  					 <div class="class-header">
+  						 <div class="card btn-success" style='background-color:#46AB55'>
+  							 <h3>NPI Weekly Update</h3></div>
+  							 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  					 </div> <!-- Modal Body-->
+  					 <div class="modal-body text-center"><p>
+  Non-pharmaceutical intervention (NPI) weekly update is a covid 19 study update on monitoring COVID-19 prevention practice: Hand hygiene, respiratory hygiene, and physical distance in 15 cities of Ethiopia conducted by Addis Ababa University. It contains weekly study findings on the city level proportions of preventive behavior for hand hygiene, physical distancing, and respiratory hygiene and progress in preventive practices.</p>
+
+  					 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/npi.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  			 </div>
+  	 </div
+   </div>
+  </div>
+  </div>
+
+  	 <div id="sitrep" class="modal fade" role="dialog">
+  			 <!--Modal--><br><br><br>
+  			 <div class="modal-dialog">
+  					 <!--Modal Content-->
+  					 <div class="modal-content">
+  							 <!-- Modal Header-->
+  							 <div class="class-header">
+  								 <div class="card btn-success" style='background-color:#46AB55'>
+  									 <h3>SITREP Report</h3></div>
+  									 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  							 </div> <!-- Modal Body-->
+  							 <div class="modal-body text-center">
+  <p>
+  									 SITREP report is a daily COVID 19 report from the Ethiopian public health institute in public health emergency management directorates.   COVID 19 daily report contains the global and national daily updates on the number of laboratory tests, new covid cases, new death, and recovered cases described. Case management and infection prevention control, daily home-based isolation, and care were described here. Risk communication and community engagement, administrative and supply issues were indicated on daily basis. Epidemiology and laboratory surveillance </p>
+
+  							 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/sitrep.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  						 </div>
+  			 </div>
+  			 </div
+  			</div>
+  			</div>
+  			 <div id="guide" class="modal fade" role="dialog">
+  					 <!--Modal--><br><br><br>
+  					 <div class="modal-dialog">
+  							 <!--Modal Content-->
+  							 <div class="modal-content">
+  									 <!-- Modal Header-->
+  									 <div class="class-header">
+  										 <div class="card btn-success" style='background-color:#46AB55'>
+  											 <h3>Guidelines and Protocols</h3></div>
+  											 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  									 </div> <!-- Modal Body-->
+  									 <div class="modal-body text-center"><p>
+  Guidelines are sets of evidence-based recommendations that aid decision-making about care in specific health systems and resource settings. These should be research or evidence-based. Protocols and procedures are the specific way that a policy, rule, or principle is carried out. It can often be thought of as a set of instructions. On this page, you could find different guidelines and protocols developed by disparate organizations.</p>
+
+  									 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/guideline.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  								 </div>
+  						 </div
+  					 </div>
+  					</div>
+  					</div>
+  					 <div id="technical" class="modal fade" role="dialog">
+  							 <!--Modal--><br><br><br>
+  							 <div class="modal-dialog">
+  									 <!--Modal Content-->
+  									 <div class="modal-content">
+  											 <!-- Modal Header-->
+  											 <div class="class-header">
+  												 <div class="card btn-success" style='background-color:#46AB55'>
+  													 <h3>Technical report</h3></div>
+  													 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  											 </div> <!-- Modal Body-->
+  											 <div class="modal-body text-center">
+  <p>
+  													 This page is comprised of technical reports that describe the process, progress, or results of technical or scientific research or the state of a technical or scientific research problem. It might also include recommendations and conclusions of the research. Therefore, on this page, you could find different technical reports produced by governmental and no governmental organizations.</p>
+
+  											 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/technical.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  										 </div>
+  								 </div
+  							 </div>
+  							</div>
+  							</div>
+  							 <div id="dssp" class="modal fade" role="dialog">
+  									 <!--Modal--><br><br><br>
+  									 <div class="modal-dialog">
+  											 <!--Modal Content-->
+  											 <div class="modal-content">
+  													 <!-- Modal Header-->
+  													 <div class="class-header">
+  														 <div class="card btn-success" style='background-color:#46AB55'>
+  															 <h3>Data sharing and submission platform</h3></div>
+  															 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  													 </div> <!-- Modal Body-->
+  													 <div class="modal-body text-center">
+
+  													<p>	 The data sharing and submission was undertaken by the data repository and governance team.  NDMC received health and health related data from EPHI Directorates, NGOs, Government organizations and associations. Data received by the highly secured system by providing the data session link and password.  Data owners can easily put the large data without restriction to NDMC on the link and password provided. On the same time NDMC is also sharing data to requesters if necessary requirements fulfilled.  After they finished the data sharing process, the link and password given to requesters to easily access the data. 			</p>		 			 <div class="modal-footer"> <a href="https://survey.ephi.gov.et" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  												 </div>
+  										 </div
+  									 </div>
+  									</div>
+  									</div>
+  									<div id="pub" class="modal fade" role="dialog">
+  								 		 <!--Modal--><br><br><br>
+  								 		 <div class="modal-dialog">
+  								 				 <!--Modal Content-->
+  								 				 <div class="modal-content">
+  								 						 <!-- Modal Header-->
+  								 						 <div class="class-header">
+  								 							 <div class="card btn-success" style='background-color:#46AB55'>
+  								 								 <h3>Publications</h3></div>
+  								 								 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  								 						 </div> <!-- Modal Body-->
+  								 						 <div class="modal-body text-center">
+  <p>
+  								 								 The Ethiopian Public Health Institute has been researching priority public health and nutrition issues, generate, translate and disseminate scientific and technological knowledge as one of the main objectives of the establishment. Since then the conducted research has also been published in different research journals for the scientific community. Here on this page, you could find a list of articles conducted by different directorates found in EPHI and archived in EPHI Referenec Management System.</p>
+
+  								 						 <div class="modal-footer"> <a href="https://forum.ephi.gov.et" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  								 					 </div>
+  								 			 </div
+  								 		 </div>
+  								 		</div>
+  								 		</div>
+  										<div id="gov" class="modal fade" role="dialog">
+  											 <!--Modal--><br><br><br>
+  											 <div class="modal-dialog">
+  													 <!--Modal Content-->
+  													 <div class="modal-content">
+  															 <!-- Modal Header-->
+  															 <div class="class-header">
+  																 <div class="card btn-success" style='background-color:#46AB55'>
+  																	 <h3>Government documents</h3></div>
+  																	 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+  															 </div> <!-- Modal Body-->
+  															 <div class="modal-body text-center">
+  	<p>
+  																	 This page includes information resources produced by local, state, and federal governments. They can include the texts of laws, regulations, statistics, scientific and technical information, maps, and detailed analyses of exceptionally wide and sophisticated topics.</p>
+
+  															 <div class="modal-footer"> <a href="https://forum.ephi.gov.et" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+  														 </div>
+  												 </div
+  											 </div>
+  											</div>
+  											</div>
+
+
+  </html>

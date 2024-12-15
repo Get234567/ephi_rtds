@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JoinStudy{% endblock %}
+
+{% block body %}
+    <h1>JoinStudy</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ join_study.id }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ join_study.token }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('join_study_index') }}">back to list</a>
+
+    <a href="{{ path('join_study_edit', {'id': join_study.id}) }}">edit</a>
+
+    {{ include('join_study/_delete_form.html.twig') }}
+{% endblock %}

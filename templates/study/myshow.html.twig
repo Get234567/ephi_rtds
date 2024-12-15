@@ -1,0 +1,849 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/css/select2-bootstrap4.min.css')}}">
+{% endblock %}
+
+{% block breadcrumb %}
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="{{ path('home')}}">Home</a>
+	</li>
+
+	<li>
+	{# {% if owner is defined %} #}
+		<a href="{{ path('myresearch')}}">Study</a>
+	{# {% else %} #}
+
+		{# <a href="{{ path('study_index')}}">Study</a> #}
+	{# {% endif %} #}
+	</li>
+	<li class="active">View Study</li>
+{% endblock %}
+{% block pageheader %}
+	<a href="{{ path('myresearch') }}" class="btn btn-sm btn-success">back to list</a>
+
+
+	{% if study.Status==1 and is_study_owner(app.user,study) %}
+		<div class="dropdown pull-right">
+			<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+				Actions
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				{% if is_study_owner(app.user,study,"add_f_s") %}
+
+					<li>
+						<a href="#" data-toggle="modal" data-target="#fundingsourceModal">Add Funding Source</a>
+					</li>
+				{% endif %}
+				{% if is_study_owner(app.user,study,"add_tags") %}
+
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal">Add Tags</a>
+					</li>
+				{% endif %}
+				{% if is_study_owner(app.user,study,"add_l_d") %}
+
+					<li>
+						{# <a href="study/dataset.html.twig" >Link dataset</a> #}
+						<a href="#" data-toggle="modal" data-target="#myDataset">Link dataset</a>
+					</li>
+				{% endif %}
+				{% if is_study_owner(app.user,study,"add_s_d") %}
+
+					<li>
+						<a href="#" data-toggle="modal" data-target="#studydesignModal">Study Design</a>
+					</li>
+				{% endif %}
+				{% if is_study_owner(app.user,study,"add_t_m") %}
+
+					<li>
+						<a href="#" data-toggle="modal" data-target="#researchteamModal">Add Team Member</a>
+					</li>
+				{% endif %}
+
+				{% if is_study_owner(app.user,study,"add_task") %}
+
+					<li>
+						<a href="#" data-toggle="modal" data-target="#taskModal">Add  Task</a>
+
+					</li>
+				{% endif %}
+
+				{% if is_study_owner(app.user,study,"add_task") %}
+
+					<li>
+						<a href="{{ path('study_report',{ 'id':study.id}) }}" class="">
+							<span class="fa fa-file-pdf-o"></span>
+							Print status</a>
+					</li>
+				{% endif %}
+
+			</ul>
+		</div>
+	{% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+
+{% if is_study_owner(app.user, study) %}
+
+	{% include 'study/tag.html.twig' %}
+	{% include 'study/studydesign.html.twig' %}
+	{% include 'study/researchteam.html.twig' %}
+	{% include 'study/fundingsource.html.twig' %}
+
+	{% include 'study/task.html.twig' %}
+	{% include 'study/dataset.html.twig' %}
+
+
+{% endif %}
+
+
+<div class="widget-box widget-color-blue2">
+
+	<div class="widget-header">
+
+		<h4 class="widget-title lighter smaller">{{ study.title }}
+		</h4>
+
+	</div>
+	<div class="widget-body">
+		<div class="widget-main padding-8">
+			<div class="row">
+				<div class="col-md-6">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>ID</th>
+								<td>EPHI-000{{ study.id }}</td>
+							</tr>
+							<tr>
+								<th>Title</th>
+								<td>{{ study.title }}</td>
+							</tr>
+
+							<tr>
+								<th>Irb Code</th>
+								<td>{{ study.irbCode }}</td>
+							</tr>
+							<tr>
+								<th>Research Question</th>
+								<td>{{ study.researchQuestion }}</td>
+							</tr>
+							<tr>
+								<th>PI</th>
+								<td>
+									<ul class="list-group">
+										<li class="list-unstyled">Name:
+											{{ study.PIName }}</li>
+
+										<li class="list-unstyled">Phone:
+											{{ study.PIPhone }}</li>
+
+										<li class="list-unstyled">Email:
+											{{ study.PIEmail }}</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>Co-PI</th>
+								<td>
+									<ul class="list-group">
+										<li class="list-unstyled">Name:
+											{{ study.COPIName }}</li>
+
+										<li class="list-unstyled">Phone:
+											{{ study.COPIPhone }}</li>
+
+										<li class="list-unstyled">Email:
+											{{ study.COPIEmail }}</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>Year Conducted</th>
+								<td>{{ study.yearConducted ? study.yearConducted|date('Y') : '' }}</td>
+							</tr>
+							<tr>
+								<th>Year Published</th>
+								<td>{{ study.yearPublished ? study.yearPublished|date('Y') : '' }}</td>
+							</tr>
+							<tr>
+								<th>Budget</th>
+								<td>{{ study.budget }}</td>
+							</tr>
+							<tr>
+								<th>TimePeriod Coverage Start</th>
+								<td>{{ study.timePeriodCoverageStart ? study.timePeriodCoverageStart|date('Y-m-d') : '' }}</td>
+							</tr>
+							<tr>
+								<th>TimePeriod Coverage End</th>
+								<td>{{ study.timePeriodCoverageEnd ? study.timePeriodCoverageEnd|date('Y-m-d') : '' }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th>Comment</th>
+								<td>{{ study.comment }}</td>
+							</tr>
+							<tr>
+								<th>Objective</th>
+								<td>{{ study.objective | raw }}</td>
+							</tr>
+
+							<tr>
+								<th>Remark</th>
+								<td>{{ study.remark }}</td>
+							</tr>
+							<tr>
+								<th>Summary</th>
+								<td>{{ study.summary }}</td>
+							</tr>
+							<tr>
+								<th>Description</th>
+								<td>{{ study.description | raw }}</td>
+							</tr>
+							<tr>
+								<th>Geography</th>
+								<td>{{ study.geography }}</td>
+							</tr>
+							<tr>
+								<th>Funding Sources</th>
+								<td>{{ study.fundingsource|join(',') }}</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+
+			{% if attachments %}
+
+
+				Attachment
+				<table class="table ">
+
+
+					<tbody>
+						{% for attachment in attachments %}
+
+
+							<tr>
+								<td>{{ attachment.label}}</td>
+								<td>
+									<form method="post" action="{{ path('download_study') }}">
+										<input name="attachment" value="{{ attachment.id}}" hidden>
+										<button class="btn btn-sm btn-success">
+											<i class="fa fa-download"></i>
+											download</button>
+									</form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="16">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+
+
+			{% if datasets %}
+				Datasets
+
+
+				<table class="table ">
+					<thead>
+						<tr>
+
+							<th>Name</th>
+							<th>Description</th>
+							<th>Link</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% for dataset in datasets %}
+
+
+							<tr>
+								<td>{{ dataset.name|raw }}</td>
+								<td>
+									{{ dataset.description|raw }}
+								</td>
+								<td>
+									<a href="{{ path('my_study_dataset_show',{'id': dataset.id} ) }}">Here
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="16">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+
+
+			{% if study.studyResearchers | length > 0 %}
+				<h3>
+					Study Team</h3>
+
+
+				{% for researcher in study.studyResearchers %}
+					{% if researcher.status %}
+
+						<div class="col-md-3 center">
+							{% if researcher.user.userInfo %}
+
+								<img
+								class="img-fluid img-thumbnail" width="100" height="100" src="{% if researcher.user.userInfo.image %} {{ asset('profile_pic/' ~ researcher.user.userInfo.image) }} {% else %} {{ asset('profile_pic/index.png') }}{% endif %}" alt="{{ researcher.user.userInfo.firstName }}'s profile picture">
+							{# <h4 class="center">  {{researcher.user.userInfo.name}} </h4> #}
+							{% endif %}
+							{% if researcher.user.userInfo %}
+
+								<h4 class="center">
+									{{researcher.user.userInfo.name}}
+								</h4>
+							{% endif %}
+							<h6 class"center">
+								{{researcher.involvement}}
+							</h6>
+							<h6 class"center">
+								{{researcher.user.email}}
+							</h6>
+							{% if is_study_owner(app.user,study,"rmv_tm") %}
+
+								<a class="btn btn-danger fa fa-ban" href="{{ path('remove_team',{'tid':researcher.user.id,'sid':study.id}) }}">
+									Remove</a>
+							{% endif %}
+						</div>
+					{% endif %}
+
+				{% endfor %}
+
+				<br>
+				{% for researcher in study.studyResearchers %}
+					{% if researcher.status == false %}
+
+						<div class="col-md-3 center">
+
+							{% if researcher.user.userInfo %}
+								<img class="img-fluid img-thumbnail" width="100" height="100" src="{% if researcher.user.userInfo.image %} {{ asset('profile_pic/' ~ researcher.user.userInfo.image) }} {% else %} {{ asset('profile_pic/index.png') }}{% endif %}" alt="{{ researcher.user.userInfo.firstName }}'s profile picture">
+
+							{% endif %}
+							{% if researcher.user.userInfo %}
+								<h4 class="center">
+									{{researcher.user.userInfo.name}}
+								</h4>
+							{% endif %}
+							<h6 class"center">
+								{{researcher.involvement}}
+							</h6>
+							<h6 class"center">
+								{{researcher.user.email}}
+							</h6>
+							<h6 class="text-danger">requested to join</h6>
+							{% if is_study_owner(app.user,study,"rmv_tm") %}
+
+								<a class="btn btn-danger fa fa-ban" href="{{ path('remove_team',{'tid':researcher.user.id,'sid':study.id}) }}">
+									Remove</a>
+							{% endif %}
+						</div>
+					{% endif %}
+
+				{% endfor %}
+
+			{% endif %}
+
+
+			{% set active=0 %}
+			{% set activesub=0 %}
+			{% set break_var=0 %}
+			{% set ative_menu=0 %}
+			{% if is_study_owner(app.user,study) or  is_allowed(app.user,'lst_rev')   %}
+
+
+				{% for mile1 in miles if break_var == 0 %}
+					{# outer loop, milestones list #}
+					{% for task1  in tasks if break_var == 0 %}
+						{# inner loop, tasks list #}
+						{% if mile1.id == task1.milestone.id %}
+
+							{% if task1.done != 2 %}
+								{% set break_var=1 %}
+
+							{% endif %}
+
+
+						{% endif %}
+
+
+					{% endfor %}
+					{# end of inner loop, tasks list #}
+
+					{% if break_var == 1 %}{% endif %}
+					{% set activesub = activesub + 1 %}
+					{% set active=active + 1 %}
+					{% set ative_menu = ative_menu + 1 %}
+
+
+				{% endfor %}
+				{# end of outer loop, tasks list #}
+
+				{% if is_allowed(app.user,'lst_rev') and done == true and study.status == 3  %}
+					<br>
+					<br>
+					<div class='center'>
+						<a href="{{ path('study_edit',{'id':study.id,'action':'lapprove'}) }}" class="btn btn-success btn-lg">Approve</a>
+						<a href="{{ path('study_edit',{'id':study.id,'action':'lpending'}) }}" class="btn btn-warning btn-lg">Pending</a>
+
+					</div>
+					<br>
+					<br>
+					<br>
+				{% elseif study.status == 4 %}
+					<span></span>
+
+				{% elseif is_allowed(app.user,'lst_rev') and done == true %}
+					<div class='alert alert-danger h3'>
+						<center>Wait until the researcher completes above entries. you will recieve an approval request as soon as he finishes
+						</center>
+					</div>
+
+
+				{% endif %}
+				{% if is_study_owner(app.user,study ,"lst_updt") and done == true and study.status != 4 %}
+					{# {% if study.Status == 2  %}  #}
+					<br>
+					<br>
+					<div class='center'>
+						<a href="{{ path('study_edit',{'id':study.id}) }}" class="btn btn-success btn-lg">Update Details</a>
+						<a href="{{ path('study_edit',{'id':study.id,'action':'finish'}) }}" class="btn btn-warning btn-lg">Finish</a>
+					</div>
+					<br>
+					<br>
+					<br>
+					{# {% endif %}  #}
+				{% elseif done == true %}
+
+					<div class='alert alert-danger h3'>
+						<center>All task are done. Waiting for PI to finish study
+						</center>
+					</div>
+
+				{% endif %}
+				{% if study.Status == 0 %}
+
+					<div class='alert alert-danger h3'>
+						<center>Submission has not been approved yet.</center>
+					</div>
+				{% endif %}
+
+
+				<ul class="steps">
+
+					{% set i=1 %}
+					{% for mile in miles  %}
+						<li{{mile.name}}</span {% if mile.id <= ative_menu %} class="active" {% endif %}> <a data-step="{{ i }}" data-toggle="pill" href="#pill{{mile.id}}" onclick="setA({{ mile.id }});" style="text-decoration:none"> <span class="step">{{ i }} </span> <span class="title">></a>
+
+					</li>
+					{% set i=i+1 %}
+
+				{% endfor %}
+
+
+			</ul>
+
+
+			{# from           fdghfghf fgj fgj fgjgfjfgjfgj fg #}
+
+			{# task in milestone  #}
+
+			<div class="tab-content">
+				{% for mile in miles  %}
+					<div id="pill{{mile.id}}" class="tab-pane fade in {% if mile.id == active %} active {% endif %} ">
+						{% for task  in tasks %}
+							<ul class="list-group">
+								{% if mile.id == task.milestone.id %}
+
+
+									<li class=" list-group-item {% if task.done == 2  %} list-group-item-success
+											  {% elseif task.done == 1 %} list-group-item-info
+											  {% elseif task.done == -1  %}
+											  {% else %}list-group-item-warning
+											  {% endif %} ">
+										{% if task.done == 1 %}
+
+											{% elseif mile.id == activesub %}
+										{% endif %}
+
+
+										{% if task.done == 2 %}
+											<span class="fa fa-check green"></span>
+										{% elseif task.done != 2 and activesub == mile.id  %}
+											<input type="checkbox" class="icon mdi mdi-check" name="check" value="{{task.id}}"/>
+											{% else %}
+
+										{% endif %}
+
+
+										<span style="{% if task.done == -1 %} background-color:yellow {% endif %}">{{task.name}}</span>
+										{% if (task.done == 0 or task.done == -1) and mile.id == activesub  %}
+											<span class="badge" style="display:none">
+
+												<form action="{{path('taskfile_upload',{'id':study.id})}}" id="form{{task.id}}" enctype="multipart/form-data" method="POST">
+													<input type="hidden" value="{{task.id}}" name="hiddenid"/>
+													<input type="hidden" value="{{study.id}}" name="hiddenstudyid"/>
+													<input type="file" name="task{{task.id}}"/>
+
+												</form>
+
+											{% elseif task.done == 2  and task.Attachments %}
+												<span class="badge">
+
+													<form method="post" action="{{ path('taskfile_download',{'id':study.id}) }}" class="form-inline">
+														<input name="taskattachid" value="{{ task.id}}" hidden/>
+														<button class="btn btn-sm btn-success" type="submit">
+															<i class="fa fa-download"></i>
+															download</button>
+
+													</form>
+												</span>
+											{% elseif task.done == 1 and mile.id == activesub and task.Attachments  %}
+												<span class="badge">
+
+													<form method="post" action="{{ path('taskfile_download',{'id': study.id}) }}" class="form-inline">
+														<input name="taskattachid" value="{{ task.id}}" hidden/>
+														<button class="btn btn-sm btn-success" type="submit">
+															<i class="fa fa-download"></i>
+															download</button>
+
+													</form>
+												</span>
+											{% endif %}
+										</li>
+
+									{% endif %}
+
+								</ul>
+
+							{% endfor %}
+
+
+							{% if study.Status==1 %}
+
+								{% if mile.id == activesub %}
+									{% if is_study_owner(app.user,study,"sbmt_task") and done == false %}
+										<button type="button" class="btn btn-success submit">Submit</button>
+									{% endif %}
+
+
+								{% endif %}
+
+
+							{% endif %}
+
+						</div>
+					{% endfor %}
+
+
+				</div>
+
+
+				{#  to sddfg sfgf dfd fd hdh fdf hdf hdf #}
+
+			</div>
+
+		</div>
+	</div>
+</div>
+{% if is_study_owner(app.user,study,"send_fd") %}
+	<div class="col-sm-12">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="widget-title lighter smaller">
+					<i class="ace-icon fa fa-comment blue"></i>
+					Feedback
+				</h4>
+			</div>
+
+
+			{{ form_start(feedform) }}
+			<div class="form-actions">
+				<div class="input-group">
+
+					{{ form_widget(feedform.Message,{'attr':{'placeholder':'Type your feedback here ...','class':'form-control'}}) }}
+					{{ form_widget(feedform._token,{'attr':{'type':'hidden'}}) }}
+					<span class="input-group-btn">
+
+						<button type="submit" class="btn btn-sm btn-info no-radius">
+							<i class="ace-icon fa fa-share"></i>
+							Send</button>
+					</span>
+				</div>
+			</div>
+
+			{{ form_end(feedform,{'render_rest': false}) }}
+
+
+
+
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<div class="dialogs">
+
+						<div id="profile-feed-1" class="profile-feed">
+
+							  {% for feedback in feedbacks  %}
+
+
+								<div class="itemdiv dialogdiv">
+									{% if feedback.sender.userInfo %}
+										<div class="user">
+											<img alt="'s Avatar" src="{{ asset('profile_pic/' ~ feedback.sender.userInfo.image) }}">
+										</div>
+									{% endif %}
+									<div class="body">
+										<div class="time">
+											<i class="ace-icon fa fa-clock-o"></i>
+											<span class="orange">
+												{{ feedback.recieved_on | date('j. F Y') }}</span>
+										</div>
+
+										<div class="name">
+											<a href="#"></a>
+											<span class="label label-info arrowed arrowed-in-right">
+
+												{{ feedback.sender.userInfo.name }}
+
+											</span>
+										</div>
+										<div class="text">{{ feedback.message }}</div>
+									</div>
+								</div>
+							{% endfor %}
+
+
+						</div>
+					</div>
+
+				</div>
+				<!-- /.widget-main -->
+			</div>
+			<!-- /.widget-body -->
+		</div>
+		<!-- /.widget-box -->
+	</div>
+{% endif %}{% endif %}
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="{{ asset('assets/js/select2.min.js')}}"></script>
+
+<script>
+
+
+ $(function(){
+
+          $('.select2').select2({
+            theme: 'bootstrap4',
+			width:'100%'
+        });
+		//$('select').css('width','100%!important');
+
+    })
+
+
+function setA(id) {
+$('.tab-pane').removeClass('active');
+$('#pill' + id).addClass('active');
+}
+
+$('.list-group > li').hover(function () {
+
+$(this).children(".badge").show();
+}, function () {
+
+files = $('.file');
+var names = $.map(files, function (val) {
+return val;
+});
+
+names.forEach(getFiles);
+
+function getFiles(item, index, arr) {
+
+
+if (item.value) {
+console.log(item.value);
+$('.list-group > li').children(".badge").eq(index).show();
+} else {
+$('.list-group > li').children(".badge").eq(index).hide();
+}
+
+
+}
+});
+
+    $('#profile-feed-1').ace_scroll({
+                height: '400px',
+                mouseWheelLock: true,
+                alwaysVisible: true
+            });
+$(".submit").click(function () {
+
+var favorite = [];
+var named = [];
+
+$.each($("input[name='check']:checked"), function () {
+
+favorite.push($(this).val());
+
+});
+
+
+$.ajax({
+type: "POST",
+
+data: {
+id: {{ study.id }},
+done: favorite.join(',')
+},
+// data: data,
+url: "{{ path('tasks_done') }}",
+
+success: function (msg3) {
+if (msg3 == 1) {
+
+$('.submit').after("<div class='alert alert-success'> Submitted Succesfully</div>")
+
+// location.reload();
+}
+}
+});
+favorite.forEach(uploadFile);
+
+
+function uploadFile(item, i) {
+form = $("#form" + item);
+console.log((form));
+form.submit();
+
+}
+
+
+});
+
+
+$(".approve").click(function () {
+
+var favorite = [];
+
+$.each($("input[name='check']:checked"), function () {
+
+favorite.push($(this).val());
+
+});
+
+$.ajax({
+type: "GET",
+data: {
+id: {{ study.id }},
+done: favorite.join(','),
+action: 2
+},
+url: "{{ path('tasks_approved') }}",
+
+success: function (msg3) {
+if (msg3 == 1) {
+$('.pending').after("<div class='alert alert-success'> Approved Succesfully</div>")
+
+location.reload();
+}
+}
+});
+
+});
+
+
+$(".pending").click(function () {
+
+var favorite = [];
+
+$.each($("input[name='check']:checked"), function () {
+
+favorite.push($(this).val());
+
+});
+
+$.ajax({
+type: "GET",
+data: {
+id: {{ study.id }},
+done: favorite.join(','),
+action: -1
+},
+url: "{{ path('tasks_approved') }}",
+
+success: function (msg3) {
+if (msg3 == 1) {
+$('.pending').after("<div class='alert alert-success'>Selected tasks are added to pending state</div>")
+
+location.reload();
+}
+}
+});
+
+});
+
+
+$(".delete").click(function () {
+
+var favorite = [];
+
+$.each($("input[name='check']:checked"), function () {
+
+favorite.push($(this).val());
+
+});
+
+$.ajax({
+type: "GET",
+data: {
+id: {{ study.id }},
+done: favorite.join(','),
+action: 'delete'
+},
+url: "{{ path('tasks_approved') }}",
+
+success: function (msg3) {
+if (msg3 == 1) {
+$('.pending').after("<div class='alert alert-success'>Selected tasks are added to pending state</div>")
+
+location.reload();
+}
+}
+});
+
+});</script>{% endblock %}

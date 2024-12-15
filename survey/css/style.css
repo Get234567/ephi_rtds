@@ -1,0 +1,190 @@
+body {
+    background-color: whitesmoke;
+    /* text-align: center; */
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 75vh;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: white;
+    margin-top:25px;
+    margin-bottom: 15px;
+
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    border: 2px solid rgb(49, 181, 84, 0.85);
+    
+}
+
+.map {
+    width: 50%;
+    background-color: white;
+    padding-right: 20px;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.map path {
+    /* fill: chocolate; */
+    stroke: aliceblue;
+    stroke-width: 4px;
+    transition: fill 0.3s;
+}
+
+.map a :hover {
+    fill: rgb(49, 181, 84, 0.85);
+}
+
+
+.container{
+    display: flex;
+     flex-direction: column;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.middle {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    background-color: white;
+    padding-left: 100px;
+    padding-top: 50px;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.colors {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+}
+
+.ranges {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.value {
+    text-align: left;
+    width: 90%;
+    background-color: white;
+    margin-top: 25px;
+   
+  
+}
+
+.result {
+    position: relative;
+    text-align: left;
+    height: 80px;
+    padding:20px;
+    background-color: white;
+    border: 1px solid rgba(49, 181, 84, 0.85);
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+/* 
+.one {
+    fill: #FFCCCC;
+}
+
+.two {
+    fill: #FF9999;
+}
+
+.three {
+    fill: #FF6666;
+}
+
+.four {
+    fill: #FF3333;
+}
+
+.five {
+    fill: #FF0000;
+}
+
+.six {
+    fill: #CC0000;
+}
+
+.seven {
+    fill: #990000;
+}
+
+.eight {
+    fill: #660000;
+} */
+
+.foo {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.rstyle {
+    float: left;
+    width: 100px;
+    height: 20px;
+    margin: 5px;
+    /* border: 1px solid rgba(0, 0, 0, .2); */
+}
+
+.c_one {
+    background: #FFCCCC;
+}
+
+.c_two {
+    background: #FF9999;
+}
+
+.c_three {
+    background: #FF6666;
+}
+
+.c_four {
+    background: #FF3333;
+}
+
+.c_five {
+    background: #FF0000;
+}
+
+.c_six {
+    background: #CC0000;
+}
+
+.c_seven {
+    background: #990000;
+}
+
+.c_eight {
+    background: #660000;
+}
+
+@keyframes moveInRight {
+    0% {
+        transform: translate(-50px);
+        opacity: 0;
+    }
+    80% {
+        transform: translate(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}

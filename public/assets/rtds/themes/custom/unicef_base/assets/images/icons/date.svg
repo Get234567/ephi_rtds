@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 59 (101010) - https://sketch.com -->
+    <title>3D9EA723-DA22-4F94-B00E-91AA14D9685C@1x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M4.26666657,5.40000025 L3.0666666,5.40000025 L3.0666666,6.60000022 L4.26666657,6.60000022 L4.26666657,5.40000025 Z M6.66666651,5.40000025 L5.46666654,5.40000025 L5.46666654,6.60000022 L6.66666651,6.60000022 L6.66666651,5.40000025 Z M9.06666676,5.40000025 L7.86666679,5.40000025 L7.86666679,6.60000022 L9.06666676,6.60000022 L9.06666676,5.40000025 Z M10.2666671,1.2 L9.66666709,1.2 L9.66666709,0 L8.46666703,0 L8.46666703,1.2 L3.66666681,1.2 L3.66666681,0 L2.46666675,0 L2.46666675,1.2 L1.86666672,1.2 C1.20066669,1.2 0.672666667,1.74 0.672666667,2.4 L0.666666667,10.8 C0.666666667,11.46 1.20066669,12 1.86666672,12 L10.2666671,12 C10.9266671,12 11.4666672,11.46 11.4666672,10.8 L11.4666672,2.4 C11.4666672,1.74 10.9266671,1.2 10.2666671,1.2 Z M10.2666669,10.7999999 L1.86666663,10.7999999 L1.86666663,4.20000013 L10.2666669,4.20000013 L10.2666669,10.7999999 Z" id="path-1"></path>
+    </defs>
+    <g id="TITLE-CONTENT-AREA---RoCos-home-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="TITLE-CONTENT-AREA-ROCOS-Home-Page---Whale/Desktop-wider-(min-1440px)" transform="translate(-747.000000, -1440.000000)">
+            <g id="🔵organism/TitleArea/RoCos_home_page/desktop" transform="translate(0.000000, 240.000000)">
+                <g id="Group-2-Copy-6" transform="translate(135.000000, 952.000000)">
+                    <g id="🔴molecule/card/small/journalistic/photo/rest-🔴molecule/tile/small/journalistic/photo/rest" transform="translate(600.000000, 0.000000)">
+                        <g id="⚪atom/content_date_white-⚪atom/note/grey/with_icon/left" transform="translate(12.000000, 244.000000)">
+                            <g id="↳-✏️graphic/content_type/icon/default-↳-✏️graphic/content_type/icon/date" transform="translate(0.000000, 4.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                <g id="↳-🎨ColorPalette/Dark_grey-↳-🎨ColorPalette/Grey/3_595959" mask="url(#mask-2)" fill="#595959">
+                                    <rect id="Rectangle" x="0" y="0" width="12" height="12"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmailMessage index{% endblock %}
+{% block nopageheader %}
+     {# <a class="btn btn-success" href="{{ path('email_message_new') }}">Create new</a> #}
+{% endblock %}
+
+{% block body %}
+    <h1>EmailMessage Templates</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Message</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email_message in email_messages %}
+            <tr>
+                <td>{{ email_message.id }}</td>
+                <td>{{ email_message.name }}</td>
+                <td>{{ email_message.message }}</td>
+                <td>{{ email_message.createdAt ? email_message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+
+                    <a class="btn btn-success" href="{{ path('email_message_show', {'id': email_message.id}) }}">show</a>
+                    <a class="btn btn-success" href="{{ path('email_message_edit', {'id': email_message.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

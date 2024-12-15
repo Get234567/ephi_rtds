@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User List
+{% endblock %}
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+							<li class="active">User List</li>
+{% endblock %}
+
+{% block pageheader %}
+
+
+
+
+    <a class="btn btn-success" href="{{ path('fos_user_new') }}"><span class="fa fa-plus"> </span> New user</a>
+     <form action="{{path('fos_user_index')}}" class="form-inline pull-right" method="GET">
+
+							
+															<div class="input-group">
+															  <input type="text" class="form-control" id="searchdata" name="search" placeholder="Search here">
+                            	                              <div class="input-group-btn">
+																	<button type="submit" class="btn btn-success btn-sm">
+																		<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+																	</button>
+
+
+															</div>
+														</div>
+
+												</form>
+
+{% endblock %}
+{% block body %}
+<div class="row">
+		<div class="col-xs-12">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+		</div>
+	</div>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>Last Login</th>
+                <th>Password requested at</th>
+                <th>Group</th>
+                <th style="width:99px;">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fos_user in fos_users %}
+                <tr>
+                {% if fos_user.UserInfo %}
+                     <td>{{ fos_user.UserInfo.Name }}</td>
+                {% else %}
+                    <td>No Name</td>
+                {% endif %}
+
+                    <td>{{ fos_user.username }}</td>
+                    <td>{{ fos_user.email }}</td>
+                    <td>{{ fos_user.enabled ? 'Yes' : 'No' }}</td>
+
+                    <td>{{ fos_user.lastLogin ? fos_user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ fos_user.passwordRequestedAt ? fos_user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ fos_user.userGroup }}</td>
+                    <td>
+                        <a class=" btn btn-success btn-sm" href="{{ path('fos_user_show', {'id': fos_user.id}) }}"><span class="fa fa-eye"></span></a>
+                        <a class=" btn btn-warning btn-sm" href="{{ path('fos_user_edit', {'id': fos_user.id}) }}"><span class="fa fa-pencil"></span></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="13">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+    {{ knp_pagination_render(fos_users) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'print.html.twig' %}
+
+{% block title %}Dataset index{% endblock %}
+ 
+
+{% block body %}
+  
+				
+
+
+ 
+
+<table class="table table table-hover " style=" border:1px solid #dddddd">
+   <thead>
+            <tr>
+                <th>#</th>
+                <th>Dataset</th>
+                <th>Description</th>
+                
+                 
+             </tr>
+    </thead>
+    <tbody>
+    
+      {% set i =1  %}
+        {% for dataset in datasets %}
+        <tr>
+       <td> {{i }}{% set i = i+1  %}</td>
+         <td>{{ dataset.name|raw }}</td>
+         <td>
+
+            <li>{{ dataset.description|raw }}</li>
+              <li> Location- {{ dataset.coverageLocation }}</li>
+                <li>Age- {{ dataset.coverageAge }}</li>
+                <li>Sex- {{ dataset.coverageSex }}</li>
+                <li>{{ dataset.timePeriodCoverageStart ? dataset.timePeriodCoverageStart|date('M-Y') : '' }} - 
+            {{ dataset.timePeriodCoverageEnd ? dataset.timePeriodCoverageEnd|date('M-Y') : '' }}</li>
+         
+         </td>
+         
+         </tr>
+           {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        
+        {% endfor %}
+       <tr> <hr/></tr>
+    </tbody>
+</table>
+  
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EPHI
+{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block body %}
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="widget-box widget-color-blue2">
+				<div class="widget-header">
+					<h4 class="widget-title lighter smaller">Review Study</h4>
+				</div>
+				<div class="widget-body">
+					<div class="widget-main padding-8">
+						<table class="table ">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Study</th>
+									<th>Description</th>
+									<th style="width:300px; ">Action</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+
+
+								{% set i =1  %}
+								{% for study in studies %}
+									<tr {% if study.status == -1 %} class="bg-danger" {% endif %}>
+										<td>
+											{{i }}{% set i = i+1  %}</td>
+										<td>{{ study.title }}</td>
+										<td>
+
+											{{ study.description | raw }}
+										</td>
+										<td>
+											<a class="btn btn-sm btn-success" href="{{ path('study_show', {'id': study.id,'review':true}) }}">View</a>
+
+
+										</td>
+
+										<td>
+
+
+											{% if study.Status == null %}
+												<span class="label label-warning">Pending</span>
+											{% elseif study.Status == 1 %}
+												<span class="label label-success">Ongoing</span>
+											{% elseif study.status == -1 %}
+												<span class="label label-danger">Rejected</span>
+											{% elseif study.status == 4 %}
+												<span class="label label-success">Completed</span>
+											{% elseif study.status == 3 %}
+												<span class="label label-success">Waiting for last approval</span>
+											{% endif %}
+
+
+										</td>
+
+
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="16">no records found</td>
+									</tr>
+
+								{% endfor %}
+							</tbody>
+						</table>
+
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+
+	{% endblock %}

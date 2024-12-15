@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+<style>
+a:hover {
+background: 	rgb(10, 81, 124,0.85);
+Color: white;
+}
+</style>
+
+
+  {% endblock %}
+{% block breadcrumb %}
+   <li>
+               <i class="ace-icon fa fa-home home-icon"></i>
+               <a href="{{ path('main') }}">Home</a>
+             </li>
+                           <li> Keywords</li>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;    <form action="{{path('main')}}" class="form-inline pull-right" method="GET">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                  <input type="text" class="form-control" id="searchdata" name="search" placeholder="Search">
+                                                                              <div class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success btn-sm">
+                                                      <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                          </form>
+                              <br>
+
+
+
+{% endblock %}
+
+{% block pageheader %}
+
+
+
+                          <div class="input-group">
+
+
+                                                        <form action="{{path('keyword_index')}}" class="form-inline pull-right" method="GET">
+
+                                                       							<button type="submit" value="%" id="letterdata" name="letter"> All</button>|<button type="submit" value="A" id="letterdata" name="letter"> A</button> |<button type="submit" value="B" id="letterdata" name="letter"> B</button>|<button type="submit" value="C" id="letterdata" name="letter"> C</button>|<button type="submit" value="D" id="letterdata" name="letter"> D</button>|<button type="submit" value="E" id="letterdata" name="letter"> E</button>|<button type="submit" value="F" id="letterdata" name="letter"> F</button>|<button type="submit" value="G" id="letterdata" name="letter"> G</button>|<button type="submit" value="H" id="letterdata" name="letter"> H</button>|<button type="submit" value="I" id="letterdata" name="letter"> I</button>|<button type="submit" value="J" id="letterdata" name="letter"> J</button>|<button type="submit" value="K" id="letterdata" name="letter"> K</button>|<button type="submit" value="L" id="letterdata" name="letter"> L</button>|<button type="submit" value="M" id="letterdata" name="letter"> M</button>|<button type="submit" value="N" id="letterdata" name="letter"> N</button>|<button type="submit" value="O" id="letterdata" name="letter"> O</button>|<button type="submit" value="P" id="letterdata" name="letter"> P</button>|<button type="submit" value="Q" id="letterdata" name="letter"> Q</button>|<button type="submit" value="R" id="letterdata" name="letter"> R</button>|<button type="submit" value="S" id="letterdata" name="letter"> S</button>|<button type="submit" value="T" id="letterdata" name="letter"> T</button>|<button type="submit" value="U" id="letterdata" name="letter"> U</button>|<button type="submit" value="V" id="letterdata" name="letter"> V</button>|<button type="submit" value="W" id="letterdata" name="letter"> W</button>|<button type="submit" value="X" id="letterdata" name="letter"> X</button>|<button type="submit" value="Y" id="letterdata" name="letter"> Y</button>|<button type="submit" value="Z" id="letterdata" name="letter"> Z</button>
+
+                                                         </form>
+
+
+
+
+                        </div>
+
+
+
+
+               <div class="col7">
+
+
+
+               <div class="widget-body">
+                       <div class="widget-main padding-8">
+                           <table class="table">
+           <thead>
+               <tr>
+             <th>Keyword</th>
+               <th>RSS</th>
+               </tr>
+           </thead>
+           <tbody>
+{% if Keyword !='Null' %}
+           {% for Keyword in Keyword %}
+           <tr>
+         <td> <a href="{{path('keyword_index',{ name:Keyword.name })}}"> {{ Keyword.description[:1]|upper ~ Keyword.description[1:] }}</a></td>
+
+           <td> <a href="{{ path('keyword_index') }}">
+          <img src="{{ asset('assets/gelan/img/rss.webp') }}" width="15px" height="15px">
+</a>           </td>            </tr>
+
+           {% endfor %}
+           {% endif %}
+           {% if dataset !='Null' %}
+           {% for dataset in dataset %}
+               <tr>
+             <td>   <a href="{{path('showdetail',{ id:dataset.id })}}"> {{ dataset.name }}</button></a></td>
+
+               <td>
+
+
+               </td>
+
+
+               {% endfor %}
+               {% endif %}
+           </tbody>
+           <tfoot>
+
+           </tfoot>
+         </table>
+         {% if Keyword %}
+         <div class="pull-right">{{ knp_pagination_render(Keyword) }}</div>
+{% endif %}
+         {% if dataset %}
+         <div class="pull-right">{{ knp_pagination_render(dataset) }}</div>
+         {% endif %}
+                       </div>
+       </div>
+              </div>
+
+
+{% endblock %}

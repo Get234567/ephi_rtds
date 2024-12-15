@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+<li > Setting</li>
+							<li class=""> <a href="{{ path('percentage_index') }}">{{ row.ownerid }}</a> </li>
+
+{% endblock %}
+{% block pageheader %}
+ <a href="{{ path( 'percentage_index') }}" class="btn btn-sm btn-success">Back to list</a>
+{% endblock %}
+
+{% block body %}
+
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+    <td>{{ row.ownerid }}</td>
+            </tr>
+            <tr>
+
+            <td>{{ row.percentage }}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path( 'percentage_edit', {'id': row.id}) }}" class="btn btn-sm btn-success"><span class="fa fa-edit"></span>edit</a>
+
+<form class="inline" method="post" action="{{ path('percentage_delete', {'id': row.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ row.id) }}">
+    <button class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> Delete</button>
+</form>
+
+{% endblock %}

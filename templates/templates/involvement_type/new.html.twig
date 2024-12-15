@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New InvolvementType{% endblock %}
+
+{% block body %}
+    <h1>Create new InvolvementType</h1>
+
+    {{ include('involvement_type/_form.html.twig') }}
+
+    <a href="{{ path('involvement_type_index') }}">back to list</a>
+{% endblock %}

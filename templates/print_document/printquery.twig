@@ -1,0 +1,54 @@
+{% extends 'print.html.twig' %}
+
+{% block title %}Dataset index{% endblock %}
+ 
+
+{% block body %}
+  
+				
+
+
+ 
+<div class="row">
+<div class="col-md-12">
+<div class="table-responsive">
+<table class="table table-info table-bordered table-striped table-hover">
+<thead>
+<tr>
+{% if built_result is defined %}
+     
+{% for cols in selected_columns %}
+
+{% set headers = cols|split('.') %}
+   <th style="background-color: #438EB9; color: white;height:50px;text-transform:UPPERCASE ">
+   {{headers[1]}} ({{headers[0]}})
+   </th>  
+{% endfor %}
+
+
+
+</tr>
+</thead>
+<tbody>
+{% for key,values in built_result %}
+   <tr>
+{% for tds in values %}
+   <td>
+   {# {{tds}} #}
+   {{ tds|striptags|length > 100 ? tds|striptags|slice(0, 100) ~ '...' : tds|striptags }}
+
+   </td>  
+{% endfor %}
+   </tr>  
+{% endfor %}
+
+
+</tbody>
+
+</table>
+  {# <div class="pull-right">{{ knp_pagination_render(built_result) }}</div>   #}
+{% endif %}
+    
+    
+</div> 
+{% endblock %}

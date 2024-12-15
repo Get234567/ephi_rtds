@@ -1,0 +1,169 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}
+    {{datasets[0].name }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{path('main')}}">Home</a>
+        </li>
+        <li>
+            <a href="{{path('main',{ search:datasets[0].name })}}">Search</a>
+        </li>
+        <li>
+            <a href="{{path('main',{ search:datasets[0].name })}}">Search Reasults</a>
+        </li>
+      
+    </ul>
+
+
+    <div class="row">
+
+        <div class="col-md-7">
+            {% if datasets %}
+
+
+                <h4>{{datasets[0].name}}</h4>
+                <hr/>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Description</div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Format:</td>
+                                    <td>{{datasets[0].format }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Coverage Sex:</td>
+                                    <td>{{datasets[0].coverageSex }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Size:</td>
+                                    <td>{{datasets[0].size }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Location:</td>
+                                    <td>{{datasets[0].location }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Publication Year:</td>
+                                    <td>{{datasets[0].publicationYear| date() }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <p>{{datasets[0].publicationYear | date() }}</p>
+                <p>{{datasets[0].dataType }}</p>
+
+
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#contact_dialog">
+                        <i class="fa fa-download"></i>
+                        Download File</button>
+                </div>
+                <div class="modal fade" id="contact_dialog" role="dialog">
+                    <div class="modal-dialog" style=" width: 450px; margin: auto;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Request Download</h4>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <form action="{{ path('request_download',{'id':datasets[0].id}) }}" method="POST" class="">
+
+                                    <fieldset >
+                                        <label class="block clearfix">
+                                            <span class="block input-icon input-icon-right">
+                                                <input type="text" class="width-100" name="name" placeholder="First Name" pattern="([a-zA-Z]+)">
+
+                                            </span>
+                                        </label>
+                                        <div class="space-6"></div>
+                                        <label class="block clearfix">
+                                            <span class="block input-icon input-icon-right">
+                                                <input type="text" class="width-100" name="MiddleName" placeholder="Middle Name" pattern="([a-zA-Z]+)">
+
+                                            </span>
+                                        </label>
+                                        <div class="space-6"></div>
+                                        <label class="block clearfix">
+                                            <span class="block input-icon input-icon-right">
+                                                <input type="text" class="width-100" name="LastName" placeholder="Last Name" pattern="([a-zA-Z]+)">
+
+                                            </span>
+                                        </label>
+                                        <div class="space-6"></div>
+                                        <label class="block clearfix">
+                                            <span class="block input-icon input-icon-right">
+                                                <input type="text" class="width-100" name="Phone" placeholder="Phone Number" pattern="([a-zA-Z]+)">
+
+                                            </span>
+                                        </label>
+                                        <div class="space-6"></div>
+                                        <label class="block clearfix">
+                                            <span class="block input-icon input-icon-right">
+                                                <input type="email" class="width-100" name="Email" placeholder="Email">
+
+                                            </span>
+                                        </label>
+
+
+                                        <div class="space-6"></div>
+                                        <label class="block clearfix">
+                                            <span class="block input-icon input-icon-right">
+                                                <textarea class="form-control width-100" name="reason" placeholder="no reason"></textarea>
+
+
+                                            </span>
+                                        </label>
+                                        <div class="space-6"></div>
+
+                                        <input type="submit" class="width-100 btn btn-sm btn-success" value="Send">
+                                    </fieldset>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:20px">
+                    <a class="btn btn-sm btn-success " href="{{ path('print_single',{name: app.request.get('name')}) }}">Print
+                    </a>
+                    {# <a class="btn btn-sm btn-danger "  href="getCSV/{{app.request.get('name')}}">Export</a> #}
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h2>Keywords</h2>
+            <hr/>
+            {% for data in datasets %}
+
+                <p>{{data.keywords|join(',')}}</p>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div></div>{% endblock %}

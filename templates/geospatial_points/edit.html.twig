@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit GeospatialPoints{% endblock %}
+
+{% block body %}
+    <h1>Edit GeospatialPoints</h1>
+
+    {{ include('geospatial_points/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('geospatial_points_index') }}">back to list</a>
+
+    {{ include('geospatial_points/_delete_form.html.twig') }}
+{% endblock %}

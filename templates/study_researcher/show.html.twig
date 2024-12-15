@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StudyResearcher{% endblock %}
+
+{% block body %}
+    <h1>StudyResearcher</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ study_researcher.id }}</td>
+            </tr>
+            <tr>
+                <th>InvolvementType</th>
+                <td>{{ study_researcher.involvementType }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ study_researcher.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_researcher_index') }}">back to list</a>
+
+    <a href="{{ path('study_researcher_edit', {'id': study_researcher.id}) }}">edit</a>
+
+    {{ include('study_researcher/_delete_form.html.twig') }}
+{% endblock %}

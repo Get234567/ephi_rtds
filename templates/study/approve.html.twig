@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumb %}
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="{{ path('home')}}">Home</a>
+    </li>
+    <li>
+        <a href="{{ path('study_index')}}">Study</a>
+    </li>
+    <li class="active">View Study</li>
+{% endblock %}
+{% block pageheader %}
+    <a href="{{ path('study_index') }}" class="btn btn-sm btn-success">back to list</a>
+    <a href="{{ path('study_report',{ 'id':study.id}) }}" class="btn btn-sm btn-success pull-right">Print</a>
+
+
+{% endblock %}
+
+{% block body %}
+    <div class="widget-box widget-color-blue2">
+
+        <div class="widget-header">
+
+            <h4 class="widget-title lighter smaller">{{ study.title }}</h4>
+
+        </div>
+        <div class="widget-body">
+            <div class="widget-main padding-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>{{ study.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>IrbCode</th>
+                                    <td>{{ study.irbCode }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <th>Budget</th>
+                                    <td>{{ study.budget }}  {% if study.cur %}{{ study.cur }}{% endif %}
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-borderless">
+                            <tbody>
+
+                                <tr>
+                                    <th>Objective</th>
+                                    <td>{{ study.objective | raw }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ study.description  | raw }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Geography</th>
+                                    <td>{{ study.geography }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Proposal</th>
+                                    <td>
+                                        <a  href="{{ asset('uploads/study/' ~ study.ResearchProposal )}}"><i class="fa fa-download"></i> Download</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Ethical Clearance</th>
+                                    <td>
+                                        <a  href="{{ asset('uploads/study/' ~ study.EthicalClearance )}}" ><i class="fa fa-download"></i> Download</a>
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+   {% if form %}
+
+                 {% include "study/reviewer.html.twig" %}
+
+            {% endif %}
+                {% if is_allowed(app.user, 'std_frst_apprv') %}
+
+
+            <a class="btn btn-success" href="#" data-toggle="modal" data-target="#assignResearcher">Approve</a>
+
+
+
+
+            {# <a  href="{{ path('approve_study',{id:study.id, action:1})}}" class="btn btn-success" onclick="return confirm('Are you sure you want to approve?')" >Approve</a> #}
+            <a class="btn btn-danger" id="rej" >Reject</a>
+            <br><br>
+            <div class="fin hidden" >
+            <form id="frm" method="post" action="{{ path('approve_study', {id:study.id,action:-1})}}">
+            <textarea rows="4" cols="50" name= "message"></textarea>
+            <a  class="btn btn-danger" id="sbmt" onclick="return confirm('Are you sure you want to reject?')" >Confirm</a>
+            </form>
+            </div>
+                {% else %}
+
+                    <div class='alert alert-success h3'>
+                        <center>Your submission has not been approved yet.</center>
+                    </div>
+                {% endif %}
+
+
+                {# <ul class="nav nav-pills">
+                                                                              {% for mile in miles  %}
+                                                                               <li class="{% if mile.id == active %} active {% endif %}"><a data-toggle="pill" href="#pill{{mile.id}}">{{mile.name}}</a></li>
+                                                                             {% endfor %}
+                                                                                 </ul> #}
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+     $("#rej").click(function(){
+    $(".fin").toggleClass("hidden");
+});
+  $("#sbmt").click(function(){
+      $("#frm").submit();
+});
+</script>
+{% endblock %}

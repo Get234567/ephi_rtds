@@ -1,0 +1,70 @@
+{# {% extends 'base.html.twig' %}
+
+{% block breadcrumb %}
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="{{ path('home')}}">Home</a>
+    </li>
+    <li>
+        <a href="{{ path('study_index')}}">Study</a>
+    </li>
+    <li class="active">View Study</li>
+{% endblock %}
+{% block pageheader %}
+
+{% endblock %}
+
+{% block body %} #}
+
+{% block stylesheets %}
+    {# {{ parent() }} #}
+{# <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" /> #}
+
+{% endblock %}
+
+<!-- Modal -->
+<div id="myDataset" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Actions</h4>
+      </div>
+      <div class="modal-body">
+   {{ form_start(datasetForm)}}
+   {{ form_widget(datasetForm)}}
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" >Submit</button>
+      {{ form_end(datasetForm)}}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{#
+<div class=" col-md-8 col-xs-offset-2">
+<div class=" panel panel-success">
+<div class=" panel-heading">
+</div>
+<div class=" panel-body">
+ {{ form_start(datasetForm)}}
+   {{ form_widget(datasetForm)}}
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" >Submit</button>
+      {{ form_end(datasetForm)}}
+</div>
+{% endblock %}
+ #}
+
+{% block javascripts %}
+    {# {{ parent() }} #}
+    	{# <script src="{{asset('assets/j/jquery.min.js')}}"></script> #}
+
+{% endblock %}

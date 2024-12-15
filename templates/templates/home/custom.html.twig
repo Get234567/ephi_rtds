@@ -1,0 +1,225 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EPHI
+{% endblock %}
+{% block pageheader %}{% endblock %}
+{% block body %}
+
+
+	<div class="row">
+		<div class="col-md-2"></div>
+
+
+
+
+		{% if is_allowed(app.user,'dsh_srch_drct') %}
+
+			<div class="col-md-8">
+
+
+				<div class="panel panel-success">
+					<div class="panel-heading">Visualize</div>
+					<div class="panel-body">
+						<div class="row">
+							{{form_start(directorateform)}}
+							<div class="col-md-6">Directorate: {{ form_widget(directorateform.Directorate) }}</div>
+							<div class="col-md-6">Attributes: {{ form_widget(directorateform.Choice) }}</div>
+              <div class="col-md-6">Date Range: {{ form_widget(directorateform.date3) }}</div>
+              <div class="col-md-6 inline">{{ form_widget(directorateform.StackedBarChart,{'attr':{'class':'form-check-input'}}) }}  {{ form_widget(directorateform.Percent) }}</div>
+
+
+              <div class="col-md-12 padding-7" style="margin-top:10px;">   {{ form_widget(directorateform.Visualize,{'attr':{'class':'col-md-12 btn btn-success'}}) }}</div>
+              {{form_end(directorateform)}}
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% if is_allowed(app.user,'vis_shw') %}
+<div class="col-md-8">
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+
+						<canvas id="myChart32"></canvas>
+					</div>
+
+				</div>
+
+</div>
+
+
+
+
+{% endif %}
+
+
+{% endblock %}{% block javascripts %}
+
+
+<script src="{{ asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+<script src="{{asset('assets/js/moment.min.js')}}"></script>
+<script src="{{asset('assets/js/daterangepicker.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+
+<script type="text/javascript">
+	$('.date-range-picker').daterangepicker({
+'applyClass': 'btn-sm btn-success',
+'cancelClass': 'btn-sm btn-default',
+locale: {
+applyLabel: 'Apply',
+cancelLabel: 'Cancel',
+format: 'YYYY/MM/DD'
+}
+}).prev().on(ace.click_event, function () {
+$(this).next().focus();
+});
+</script>
+<script type="text/javascript">
+
+	$('form').submit(function () {
+$('.btn-submit').attr('data-dismiss', 'modal');
+
+
+});
+</script>
+
+
+<script type="text/javascript">
+
+
+	// graph 3
+{% if type == 'stacked' %}
+
+var ctx = document.getElementById('myChart32');
+
+{% set workunit = [] %}
+{% for item in dataset %}
+{% if item.name not in workunit %}
+{% set workunit = workunit|merge([item.name]) %}
+{% endif %}
+{% endfor %}
+{% set col = [] %}
+{% for item in dataset %}
+{% if item.col not in col %}
+{% set col = col|merge([item.col]) %}
+{% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+
+labels: [{% for dd in workunit %}"{{ dd }}",{% endfor %}],
+
+datasets: [{% for d in col %}{
+
+label: '{{ d }}',
+data: [{% set has=0 %}{% for w in workunit %}{% for da in dataset %}{% if da.col == d and da.name == w %}
+{{ da.total }}, {% set has=1 %}
+{% endif %}
+{% endfor %}
+{% if has==0 %}
+0,{% endif %}{% endfor %}],
+backgroundColor: 'rgba(    {{ random(50, 200) }},     {{ random(50, 200) }},     {{ random(50, 200) }}, 1.0)'
+
+},{% endfor %}]
+},
+options: {
+
+title: {
+display: true,
+text: 'Submitted Data By {{ sub }} & {{ title }}',
+position: 'bottom'
+},
+scales: {
+yAxes: [
+{
+stacked: true,
+ticks: {
+beginAtZero: true
+}
+}
+],
+xAxes: [
+{
+stacked: true,
+ticks: {
+beginAtZero: true
+}
+}
+]
+}
+}
+});
+
+
+// graph 3 2
+
+{% else %}
+
+var ctx = document.getElementById('myChart32');
+
+{% set workunit = [] %}
+{% for item in dataset %}
+{% if item.name not in workunit %}
+{% set workunit = workunit|merge([item.name]) %}
+{% endif %}
+{% endfor %}
+{% set col = [] %}
+{% for item in dataset %}
+{% if item.col not in col %}
+{% set col = col|merge([item.col]) %}
+{% endif %}
+{% endfor %}
+
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+
+labels: [{% for dd in workunit %}"{{ dd }}",{% endfor %}],
+
+datasets: [{% for d in col %}{
+
+label: '{{ d }}',
+data: [{% set has=0 %}{% for w in workunit %}{% for da in dataset %}{% if da.col == d and da.name == w %}
+{{ da.total }}, {% set has=1 %}
+{% endif %}
+{% endfor %}
+{% if has==0 %}
+0,{% endif %}{% endfor %}],
+backgroundColor: 'rgba( {{ random(50, 200) }},     {{ random(50, 200) }},     {{ random(50, 200) }}, 1.0)'
+
+},{% endfor %}]
+},
+options: {
+title: {
+display: true,
+text: 'Submitted Data By  {{ sub }}&  {{ title }}',
+position: 'bottom'
+},
+scales: {
+yAxes: [
+{
+stacked: false,
+ticks: {
+beginAtZero: true
+}
+}
+],
+xAxes: [
+{
+stacked: false,
+ticks: {
+beginAtZero: true
+}
+}
+]
+}
+}
+});{% endif %}
+</script>{% endblock %}

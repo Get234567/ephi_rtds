@@ -1,0 +1,59 @@
+# config/packages/security.yaml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            
+            pattern: ^/
+            form_login:
+                default_target_path: /home
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+
+            logout:       true
+            anonymous:    true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register/confirmed, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY  }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/getCSV/*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/download/dataset, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/download/request_download, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/showsingle, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/showdetail, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/advanced-search, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/loc, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/study_design, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/print_single, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/demographic_group, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/captcha-handler , role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_USER }
+        - { path: ^/home, role: ROLE_USER }
+        - { path: ^/dataset, role: ROLE_USER }
+        - { path: ^/download/*, role: ROLE_USER }
+        - { path: ^/study, role: ROLE_USER }
+        - { path: ^/save/query/*, role: ROLE_USER }
+        - { path: ^/query/builder/*, role: ROLE_USER }
+        - { path: ^/email/message/*, role: ROLE_USER }
+        
+        

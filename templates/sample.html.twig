@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    
+{% endblock %}
+
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+							<li class="active">Dashboard</li>
+{% endblock %}
+{% block pageheader %}
+		<h1>
+								Dashboard
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									overview &amp; stats
+								</small>
+							</h1>
+    
+{% endblock %}
+{% block search %}
+	<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div>
+{% endblock %}
+{% block body %}
+
+    
+{% endblock %}
+{% block javascripts %}
+    
+{% endblock %}

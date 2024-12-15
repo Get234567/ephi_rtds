@@ -1,0 +1,356 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+
+    <style>
+
+.subject-info-box-1,
+.subject-info-box-2 {
+    float: left;
+    width: 45%;
+
+    select {
+        height: 200px;
+        padding: 0;
+
+        option {
+            padding: 4px 10px 4px 10px;
+        }
+
+        option:hover {
+            background: #EEEEEE;
+        }
+    }
+}
+
+.subject-info-arrows {
+    float: left;
+    width: 10%;
+
+    input {
+        width: 70%;
+        margin-bottom: 5px;
+    }
+}
+
+</style>
+
+
+{% endblock %}
+{% block pageheader %}
+
+<h1>{{ user_group.name }} group</h1>
+{% endblock %}
+
+{% block body %}
+
+
+<form action="{{path('user_group_edit',{'id':user_group.id})}}" method="POST"  id="form">
+<label>Group name</label>
+<input type="text" class="form-control width-30 inline" name="grpname" value="{{ user_group.name }}"/>
+
+<h3>permission lists<h3/>
+ <input type="text" id="user-permission"  placeholder="filter permission"/>
+ <br>
+<div class="subject-info-box-1">
+
+  <select multiple="multiple" id='lstBox1' class="form-control" style="height:250px" name="box1[]">
+     {% for perm in user_permissions %}
+        {% if perm  not in group_permission %}
+    <option value="{{ perm.id }}">{{ perm.description }}</option>
+        {% endif %}
+
+    {% endfor %}
+
+  </select>
+</div>
+
+<div class="subject-info-arrows text-center">
+  <input type='button' id='btnAllRight' value='>>' class="btn btn-default " /><br /><br />
+  <input type='button' id='btnRight' value='>' class="btn btn-default" /><br /><br />
+  <input type='button' id='btnLeft' value='<' class="btn btn-default" /><br /><br />
+  <input type='button' id='btnAllLeft' value='<<' class="btn btn-default" /><br />
+</div>
+<div class="subject-info-box-2" >
+  <select multiple="multiple" id='lstBox2' class="form-control" style="height:250px" name="box2[]">
+  {% for perm in group_permission %}
+        <option value="{{ perm.id }}">{{ perm.description }}</option>
+
+  {% endfor %}
+  </select>
+</div>
+
+<br><br><br><br><br>
+<hr>
+
+<div style="margin-top: 200px;"> Users list <div>
+
+
+<br>
+<br>
+ <input type="text" id="all-user"  placeholder="filter user"/>
+ <br>
+ <br>
+<div class="subject-info-box-1">
+
+  <select multiple="multiple" id='lstBox3' class="form-control" style="height:250px" name="box3[]">
+
+
+  </select>
+</div>
+
+<div class="subject-info-arrows text-center" style="margin-top:50px">
+  <input type='button' id='btnAllRight1' value='>>' class="btn btn-default " /><br /><br />
+  <input type='button' id='btnRight1' value='>' class="btn btn-default" /><br /><br />
+  <input type='button' id='btnLeft1' value='<' class="btn btn-default" /><br /><br />
+  <input type='button' id='btnAllLeft1' value='<<' class="btn btn-default" /><br />
+</div>
+<div class="subject-info-box-2" >
+
+  <select multiple="multiple" id='lstBox4' class="form-control" style="height:250px" name="box4[]">
+     {% for user in group_users %}
+        {% if user.UserInfo %}
+            <option value="{{ user.id }}">{{ user.UserInfo.name }}</option>
+        {% else %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+        {% endif %}
+
+    {% endfor %}
+  </select>
+</div>
+
+<div class="clearfix"></div>
+<br> <br>
+<input type='submit' value='Save' class="btn btn-success" style="width:70px;"/><br />
+
+</form>
+
+{% block javascripts %}
+
+<script>
+
+// A $( document ).ready() block.
+$( document ).ready(function() {
+
+ function strDes(a, b) {
+   if (a.value>b.value) return 1;
+   else if (a.value<b.value) return -1;
+   else return 0;
+ }
+
+//console.clear();
+(function () {
+    $('#btnRight').click(function (e) {
+        var selectedOpts = $('#lstBox1 option:selected');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox2').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+
+
+
+
+       // -- Uncomment for optional sorting --
+        /*var box2Options = $('#lstBox2 option');
+        var box2OptionsSorted;
+        box2OptionsSorted = box2Options.toArray().sort(strDes);
+        $('#lstBox2').empty();
+        box2OptionsSorted.forEach(function(opt){
+          $('#lstBox2').append(opt);
+        })*/
+
+
+
+
+
+        e.preventDefault();
+    });
+
+    $('#btnAllRight').click(function (e) {
+        var selectedOpts = $('#lstBox1 option');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox2').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+
+    $('#btnLeft').click(function (e) {
+        var selectedOpts = $('#lstBox2 option:selected');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox1').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+
+    $('#btnAllLeft').click(function (e) {
+        var selectedOpts = $('#lstBox2 option');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox1').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+}(jQuery));
+
+
+
+
+
+
+
+
+
+(function () {
+    $('#btnRight1').click(function (e) {
+        var selectedOpts = $('#lstBox3 option:selected');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox4').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+
+
+
+
+       // -- Uncomment for optional sorting --
+        /*var box2Options = $('#lstBox2 option');
+        var box2OptionsSorted;
+        box2OptionsSorted = box2Options.toArray().sort(strDes);
+        $('#lstBox2').empty();
+        box2OptionsSorted.forEach(function(opt){
+          $('#lstBox2').append(opt);
+        })*/
+
+
+
+
+
+        e.preventDefault();
+    });
+
+    $('#btnAllRight1').click(function (e) {
+        var selectedOpts = $('#lstBox3 option');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox4').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+
+    $('#btnLeft1').click(function (e) {
+        var selectedOpts = $('#lstBox4 option:selected');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox3').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+
+    $('#btnAllLeft1').click(function (e) {
+        var selectedOpts = $('#lstBox4 option');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+
+        $('#lstBox3').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+}(jQuery));
+
+$('#all-user').keyup(function(){
+
+    	$.ajax({
+					type: "GET",
+					url: "{{path('user_group_edit', {'id': user_group.id })}}",
+                    data:{
+                        'search': $('#all-user').val(),
+                        'key':'all',
+                    },
+					success: function(msg){
+                    $("#lstBox3").html('');
+					obj=JSON.parse(msg);
+                    obj.forEach(function(el){
+                          str="<option value='"+el.id+"'>"+el.name+"</option>";
+                          $("#lstBox3").append(str);
+                    });
+                    },
+
+                    });
+
+
+
+            });
+$('#user-permission').keyup(function(){
+    if($('#user-permission').val()=='')
+        val="!$";
+        else val=$('#user-permission').val();
+    	$.ajax({
+					type: "GET",
+					url: "{{path('user_group_edit', {'id': user_group.id })}}",
+                    data:{
+                        'searchpermission': val,
+                    },
+					success: function(msg){
+                    $("#lstBox1").html('');
+                    console.log(msg);
+					obj=JSON.parse(msg);
+                    obj.forEach(function(el){
+
+                          str="<option value='"+el.id+"'>"+el.name+"</option>";
+                          $("#lstBox1").append(str);
+                    });
+                    },
+
+                    });
+
+
+
+            });
+
+
+
+
+
+   $('#form').submit(function() {
+	        $('#lstBox2').find('option').each(function() {
+
+	            $(this).attr('selected', 'selected');
+
+	        });
+            $('#lstBox4').find('option').each(function() {
+
+	            $(this).attr('selected', 'selected');
+
+	        });
+
+		return true;
+	    });
+
+});
+
+</script>
+{% endblock %}
+{% endblock %}

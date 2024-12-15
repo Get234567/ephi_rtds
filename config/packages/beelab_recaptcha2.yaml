@@ -1,0 +1,4 @@
+beelab_recaptcha2:
+    site_key: '6Le7Vr8UAAAAAPHBUbsbUZdTn3YvzHLHkFr0qMCA'
+    secret: '6Le7Vr8UAAAAAAZnn6oVQJesUjFi4sU-36gZKorj'
+    request_method: post

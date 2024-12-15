@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saved Query{% endblock %}
+{% block breadcrumb %}
+  <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home')}}">Home</a>
+							</li>
+							<li class="active">Report</li>
+{% endblock %}
+{% block pageheader %}
+
+    <a class="btn btn-success" href="{{ path('query_builder') }}">New Report</a>
+{% endblock %}
+{% block body %}
+    <h1>Saved Queries  for Report</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>SavedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for save_query in save_queries %}
+            <tr>
+                <td>{{ save_query.id }}</td>
+                <td>{{ save_query.name }}</td>
+                <td>{{ save_query.description }} </td>
+
+                <td>{{ save_query.savedAt ? save_query.savedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('show_saved_query', {'id': save_query.id}) }}">Execute</a>
+                    <a class="btn btn-success" href="{{ path('saved_query_print', {'id': save_query.id}) }}">Print</a>
+                    <a class="btn btn-warning" href="{{ path('export_my_query', {'id': save_query.id}) }}">Export</a>
+
+                    <form method="post" action="{{ path('save_query_delete', {'id': save_query.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ save_query.id) }}">
+    <button class="btn btn-danger">Delete</button>
+</form>
+                     {# <a href="{{ path('save_query_edit', {'id': save_query.id}) }}">edit</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

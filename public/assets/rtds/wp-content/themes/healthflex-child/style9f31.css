@@ -1,0 +1,53 @@
+/*
+Theme Name: NDMC Child
+Theme URI: 
+Description: Child theme for NDMC Flex. We strongly recommend using this child theme that will allow you to include all your custom functionality without fear of losing it when updating the parent theme. Note that theme updates must be applied only on parent theme, and not on this child theme. 
+Author: NDMC Themes
+Author URI: 
+License: GNU General Public License v2 or later 
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: responsive-layout, theme-options, translation-ready
+Template: ndmc
+*/
+/* DO YOUR STUFF AFTER THIS !!  */
+
+/*footer{background-image: linear-gradient(90deg, rgb(31, 112, 193), rgb(0, 0, 0));}*/
+/*.header .topbar {background-image: linear-gradient(10deg, rgb(0, 0, 0), rgb(31, 112, 193));}*/
+footer, .header .topbar {background-image: linear-gradient(90deg, #86de61, #0f6d0ff5);}
+
+/*.stickybg {background-image: linear-gradient(10deg, rgb(0, 0, 0), rgb(31, 112, 193));}*/
+/*.stickybg {color: #000; background-image: linear-gradient(90deg, rgb(31, 112, 193), rgb(0, 0, 0));}
+*/
+.stickybg a{color: #fff}
+.stickybg .logo {
+    margin: 0 0;
+}
+
+/*.menu_container ul.main_menu li.lihasdropdown>a{
+	    padding: 15px 10px 15px 5px;
+}*/
+.logo a.brand img {
+    max-height: 70px;
+}
+
+.stickybg > .menu_container ul.main_menu li.lihasdropdown>a{
+	color: #fff
+}
+
+@media (max-width: 767px){
+	.elevate {
+	    margin-bottom: 0px !important; 
+	}
+}
+
+label.mobile_collapser span {
+    display: none;
+}
+
+.mailster-form .submit-button {
+    cursor: pointer;
+    color: black;
+}
+footer{
+	border-color: #368e3a;
+}

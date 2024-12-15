@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StudyResearchTeam{% endblock %}
+
+{% block body %}
+    <h1>StudyResearchTeam</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ study_research_team.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_research_team_index') }}">back to list</a>
+
+    <a href="{{ path('study_research_team_edit', {'id': study_research_team.id}) }}">edit</a>
+
+    {{ include('study_research_team/_delete_form.html.twig') }}
+{% endblock %}

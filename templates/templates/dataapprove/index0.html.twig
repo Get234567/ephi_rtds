@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+
+
+   {% endblock %}
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+                            <li> Setting</li>
+
+							<li class="active">{{ name }}</li>
+{% endblock %}
+{% block pageheader %}
+
+    <form action="{{path(link ~ '_index')}}" class="form-inline pull-right" method="GET">
+
+
+															<div class="input-group">
+															  <input type="text" class="form-control" id="searchdata" name="search" placeholder="Search here">
+                            	                              <div class="input-group-btn">
+																	<button type="submit" class="btn btn-success btn-sm">
+																		<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+																	</button>
+
+
+															</div>
+														</div>
+
+												</form>
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('warning') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+<div class="space-6"></div>
+    <div class="row">
+    <div class="col-md-5">
+        <div class="widget-box widget-color-blue2">
+            <div class="widget-header">
+            <h4 class="widget-title lighter smaller">New {{ name }} entry</h4>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-8">
+                    {{ form_start(form) }}
+                      <div class="form-group">
+                    <label>
+                    Name of {{ name }} </label>
+                    {{ form_widget(form.name,{'attr':{'placeholder':'Please enter ' ~ name ~ ' name here' }}) }}
+                       <div class="help-block with-errors"></div>
+        </div>
+{% if form.parent %}
+        <div class="form-group">
+            <label>{{ form_label(form.parent) }}</label>
+            {{ form_widget(form.parent,{'attr':{'class':''}})}}
+            <div class="help-block with-errors"></div>
+        </div>
+        {% endif %}
+                    {# {{ form_label(form.description,) }} #}
+                     <div class="form-group"> <label>Description of {{ name }} </label>
+                    {{ form_widget(form.description,{'attr':{'placeholder':'Please enter ' ~ name ~ ' description here','class':'form-control ckeditor'}}) }}
+   <div class="help-block with-errors"></div>
+        </div>
+   <button class="btn btn-sm btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+                    </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-md-7">
+          <div class="widget-box widget-color-blue2">
+            <div class="widget-header">
+            <h4 class="widget-title lighter smaller">List of available {{ name }} </h4>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-8">
+                        <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set n=1 %}
+        {% for row in data %}
+            <tr>
+                <td>{{ n }}</td>
+                {% set n=n+1 %}
+                <td>{{ row.name }}</td>
+                <td>{{ row.description|length > 40 ? row.description|slice(0, 40) ~ '...' : row.description | raw  }}</td>
+                <td>
+                    <a href="{{ path(link ~ '_show', {'id': row.id}) }}" class="btn btn-sm btn-success"><span class="fa fa-eye" title="View detail"></span></a>
+                    <a href="{{ path( link ~ '_edit', {'id': row.id}) }}" class="btn btn-sm btn-warning"><span class="fa fa-edit" title="Edit"></span></a>
+
+                    {{ include('name_desc/_delete_form.html.twig') }}
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+    {% if data %}
+     <div class="pull-right">{{ knp_pagination_render(data) }}</div>
+{% endif %}
+                    </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+{% endblock %}

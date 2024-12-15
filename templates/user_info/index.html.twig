@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Profile
+{% endblock %}
+
+{% block pageheader %}
+	<h1>
+								Your Profile
+                                <small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+								
+								</small>
+								
+							</h1>
+{% endblock %}
+{% block body %}
+
+
+{% for message in app.flashes('success')  %}
+            <div class="alert alert-success">{{ message }}</div>
+          {% endfor %}
+
+    <div class="">
+
+
+               {% set percent=0 %}
+               {% if  app.user.userInfo %}
+                   
+               {% if app.user.userInfo.FirstName %}
+                   {% set percent=percent+20 %}
+               {% endif %}
+			   
+               {% if app.user.userInfo.Sex %}
+
+                   {% set percent=percent+20 %}
+                   
+               {% endif %}
+               {% if app.user.userInfo.Address %}
+
+                   {% set percent=percent+20 %}
+                   
+               {% endif %}
+              
+
+               {% if app.user.userInfo.image %}
+                   
+                   {% set percent=percent+20 %}
+               {% endif %}
+			    {% if app.user.userInfo.phone %}
+                   
+                   {% set percent=percent+20 %}
+               {% endif %}
+
+
+
+
+
+               {% endif %}
+                    {% if percent==0 %}
+                            
+                    {% elseif percent != 100 %}
+                     <div class="col-sm-offset-1 col-sm-10">
+                    <div
+                class="well well-sm">
+
+                
+                    <div class="inline middle blue bigger-110">
+                            Your profile is {{ percent }}% complete
+                            &nbsp; &nbsp; &nbsp;
+                <div style="width:200px;" data-percent="{{ percent }}%" class="inline middle no-margin progress progress-striped active pos-rel">
+                    <div class="progress-bar progress-bar-success" style="width:{{ percent }}%"></div>
+                </div>
+                </div>
+                </div>
+                    {% endif %}
+									<div id="user-profile-1" class="user-profile row">
+										<div class="col-xs-12 col-sm-3 center">
+											<div>
+												<span class="profile-picture">
+													{% if  app.user.UserInfo %}
+														<img id="avatar" class="editable img-responsive editable-click editable-empty" alt="{{ app.user.UserInfo.Name }}'s " src="{{ asset('profile_pic/' ~ app.user.UserInfo.image) }}">
+												
+													{% endif %}
+													</span>
+
+												<div class="space-4"></div>
+												<a href="{{ path('user_info_index1') }}" class="link">Edit Profile</a><br>
+												<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+													<div class="inline position-relative">
+														<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+															<i class="ace-icon fa fa-circle light-green"></i>
+															&nbsp;
+															<span class="white">{% if app.user %}
+                                                            {% if app.user.UserInfo %}
+                                                                {{ app.user.UserInfo.Name }}
+                                                            {% endif %}
+															<span class="white">
+                                                            {% else %}
+                                                                NoName
+                                                            {% endif %}
+                                                            </span>
+														</a>
+
+													
+													</div>
+												</div>
+											</div>
+
+											<div class="space-6"></div>
+
+											<div class="profile-contact-info">
+												
+												<div class="space-6"></div>
+
+												<div class="profile-social-links align-center">
+													<a href="#" class="tooltip-info" title="" data-original-title="Visit my Facebook">
+														<i class="middle ace-icon fa fa-facebook-square fa-2x blue"></i>
+													</a>
+
+													<a href="#" class="tooltip-info" title="" data-original-title="Visit my Twitter">
+														<i class="middle ace-icon fa fa-twitter-square fa-2x light-blue"></i>
+													</a>
+
+													<a href="#" class="tooltip-error" title="" data-original-title="Visit my Pinterest">
+														<i class="middle ace-icon fa fa-pinterest-square fa-2x red"></i>
+													</a>
+												</div>
+											</div>
+
+											<div class="hr hr12 dotted"></div>
+
+											
+											<div class="hr hr16 dotted"></div>
+										</div>
+
+										<div class="col-xs-12 col-sm-9">
+											<div class="center">
+											
+
+												
+
+						
+
+											
+
+
+												
+											</div>
+
+											<div class="space-12"></div>
+
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Name </div>
+
+													<div class="profile-info-value">
+														<span class="editable editable-click" id="username">{% if app.user %} {{ app.user.UserInfo.name }}
+                                                            {% else %}
+                                                                
+                                                        {% endif %}</span>
+                                                       
+                                                            
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Address </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker light-orange bigger-110"></i>
+														<span  id="country">{{ app.user.UserInfo.address }}</span>
+															</div>
+												</div>
+
+												
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Sex </div>
+
+													<div class="profile-info-value">
+														<span  id="signup">{{ app.user.UserInfo.Sex }}</span>
+													</div>
+												</div>
+
+												
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Affiliation</div>
+
+													<div class="profile-info-value">
+														<span  id="about">{{ app.user.UserInfo.Affiliation }}</span>
+													</div>
+												</div>
+											</div>
+
+											<div class="space-20"></div>
+
+											
+											<div class="hr hr2 hr-double"></div>
+
+											<div class="space-6"></div>
+
+											
+										</div>
+									</div>
+								</div>
+{% endblock %}

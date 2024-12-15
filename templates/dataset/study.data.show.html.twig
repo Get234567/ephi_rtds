@@ -1,0 +1,418 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+	<link rel="stylesheet" href="{{asset('assets/css/selectize.css')}}"/>
+
+	<link rel="stylesheet" href="{{asset('assets/css/selectize.default.css')}}"/>
+	<link rel="stylesheet" href="{{asset('assets/css/selectize.bootstrap3.css')}}"/>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+
+{% endblock %}
+{% block title %}Dataset index
+{% endblock %}
+{% block breadcrumb %}
+	<li>
+		<i class="ace-icon fa fa-home home-icon"></i>
+		<a href="{{ path('home')}}">Home</a>
+	</li>
+	<li>
+		<a href="{{ path('myresearch')}}">Study</a>
+	</li>
+	<li class="active">view Dataset</li>
+{% endblock %}
+
+{% block pageheader %}
+
+	<a href="{{ path('myresearch') }}" class="btn btn-sm btn-primary ">back to list</a>
+
+{% endblock %}
+
+
+{% block body %}
+
+
+
+
+
+
+	<h1>Dataset</h1>
+
+	<div class="row">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					{% if dataset.id < 10  %}
+						{% set add = '000' %}
+					{% elseif dataset.id < 100 %}
+
+						{% set add = '00' %}
+					{% elseif dataset.id < 1000 %}
+
+						{% set add = '0' %}
+
+
+					{% endif %}
+
+					<td>EPHI-DS{{ add }}{{ dataset.id }}</td>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<td>{{ dataset.name|raw }}</td>
+				</tr>
+				<tr>
+					<th>Label</th>
+					<td>{{ dataset.label|raw }}</td>
+				</tr>
+				<tr>
+					<th>Format</th>
+					<td>{{ dataset.format }}</td>
+				</tr>
+				<tr>
+					<th>Coverage Location</th>
+					<td>{{ dataset.coverageLocation }}</td>
+				</tr>
+				{# <tr>
+				                    <th>CoverageAge</th>
+				                    <td>{{ dataset.coverageAge }}</td>
+				                </tr> #}
+				<tr>
+					<th>Coverage Sex</th>
+					<td>{{ dataset.coverageSex }}</td>
+				</tr>
+
+
+				<tr>
+					<th>Additional Material </th>
+					<td>{{ dataset.codeBook ? 'Yes' : 'No' }}</td>
+				</tr>
+				{% if dataset.codeBookFileName %}
+					<tr>
+						<th>Additional Material</th>
+						<td>
+							<a href="{{ asset('dataset/' ~ dataset.codeBookFileName) }}" class="btn btn-primary">Download</a>
+						</td>
+					</tr>
+				{% endif %}
+
+
+
+				<tr>
+					<th>Keywords</th>
+					<td>
+						<ul>
+							{% for key in  dataset.keywords  %}
+								{% if key != '' %}
+									<li>{{ key }}</li>
+								{% endif %}
+
+							{% endfor %}
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>Recommended</th>
+					<td>{{ dataset.recommended ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Location</th>
+					<td>{{ dataset.location }}</td>
+				</tr>
+				<tr>
+					<th>Cleaned</th>
+					<td>{{ dataset.cleaned ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Cleaned Format</th>
+					<td>{{ dataset.cleanedFormat }}</td>
+				</tr>
+				<tr>
+					<th>RawFormat</th>
+					<td>{{ dataset.rawFormat }}</td>
+				</tr>
+				<tr>
+					<th>Comment</th>
+					<td>{{ dataset.comment|raw }}</td>
+				</tr>
+				<tr>
+					<th>Remark</th>
+					<td>{{ dataset.remark|raw }}</td>
+				</tr>
+				<tr>
+					<th>Note</th>
+					<td>{{ dataset.note|raw }}</td>
+				</tr>
+
+				<tr>
+					<th>Treatment</th>
+					<td>{{ dataset.treatment }}</td>
+				</tr>
+				<tr>
+					<th>Date data collection started</th>
+					<td>{{ dataset.timePeriodCoverageStart ? dataset.timePeriodCoverageStart|date('') : ''  }}</td>
+				</tr>
+				<tr>
+					<th>Date data collection end</th>
+					<td>{{ dataset.timePeriodCoverageEnd ? dataset.timePeriodCoverageEnd|date('') : ''  }}</td>
+				</tr>
+				<tr>
+					<th>Title</th>
+					<td>{{ dataset.title }}</td>
+				</tr>
+				<tr>
+					<th>DataType
+					</th>
+					<td>{{ dataset.dataType }}</td>
+				</tr>
+				<tr>
+					<th>PublicationYear</th>
+					<td>{{ dataset.publicationYear ? dataset.publicationYear|date('Y') : '' }}</td>
+				</tr>
+				<tr>
+					<th>SugestedCitation</th>
+					<td>{{ dataset.sugestedCitation|raw }}</td>
+				</tr>
+				<tr>
+					<th>OtherIdType</th>
+					<td>{{ dataset.otherIdType }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ dataset.description|raw }}</td>
+				</tr>
+				<tr>
+					<th>Dataset study design</th>
+					<td>{{ dataset.studyDesign.name|raw }}</td>
+				</tr>
+
+				<tr>
+					<th>Restricted</th>
+					<td>{{dataset.isRestricted }}</td>
+				</tr>
+			{%  if dataset.isRestricted %}
+				<tr>
+					<th>Description Of Restriction</th>
+					<td>{{ dataset.DescriptionOfRestriction|raw }}</td>
+				</tr>
+				{% endif %}
+				<tr>
+
+					<th>Date data Archived</th>
+					<td>{{ dataset.recievedDate ? dataset.recievedDate|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>date data cataloged</th>
+					<td>{{ dataset.catalogCompletedDate ? dataset.catalogCompletedDate|date('Y-m-d') : '' }}</td>
+				</tr>
+
+				<tr>
+					<th>Data generating unit </th>
+					<td>{{ dataset.workunit }}</td>
+				</tr>
+				<tr>
+					<th>Tags</th>
+					<td>
+						<ul>
+							{% for tag in  dataset.tags  %}
+								<li>{{ tag }}</li>
+							{% endfor %}
+						</ul>
+					</td>
+				</tr>
+				<tr></tr>
+			</tbody>
+
+		</table>
+
+		{% if  lock_detail %}
+			<div class="row">
+				<h3 class="col-md-4">Geolocation</h3>
+				<div class="col-md-12">
+					<td>
+						<div style=" height:300px" class="col-md-12" id="show_map"></div>
+					</td>
+				</diV>
+			</div>
+		{% endif %}
+
+		{% if is_granted('ROLE_RESEARCHER') %}{% endif %}
+		{% if is_granted('ROLE_DATAMANAGER') %}
+			<a href="{{ path('dataset_edit', {'id': dataset.id}) }}" class="btn btn-sm btn-warning">
+				<span class="fa fa-edit"></span>edit</a>
+
+			<form method="post" action="{{ path('dataset_delete', {'id': dataset.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+				<input type="hidden" name="_method" value="DELETE">
+				<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ dataset.id) }}">
+				<button class="btn btn-sm btn-danger">
+					<span class="fa fa-trash"></span>Delete</button>
+			</form>
+		{% endif %}
+		{% if dataset.approved is not null %}
+
+
+{% if dataset.approved==1 or (is_allowed(app.user, 'dtst_atchmnt_apprv') and dataset.approved ==0)  %}
+
+		{% if attachments %}
+
+		Attachment
+			<table class="table ">
+				<tbody>
+
+					{% for attachment in attachments %}
+
+						<tr>
+							<th>Label</th>
+							<td>{{ attachment.label}}</td>
+							<td>
+								<form method="post" action="{{ path('download_dataset_file') }}">
+									<input name="attachment" value="{{ attachment.id}}" hidden>
+									<button class="btn btn-sm btn-primary">
+										<i class="fa fa-download"></i>
+										download</button>
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+           {% else %}
+						<tr>
+							<td colspan="16">no records found</td>
+						</tr>
+		{% endif %}
+
+
+		{% if noaccess and false %}
+			<form method="post" action="{{ path('make_download_request') }}">
+				<input name="dataset" value="{{ dataset.id}}" hidden>
+				<button class="btn btn-sm btn-primary">
+					<i class="fa fa-download"></i>
+					Make download Request</button>
+			</form>
+
+		{% endif %}
+
+{% endif %}
+
+
+{% if  dataset.approved == 0 and is_allowed(app.user, 'dtst_atchmnt_apprv') %}
+
+
+
+<a class="btn btn-info" href="{{ path('approve', {'id': dataset.id}) }}" onclick = "return confirm('Are you sure you want to approve the request?')" >Approve</a>
+
+<button class="btn btn-warning" data-toggle="collapse" data-target="#rejectremark">Pending</button>
+
+ <a class="btn btn-danger" href="{{ path('reject', {'id': dataset.id}) }}" onclick = "return confirm('Are you sure you want to reject the request?')" >Reject</a>
+
+<div id="rejectremark" class="collapse">
+<form action="{{path('reject',{'id': dataset.id})}}" method="POST">
+<div class="form-group">
+  <label for="remark">Remark:</label>
+  <textarea class="form-control" rows="5" name="remark" id="remark"></textarea>
+</div>
+<input type="hidden" value="{{dataset.id}}" name="id"/>
+
+
+<button class="btn btn-success" onclick = "return confirm('Are you sure you want to pend the request?')" >Submit</button>
+</form>
+</div>
+{% endif %}
+
+{% endif %}
+
+
+	 <form action="{{path('addkeywords')}}" method="GET">
+ <div class="form-group">
+  <label for="keywords">Add Keywords(separate by comma):</label>
+<input type="text" class="form-control keywords" id="keywor" name="keywords">
+<input type="hidden" class="keystore" name="keystore"/>
+<input type="hidden"  id="keywords" value="{{ dataset.id }}" name="keyid">
+</div>
+
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+		{% block javascripts %}
+
+
+			<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+			<script src="{{asset('assets/js/selectize.js')}}"></script>
+			<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+			<script src="{{asset('assets/js/Leaflet.SelectAreaFeature.js')}}"></script>
+
+
+			<script>
+				var val = "";
+$('.keywords').selectize({
+delimiter: ',',
+persist: false,
+onChange: function (value) {
+val = value;
+
+// $('.keywords').find('input').attr('name','keywords');
+$('.keystore').val(val);
+
+
+},
+create: function (input) {
+
+return {value: input, text: input}
+}
+
+});
+			</script>
+			<script>
+
+				{% if  lock_detail %}
+areuuuobject = [];{% for item in last_point %}
+var cur = {
+lat: {{ item.lat }},
+lng: {{ item.lng }}
+};
+areuuuobject.push(cur);{% endfor %}
+
+
+var map2 = L.map('show_map').setView([
+9.04784, 38.7306
+], 15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map2);
+
+var name ="{{ lock_detail.name }}";
+var polygon = L.polygon(areuuuobject, {color: 'yellow'}).addTo(map2);
+L.tileLayer
+L.marker(polygon.getBounds().getCenter()).addTo(map2).bindPopup(name);
+
+{% endif %}
+
+
+
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    document.getElementById("cont").innerHTML = "Read more ...";
+
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    document.getElementById("cont").innerHTML = "Read less";
+                }
+            });
+        }
+
+</script>
+
+
+		{% endblock %}
+
+
+	</div>
+{% endblock %}

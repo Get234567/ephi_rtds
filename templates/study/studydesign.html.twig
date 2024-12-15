@@ -1,0 +1,25 @@
+
+<!-- Modal -->
+<div id="studydesignModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Study Design</h4>
+      </div>
+      <div class="modal-body">
+   {{ form_start(studydesignform)}}
+   {{ form_widget(studydesignform)}}
+      </div>
+      <div class="modal-footer">
+      <input type="hidden" name="datasetid" value="{{ study.id }}"/>
+        <button type="submit" class="btn btn-success" >Submit</button>
+      {{ form_end(studydesignform)}}
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

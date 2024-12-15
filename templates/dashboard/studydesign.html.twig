@@ -1,0 +1,78 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}
+{% if datasets %}
+    
+
+{{datasets[0].name }}
+{% endif %}
+{% endblock %}
+
+
+
+{% block body %}
+<ul class="breadcrumb">
+  <li><a href="{{path('main')}}">Home</a></li>
+  {% if datasets %}
+  <li><a href="{{path('main',{ name:datasets[0].name })}}">Search</a></li>      
+  {% endif %}
+
+  <li class="active">Search Reasults</li>
+ 
+</ul>
+
+
+<div class="row">
+
+<div class="col-md-1"></div>
+<div class="col-md-8">
+
+ <form action="{{path('main')}}" class="form-inline" method="GET">
+  <div class="form-group">
+    
+    <input type="text" class="form-control" id="searchdata" name="search">
+     <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Search</button>
+  </div>
+ 
+</form>
+
+{% if datasets %}
+<p>Didn't find what you were looking for?<a href="{{path('advanced-search')}}"> Try advanced search.</a></p>
+<h2>Search Reasults</h2>
+<h5>About  {{datasets| length }} results </h5>
+{% set letters='BCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+
+<span class="h5">Search Dataset By Study Design >> &nbsp;&nbsp;&nbsp; </span>
+   
+    <a href="{{path('study_design',{ study_design:'all' })}}">All</a>|
+   {% set newArray = [] %}
+
+ {% for data in datasets %}
+ {% if data.studyDesign %}
+  {% if data.studyDesign not in newArray %}
+       <a href="{{path('study_design',{ study_design:data.studyDesign.id })}}">{{data.studyDesign.name}}</a>|
+         {% set newArray = newArray|merge([data.studyDesign]) %}
+          {% endif %}
+             {% endif %}
+     {% endfor %}
+     <hr style="border:5px solid #438EB9;"/>
+
+   {% for data in datasets %}
+       <h3><a href="{{path('showdetail',{ id:data.id })}}">{{data.name}}</a></h3>
+       {% if data.studyDesign %}
+        <p style="text-align:center"><a href="{{path('study_design',{ study_design:data.studyDesign.id })}}">{{data.studyDesign.name}}</a></p>
+       {% endif %}
+   
+     {% endfor %}
+
+
+
+{% endif %}
+
+  
+
+     </div>
+     </div>
+     
+{% endblock %}
+

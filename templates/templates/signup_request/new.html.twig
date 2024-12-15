@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SignupRequest{% endblock %}
+
+{% block body %}
+    <h1>Create new SignupRequest</h1>
+
+    {{ include('signup_request/_form.html.twig') }}
+
+    <a href="{{ path('signup_request_index') }}">back to list</a>
+{% endblock %}

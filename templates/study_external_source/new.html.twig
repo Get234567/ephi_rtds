@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StudyExternalSource{% endblock %}
+
+{% block body %}
+    <h1>Create new StudyExternalSource</h1>
+
+    {{ include('study_external_source/_form.html.twig') }}
+
+    <a href="{{ path('study_external_source_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publisher index{% endblock %}
+
+{% block body %}
+    <h1>User requests list.</h1>
+
+
+    
+   <table class="table">
+        <thead>
+            <tr>
+                <th>Requester Name</th>
+                <th>Type</th>
+                <th>Request for</th>
+                <th>Request date</th>
+            </tr>
+        </thead>
+    
+
+{#
+        <tbody>
+        {% for activity_log in activity_logs %}
+            <tr>
+                <td>{{ activity_log.sender }}</td>
+                <td>{{ activity_log.ItemType }}</td>
+                <td>{{ activity_log.ItemID }}</td>
+                <td>{{ activity_log.RequestedDate }}</td>
+   
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+#}
+
+    </table>
+
+
+   
+
+{% endblock %}

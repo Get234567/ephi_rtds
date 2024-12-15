@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WorkUnit index{% endblock %}
+
+{% block body %}
+    <h1>WorkUnit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Parent</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for work_unit in work_units %}
+            <tr>
+                <td>{{ work_unit.id }}</td>
+                <td>{{ work_unit.name }}</td>
+                <td>{{ work_unit.parent }}</td>
+                <td>{{ work_unit.description }}</td>
+                <td>
+                    <a href="{{ path('work_unit_show', {'id': work_unit.id}) }}">show</a>
+                    <a href="{{ path('work_unit_edit', {'id': work_unit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('work_unit_new') }}">Create new</a>
+{% endblock %}

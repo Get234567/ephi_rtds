@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Signup Request
+{% endblock %}
+
+
+{% block pageheader %}
+    <form action="{{path('signup_request_index')}}" class="form-inline pull-right" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search here" autofocus>
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-success btn-sm">
+                    <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+                </button>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    <div class="table-header">
+        List of Signup request
+    </div>
+
+    <table class="table table-striped table-bordered table-hover dataTable no-footer">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% set n=1 %}
+            {% for signup_request in signup_requests %}
+                <tr>
+                    <td>{{ n }}</td>
+                    {% set n=n+1 %}
+                    <td>{{ signup_request.Name }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-success" href="{{ path('signup_request_show', {'id': signup_request.id}) }}">Show</a>
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pull-right">{{ knp_pagination_render(signup_requests) }}</div>
+
+
+{% endblock %}

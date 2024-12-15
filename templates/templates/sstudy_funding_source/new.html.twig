@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StudyFundingSource{% endblock %}
+
+{% block body %}
+    <h1>Create new StudyFundingSource</h1>
+
+    {{ include('study_funding_source/_form.html.twig') }}
+
+    <a href="{{ path('study_funding_source_index') }}">back to list</a>
+{% endblock %}

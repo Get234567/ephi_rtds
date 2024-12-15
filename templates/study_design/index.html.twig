@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StudyDesign index{% endblock %}
+
+{% block body %}
+    <h1>StudyDesign index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for study_design in study_designs %}
+            <tr>
+                <td>{{ study_design.id }}</td>
+                <td>{{ study_design.name }}</td>
+                <td>{{ study_design.description }}</td>
+                <td>
+                    <a href="{{ path('study_design_show', {'id': study_design.id}) }}">show</a>
+                    <a href="{{ path('study_design_edit', {'id': study_design.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_design_new') }}">Create new</a>
+{% endblock %}

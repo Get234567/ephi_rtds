@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SystemFeedback index{% endblock %}
+
+{% block body %}
+    <h1>SystemFeedback index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FullName</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>SubmittedDate</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for system_feedback in system_feedbacks %}
+            <tr>
+                <td>{{ system_feedback.id }}</td>
+                <td>{{ system_feedback.fullName }}</td>
+                <td>{{ system_feedback.email }}</td>
+                <td>{{ system_feedback.title }}</td>
+                <td>{{ system_feedback.body }}</td>
+                <td>{{ system_feedback.submittedDate ? system_feedback.submittedDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ system_feedback.status }}</td>
+                <td>
+                    <a href="{{ path('system_feedback_show', {'id': system_feedback.id}) }}">show</a>
+                    <a href="{{ path('system_feedback_edit', {'id': system_feedback.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('system_feedback_new') }}">Create new</a>
+{% endblock %}

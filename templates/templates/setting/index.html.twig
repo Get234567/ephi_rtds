@@ -1,0 +1,52 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block sidebar %}
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+     
+    
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">System Admin</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Setting</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ path('study_setting') }}"><i class="fa fa-circle-o"></i>Study Setting</a></li>
+            <li><a href="{{ path('dataset_async') }}"><i class="fa fa-circle-o"></i>Dataset Settings</a></li>
+            <li><a href="{{ path('site') }}"><i class="fa fa-circle-o"></i>Site Setting</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>Work Unit Setting</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>Project Settnigs</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Users</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+         
+        </li>
+          
+      </ul>
+    </section>
+      </aside>
+  {% endblock %}
+     
+     {% block body %}
+
+      {{ data | raw }}
+
+      {% endblock %}
+
+

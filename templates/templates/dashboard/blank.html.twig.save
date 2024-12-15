@@ -1,0 +1,2317 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<font family="Arial">
+<style>
+.modal-dialog {
+    height: 50%;
+    width: 50%;
+    margin-top: 50px;
+    float: Center;
+    margin: auto
+
+}
+
+.modal-header {
+    color: white;
+    background-color: #007bff
+}
+
+textarea {
+    border: none;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    outline: 0px !important
+}
+
+.openmodal {
+    margin-left: 35%;
+    width: 25%;
+    margin-top: 50%;
+    float: Center;
+
+}
+
+.icon1 {
+    color: #007bff
+}
+
+a {
+    margin: auto
+}
+
+input {
+    color: #007bff
+}
+h2{
+  text-align:center;
+  padding: 20px;
+}
+/* Slider */
+
+.slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    width: 100%;
+}
+
+.slick-slider
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 320px;
+    max-width: 660px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+</style>
+<style>
+#loader {
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid rgb(49, 81, 84,0.99);
+  border-radius: 50%;
+  border-top: 16px solid rgb(49, 181, 84,0.99);
+  border-right: 16px solid rgb(149, 181, 84,0.99);
+  border-bottom: 16px solid rgb(49, 181, 184,0.99);
+  box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.4);
+
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-50px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-50px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+text.shadow {
+	font-family: 'Roboto Slab', serif;
+}
+#Top {
+  display: none;
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(49, 181, 84,0.75);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+#chartdiv {
+  max-width: 100%;
+  height: 800px;
+  background-color: rgb(30,95,130,0.85);
+}
+
+#observablehq-f684d1cb{
+  float: left;
+
+  width: 50%;
+
+  }
+#observablehq-2e815726{
+  float: right;
+
+  width: 50%;
+
+}
+/*#observablehq-195b4500{
+  display: none;
+  float: right;
+  margin: 5px;
+  width: 50%;
+  height: 500px;
+}
+#observablehq-de3b6cd1{
+  display: none;
+  float: right;
+  margin: 5px;
+  width: 50%;
+  height: 500px;
+}*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 49px;
+  height: 23px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+
+.slider {
+
+  background-color: #fff;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 1.7px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #e39400;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #e39400;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+        <style type="text/css">
+#container_post, #loader1, #container_ethiopia, #container_model, #container_model_co, #container_model_ho, #container_model_cr, #container_model_de, #container_model_in, #container_model_co_in, #container_model_ho_in, #container_model_cr_in, #container_model_de_in, #container_model_in1, #container_model_co_in1, #container_model_ho_in1, #container_model_cr_in1, #container_model_de_in1, #chart_death, #chart_case, #container_sd_aa,  #container_sex,#container_age, #container_fatality_africa, #container_sym, #container_real_death_sero, #container_real_case_sero, #container_com, #container_com_age,  #container_hh_aa,  #container_rh_aa, #container_sd, #container_kenya, #container_rwanda, #container_mozamique,#container_malawi, #container_zambia, #container_case_fatality, #container_post_africa, #container1, #container2, #container3 {
+    height: 500px;
+}
+
+
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #EBEBEB;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+
+#dd {
+    margin-top: 20px;
+}
+
+.navbar a:hover{
+  background: rgb(10, 81, 124,0.85);
+color: white;
+}
+
+.navbar .navbar-nav .nav-link.active {
+    background: #f1f7ff;
+
+}
+
+.navbar a:hover{
+    background: rgb(10, 81, 124,0.85);
+    color: white;
+
+}
+.nav-link a:hover{
+    background: rgb(10, 81, 124,0.85);
+    color: white;
+
+}
+
+
+
+
+.card-body .nav .nav-item .nav-link.active {
+  background-color:  rgb(0, 171, 84, 0.25);
+
+}
+
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+.buttons {
+  min-width: 310px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  margin-top: 5px;
+  font-size: 0;
+}
+
+.buttons button {
+  cursor: pointer;
+  border: 1px solid silver;
+  border-right-width: 1;
+  background-color: #f8f8f8;
+  font-size: 1.2rem;
+  padding: 2px;
+  outline: none;
+  transition-duration: 0.3s;
+}
+
+.buttons button:first-child {
+  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar h5 {
+    display: none;
+  }
+  .navbar .navbar-brand {
+    display: none;
+  }
+  #to_hide {
+	  display: none;
+  }
+  #to_show {
+	  width: 100%;
+  }
+}
+
+.buttons button:last-child {
+  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
+  border-right-width: 1px;
+}
+
+.buttons button:hover {
+  background: rgb(10, 81, 124,0.85);
+    color: white;
+  outline: none;
+}
+
+.buttons button.active {
+  background: rgb(10, 81, 124,0.85);
+  color: white;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+.btn-group button:hover, .dropdown-menu a:hover{
+    background: rgb(10, 81, 124,0.85);
+
+    color: white;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.carousel.carousel-fade .carousel-item {
+    display: block;
+    opacity: 0;
+    transition: opacity ease-out 1s;
+}
+
+.carousel.carousel-fade .carousel-item.active {
+    opacity: 1 !important;
+}
+
+
+
+        </style>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous">
+
+
+
+  </script>
+
+<!-- Bootstrap CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script src="https://kit.fontawesome.com/655f728102.js" crossorigin="anonymous"></script>
+
+ <!--  <script type="text/javascript" src="../../emplate/lib/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../../template/lib/jquery.popover.js"></script> -->
+<!-- <script type="text/javascript" src="../../template/lib/jquery.fileDownload.js"></script> -->
+
+<script type="text/javascript">
+      $(document).ready(function () {
+        VizHub.init({
+          title: "Health-related SDGs",
+          shortener: "//ihmeuw.org/shorten.php",
+          components: ["visualizations","share","help","download"],
+          language: "41",
+          languages: []        });
+      });
+			$(document).ready(function(){
+    $('.customer-logos').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    });
+});
+    </script>
+
+
+<link type='image/png' rel='icon' href='../../../template/resources/logo.jpg' />
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<script src="https://code.highcharts.com/modules/streamgraph.js"></script>
+<script src="https://code.highcharts.com/modules/annotations.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+  </script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+  .nav-menu .nav-active {
+    z-index: 9999999999 !important;
+    border-radius: 10px;
+}
+
+
+  .nav-menu,.nav-menu ul,.nav-menu li,.nav-menu a { margin: 0; padding: 0; line-height: normal; list-style: none; display: block; position: relative; }
+  .nav-menu ul { opacity: 0; position: absolute; top: 100%; left: -9999px; z-index: 999; -webkit-transition: opacity .3s; transition: opacity .3s; }
+  .nav-menu li:hover > ul { left: 0; opacity: 1; z-index: 1000; }
+  .nav-menu ul li:hover > ul { top: 0; left: 100%; }
+  .nav-menu li { cursor: default; float: left; white-space: nowrap; }
+  .nav-menu ul li { float: none; }
+  .nav-active {
+    height:auto;
+  background-color: #red;
+  color: black;
+  padding: 12px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  }
+
+  .nav-menu {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0px;
+  }
+
+  .nav-menu-content {
+  display: none;
+  position: absolute;
+  background: rgb(10, 81, 124,0.85);
+color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+
+  .nav-menu-content a {
+    background: rgb(10, 81, 124,0.85);
+  color: white;
+  padding: 12px 16px;
+font-size: 15px;
+  text-decoration: none;
+  display: block;
+  }
+
+  .nav-menu-content a:hover {
+    background: rgb(10, 81, 124,0.85);
+    color: white;
+    width: 10px;
+      height: 10px;
+      transition: all 20ms linear;
+  }
+
+  .nav-menu:hover .nav-menu-content {
+  display: block;
+  }
+
+  .nav-menu:hover .nav-active {
+    background: rgb(10, 81, 124,0.85);
+color: white;
+  }
+  /* sub width */
+  .nav-menu ul { min-width: 12em; -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.25); box-shadow: 2px 2px 2px rgba(0,0,0,0.25); }
+  .nav-menu{
+     z-index: 1000;
+     color: white;
+     font-size: 12px;
+  }
+  /* center */
+  .nav-center { float: right; right: 50%; }
+  .nav-center > li { left: 100%;background: rgb(10, 81, 124,0.85);
+color: white; }
+
+  /* root */
+  .nav-menu a {
+    padding: 0 10px;
+    color: white;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: none;
+  }
+
+  /* root: active */
+  .nav-menu > li > .nav-active {   background: rgb(10, 81, 124,0.85);
+  color: white; }
+
+  /* root: hover/persistence */
+  .nav-menu a:hover,.nav-menu a:focus,.nav-menu li:hover a {
+    background: rgb(10, 81, 124,0.85);
+  color: white;
+  text-decoration: none;
+line-height: normal;
+  }
+
+  /* 2 */
+  .nav-menu li li a,.nav-menu li:hover li a {
+    padding: 8px 10px;
+        background: rgb(49, 181, 84,0.75);
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: normal;
+  }
+
+  /* 2: hover/persistence */
+  .nav-menu li:hover li a:hover,.nav-menu li:hover li a:focus,.nav-menu li:hover li:hover a {
+      background: rgb(49, 181, 84,0.75);
+      color: white;
+      text-decoration: none;
+  }
+
+  /* 3 */
+  .nav-menu li:hover li:hover li a {
+        background: rgb(49, 181, 84,0.75);
+  color: white;
+  text-decoration: none;
+  }
+
+  /* 3: hover/persistence */
+  .nav-menu li:hover li:hover li a:hover,.nav-menu li:hover li:hover li a:focus,.nav-menu li:hover li:hover li:hover a {
+    background: rgb(10, 81, 124,0.85);
+  color: white;
+  text-decoration: none;
+  }
+
+  /* 4 */
+  .nav-menu li:hover li:hover li:hover li a {
+    background: rgb(10, 81, 124,0.85);
+  color: white;
+  text-decoration: none;
+  }
+
+  /* 4: hover */
+  .nav-menu li:hover li:hover li:hover li a:hover,.nav-menu li:hover li:hover li:hover li a:focus {
+    background: rgb(10, 81, 124,0.85);
+  color: white;
+  text-decoration: none;
+  }
+
+  /* vertical */
+  .nav-vertical { max-width: 220px; }
+  .nav-vertical ul { top: 0; left: -9999px; }
+  .nav-vertical li { width: 100%; float: none; }
+  .nav-vertical li:hover > ul { left: 100%; }
+  </style>
+
+<meta charset="utf-8">
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<meta name="description" content="Ethiopian Health data repository, Health and health related data in ethiopia, National health management center for health, Ethiopian public health institute">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap1.min.css') }}" />
+  <link rel="shortcut icon" href="{{ asset('assets/gelan/favicon.ico') }}" type="image/vnd.microsoft.icon">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <title>RTDS | Health Data Repository and Research Tracking System</title>
+		 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@700&display=swap" rel="stylesheet">
+
+<style>
+.footer {
+position:fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgb(49, 181, 84,0.75);
+	color: white;
+	text-align: center;
+}
+</style>
+<style>
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+
+}
+
+.headerw {
+  position: relative;
+z-index: 9999999999 !important;
+color:white;
+font-size: 18px;
+  background-color:  rgb(49, 181, 84,0.75);
+  padding: 5px 5px;
+    margin-top: 0px;
+      border-radius: 0px;
+      flex-flow: row nowrap;
+
+}
+
+
+.headerw a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 20px;
+  border-radius: 0px;
+}
+
+
+.headerw a.logo {
+  margin-top: 0px;
+  float: left;
+font-size:22px;
+Cursor:text !important; Text-Decoration: None !important;
+text-decoration: none;
+font-family: 'Arial';
+    text-align: left;
+    color: white;
+    padding: 2px 1px;
+
+}
+.headerw a.logo:hover {
+
+opacity:1.0;
+
+box-shadow:none;
+background-color: unset !important;
+   color: unset !important;
+
+}
+.headerw a.logologo {
+  margin-top: 6px;
+  float: left;
+    text-align: left;
+    color: white;
+    padding: 1px 2px;
+
+
+}
+.headerw-galo {
+  display: inline-block;
+  margin-right: -8px;
+  margin-top: 0px;
+float: right;
+top: auto;
+vertical-align: top;
+font-size: 15px;
+  text-align: right;
+  color: white;
+  top:0%;
+  margin: -4px;
+font-family: 'Arial';
+flex-flow: row nowrap;
+   display: inline-flex;
+
+
+}
+.headerw a:hover {
+  background: rgb(10, 81, 124,0.85);
+  color: white;
+  text-decoration: none;
+
+}
+
+
+
+.headerw a.active {
+  background-color: dodgerblue;
+  color: black;
+}
+
+.headerw-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .headerw a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .headerw-right {
+    float: none;
+  }
+}
+</style>
+
+<div class="headerw animatedq fadeInDownq clearfix" style="color:white;">
+<a href="https://rtds.ephi.gov.et" class="logologo"><img src="{{ asset('assets/images/ephi.png') }}"  style="width: 50px; height: 53px" /></a>
+  <a href="#default" class="logo">  Ethiopian Public Health Institute | <br><br>
+        Health Data Repository and Research Tracking System
+      </a>
+                    <div class="headerw-galo"><a href="https://www.ephi.gov.et/"  target="_blank">
+          EPHI  </a>
+          <a href="https://ndmc.rackmintsys.com" target="_blank">
+          NDMC
+
+          <a href="http://viz.ndmc.ephi.gov.et:8060/"  target="_blank">
+          Vizhub</a> </div><br>
+<div class="headerw-galo" style="color:white; fontSize:10px;">
+  <nav style="color:white;">
+      <ul class="nav-menu" style="color:white;fontSize:10px;"><b>
+        <li><a href="{{path('main')}}">Home</a></li>
+
+        <li style="color:white;"><a href="{{path('keyword_index',{ letter:'%' })}}">Keywords</a></li>
+        <li style="color:white;"> <a href="https://rtds.ephi.gov.et/survey/">Survey</a></li>
+        <li style="color:white;"><a href="https://rtds.ephi.gov.et/public/?search=%25">Dataset</a></li>
+
+        <li><a href="#" data-toggle="modal" data-target="#pub" class="nav-link dropdown-toggle" class="nav-active">Publications</a></b>
+          <ul>
+            <li><a href="#" class="nav-menu-content">Manuals</a>
+              <ul>
+              <li>  <a href="https://rtds.ephi.gov.et/public//RDTSUserManual.pdf"  target="_blank">Research Tracking System</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="nav-menu-content" style="font-size:14px;">COVID-19 Update</a>
+              <ul>
+                  <li><a href="#" data-toggle="modal" data-target="#myModalndmc">NDMC Weekly Update</a></li>
+
+          <li><a href="#" data-toggle="modal" data-target="#npi">NPI Weekly Update</a></li>
+
+          <li><a href="#"  data-toggle="modal" data-target="#sitrep">SITREP Report</a></li>
+              </ul>
+            </li>
+
+                    <li><a href="https://www.mendeley.com/community/ef9f08bb-5165-39ed-b5aa-5ef1eeb9dba0/documents/"  target="_blank" class="nav-menu-content">Published articles </a></li>
+            <li>  <a href="#" data-toggle="modal" data-target="#technical" class="nav-menu-content">Technical Reports</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#guide" class="nav-menu-content">Guidelines and Protocols</a></li>
+            <li>  <a href="#" data-toggle="modal" data-target="#gov" class="nav-menu-content">Government Documents</a></li>
+              <li><a href="#" class="nav-menu-content">Book & Text</a></li>
+
+          </ul>
+        </li>
+        <li> <a href="#" data-toggle="modal" data-target="#dssp">Data Sharing</a></li>
+
+        {% if is_granted('ROLE_USER') %}
+<li><a href="{{path('home')}}" class="btn btn-warning pull-right" style="margin-right: 2px;margin-left: 2px;">
+
+   Dashboard</a></li>
+{% else %}
+<li><a href="{{path('fos_user_security_login')}}" class="btn btn-warning pull-right" style="margin-left: 10px; margin-right: 10px;">
+   <i class="glyphicon glyphicon-log-in"></i>
+   Login</a></li>
+
+{% endif %}
+      </ul>
+    </nav>
+
+</div>
+
+</div>
+
+
+		<div id="myModal" class="modal fade" role="dialog">
+				<!--Modal-->
+				<div class="modal-dialog">
+						<!--Modal Content-->
+						<div class="modal-content">
+								<!-- Modal Header-->
+								<div class="class-header">
+									<div class="card btn-success" style='background-color:#46AB55'>
+										<h3>Feedback Request</h3></div>
+										<!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+								</div> <!-- Modal Body-->
+								<div class="modal-body text-center">
+		<form action="{{path('main')}}" method="GET">
+										<h6>Help us improve our system? <strong>Give us your feedback.</strong></h6>
+										<hr>
+										<h6>Your Rating</h6>
+								</div> <!-- Radio Buttons for Rating-->
+								<div class="form-check mb-4"> <input name="rate" type="radio" name="rate" value="Very good"> <label class="ml-3">Very good</label> </div>
+								<div class="form-check mb-4"> <input name="rate" type="radio" name="rate" value="Good"> <label class="ml-3">Good</label> </div>
+								<div class="form-check mb-4"> <input name="rate" type="radio" name="rate" value="Bad"> <label class="ml-3">Bad</label> </div>
+								<div class="form-check mb-4"> <input name="rate" type="radio" name="rate" value="Very Bad"> <label class="ml-3">Very Bad</label> </div>
+								<!--Text Message-->
+								<div class="text-center">
+										<h5>What could we improve?</h5>
+								</div> <textarea type="textarea" name="feedback" placeholder="Your Message" rows="3"></textarea> <!-- Modal Footer-->
+								<div class="modal-footer">  <input type="submit" class="btn btn-success" value="send" style="background-color:#46AB55" /> <i class="fa fa-paper-plane"></i></form> <a href="" class="btn btn-outline-success" data-dismiss="modal">Cancel</a> </div>
+						</div>
+				</div>
+
+			</div>
+
+
+
+<div id="wrapper" class="viz-hub">
+
+<div id="page" class="page">
+
+<div class="container-fluid" id='dd' >
+
+
+
+
+
+
+<div class="row " >
+
+  <div id = "to_show" class="col-sm-4">
+    <div class="card"><br>
+<font family="Arial" font Size="3" color=#46AB55><b>Welcome to National Data Management Center for Health (NDMC).</b></font>
+</n>
+
+      <div class="card-body " >
+
+	  <div class="table-responsive">
+
+
+<form action="{{path('main')}}" method="GET">
+
+                        <input type="text" placeholder="Search {{ count }} datasets" class="form-control input-md" name="search" required='required'/><br>
+
+  <input type="submit" class="btn btn-success" value="Search" style="background-color:#46AB55" />
+
+                      <a href="{{path('advanced-search')}}" class="btn btn-success" id="advanced" style="background-color:#46AB55">Advanced >></a>
+
+
+</form>
+              </div>
+
+						 </div>
+	  <div class="card-footer">
+
+
+
+	<hr>
+
+</div>
+
+  <style>
+
+
+
+ button {
+background-color: rgb(49, 191, 84,0.99);
+  border: none;
+  font-weight: bold;
+  color: #white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 5px;
+  opacity: 0.85;
+  transition: 0.3s;
+  margin-bottom: 10px;
+
+
+ }
+ button:hover {opacity: 1;
+ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+ }
+
+.shadow {
+	font-family: 'Bungee Outline', cursive;
+}
+
+ </style>
+
+    </div>
+  </div>
+
+
+  <div id = "to_hide" class="col-sm-8">
+
+   <div class="card">
+  <div class="card-header" >
+  <div class="card btn-success" style='background-color:#46AB55'>
+    Recently Uploaded Datasets
+  </div>
+  </div>
+  <div class="card-body">
+ 	<ul class="lead-list">
+  {% for r in recent %}
+	<p style = "font-family:arial;">
+              	<li><span class="fa fa fa-2x icon-default"></span>
+
+
+
+              <a href="{{path('showdetail',{id:r.id})}}">
+                  {{r.name}}</a>
+									</p>
+    {% endfor %}
+    		</ul>
+  </div>
+</div>
+
+
+</div>
+  </div>
+		<div class="border border-success" style='margin-top:10px; margin-bottom:15px; height:10px; background-color: rgb(49, 181, 84,0.85)'></div>
+	<div class="row">
+    <div class="col-sm-6">
+        <div class="card border-success mb-4">
+            <div class="card-body text-success">
+
+            <div id="container6"></div>
+
+            </div>
+        </div>
+    </div>
+
+   <div class="col-sm-6">
+		        <div class="card border-success mb-4">
+		            <div class="card-body text-success">
+
+									 <form>
+									<div class="form-check form-check-inline">
+									 <input type="radio" class="form-check-input" id="check1"  onchange="cbChange(this, 'container11')">
+									 <label class="form-check-label" for="check1">Non-EPHI</label>
+									</div>
+									<div class="form-check form-check-inline">
+									 <input type="radio" class="form-check-input" id="check2"  onchange="cbChange(this, 'container1')">
+									 <label class="form-check-label" for="check2">EPHI</label>
+								 </div></form>
+
+
+
+						 			  <script>
+						 			 window.onload = onPageLoad();
+
+						 			 function onPageLoad() {
+						 			 document.getElementById('check1').checked = true;
+						 			 document.getElementById('check2').checked = false;
+
+
+						 			 }
+
+						 			 function cbChange(obj, id) {
+						 			     var cbs = document.getElementsByClassName("form-check-input");
+						 			     for (var i = 0; i < cbs.length; i++) {
+						 			          cbs[i].checked = false;
+
+
+						 			     }
+						 			 obj.checked = true;
+						 			 if (id == 'container11'){
+						 			 document.getElementById('container11').style.display = 'block';
+						 			 document.getElementById('container1').style.display = 'none';
+
+						 			 }
+
+
+						 			     else if (id == "container1"){
+						 			 document.getElementById('container11').style.display = 'none';
+						 			 document.getElementById('container1').style.display = 'block';
+						 		}
+
+						 			 }
+						 			  </script>
+
+						 			    <div id="container11" style="display: block"></div>
+						 			        <div id="container1" style="display: none"></div>
+
+
+
+		            </div>
+		        </div>
+		    </div>
+
+
+
+
+
+		</div>
+
+
+
+
+		</div>
+
+	<div class="border border-success" style='margin-top:10px; margin-bottom:15px; height:10px; background-color: rgb(49, 181, 84,0.85)'></div>
+	<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col" style='margin-left:2px'>
+    <div class="card h-100">
+ <div class="p-3 mb-2 bg-success text-white"><h5>Data Repository</h5></div>
+      <div class="card-body">
+
+        <p class="card-text">
+
+		<a href="https://rtds.ephi.gov.et/public/EPHI.pdf" class="navbar-brand"><img src="{{ asset('assets/gelan/img/ds.png') }}" class="rounded" style="width: 370px; height: 410px" /></a>
+
+
+        </p>
+      </div>
+				<a href="https://rtds.ephi.gov.et/public/EPHI.pdf" style="color:#31B554">Data Sharing Guideline</a>
+      <div class="card-footer">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+    <div class="card h-100">
+	<div class="p-3 mb-2 bg-success text-white"><h5>Data Governance</h5></div>
+      <div class="card-body">
+
+        <p class="card-text">
+
+					<p>
+				National data management center for health(NDMC) has roles and responsibilities to
+				<ul><li>Create a national data repository for archiving available health and health related data in the country. </li>
+<li  style="align: left;">Advance data analysis  </li>
+<li>Synthesizing evidence for policy and decision</li>
+<li>Maximize data by creating open and transparent data sharing culture.</li></ul></p>
+        </p>
+      </div>
+				<a href="https://rtds.ephi.gov.et" style="color:#31B554; size:15">Data Repository</a>
+      <div class="card-footer">
+    		</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <div class="p-3 mb-2 bg-success text-white"><h5>Data Collection System</h5></div>
+      <div class="card-body">
+                <p class="card-text">
+
+        <p>	Recently the EPHI using different data collection platforms during different national and local studies, among them CSPro, ODK, and REEDCap was the pioneer mobile data collection tool.</p>
+            <br>
+          </p>
+
+        </p>
+      </div>
+      <a href="https://rtds.ephi.gov.et/survey/index.php" style="color:#31B554">Survey system</a>
+      <div class="card-footer">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+   <div class="p-3 mb-2 bg-success text-white"><h5>Publications</h5></div>
+      <div class="card-body">
+                <p class="card-text">
+
+					<p>
+ The Ethiopian Public Health Institute has been researching priority public health and nutrition issues, generate, translate and disseminate scientific and technological knowledge as one of the main objectives of the establishment. Since then the conducted research has also been published in different research journals for the scientific community. Here on this page, you could find a list of articles conducted by different directorates found in EPHI and archived using Mendeley.</p>
+				<br>
+					</p>
+        </p>
+      </div>
+			<div class="nav-item dropdown" style="z-index:2; position: relative">
+<center>	<a href="https://www.mendeley.com/community/ef9f08bb-5165-39ed-b5aa-5ef1eeb9dba0/documents/" style="color:#31B554">EPHI's Publications</a></center>
+
+	<div class="dropdown-menu" >
+						<a href="https://www.mendeley.com/community/ef9f08bb-5165-39ed-b5aa-5ef1eeb9dba0/documents/" class="dropdown-item" target="_blank">Published Articles</a>
+
+            </article>
+						<a href="#" class="dropdown-item" data-toggle="modal" data-target="#technical">Technical Reports </a>
+						<a href="#" class="dropdown-item" data-toggle="modal" data-target="#guide">Guidelines and Protocols</a>
+							<a href="#" class="dropdown-item">Government Documents</a>
+	<a href="#" class="dropdown-item">Book & Text</a>
+
+													</div>
+
+
+
+</div>
+
+
+
+      <div class="card-footer">
+        <small class="text-muted">
+
+
+				</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- /Section: boxes -->
+
+<!-- /Section: testimonial -->
+
+
+<!-- Section: pricing -->
+
+<!-- /Section: pricing --><br>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+
+	<div class="container marginbot-50">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<div class="wow lightSpeedIn" data-wow-delay="0.1s">
+				<div class="section-heading text-center">
+  <h2><center>Collaborators and Partners </center></h2>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+	<div class="border border-success" style='margin-top:10px; margin-bottom:5px; height:6px; background-color: rgb(49, 181, 84,0.85)'></div>
+<section id="partner" class="customer-logos slider">
+<br>
+
+      <div class="slide"><img src="{{ asset('assets/gelan/img/ihme.jpg') }}"></div>
+      <div class="slide"><img src="{{ asset('assets/gelan/img/bank.jpg') }}"></div>
+      <div class="slide"><img src="{{ asset('assets/gelan/img/africa.jpg') }}"></div>
+      <div class="slide"><img src="{{ asset('assets/gelan/img/ian.png') }}"></div>
+      <div class="slide"><img src="{{ asset('assets/gelan/img/dai.jpg') }}"></div>
+
+      <div class="slide"><img src="{{ asset('assets/gelan/img/haramaya.jpg') }}"></div>
+
+      <div class="slide"><img src="{{ asset('assets/gelan/img/add.jpg') }}"></div>
+			<div class="slide"><img src="{{ asset('assets/gelan/img/gonder.jpg') }}"></div>
+			  <div class="slide"><img src="{{ asset('assets/gelan/img/moh.jpg') }}"></div>
+			<div class="slide"><img src="{{ asset('assets/gelan/img/jima.png') }}"></div>
+   </section>
+
+
+</div>
+<br>
+
+<div class='container-fluid' >
+    <div class="card" style='background-color: rgb(49, 181, 84,0.85)'>
+        <div class="heading text-center">
+            <div class="head1"></div>
+            <p class="bdr"></p>
+        </div>
+        <div class="card-body">
+
+							<div class="row row-cols-1 row-cols-md-4 g-4">
+							  <div class="col">
+							    <div class="card h-100">
+
+							      <div class="card-body">
+							        <h5 class="card-title">MISSION</h5>
+							        <p class="card-text">
+
+												<small> To improve the health of the public through presenting high-quality evidence for decision making to the Federal Ministry of Health.</small></p>
+
+							        </p>
+							      </div>
+							      <div class="card-footer">
+
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card h-100">
+
+							      <div class="card-body">
+							        <h5 class="card-title">VISION</h5>
+							        <p class="card-text">
+
+												<small> Be center of excellence in generating, synthesizing and translating public health and biomedical evidences in Ethiopia.</small></p>
+
+							        </p>
+							      </div>
+							      <div class="card-footer">
+
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card h-100">
+
+							      <div class="card-body">
+							        <h5 class="card-title">CONTACT US</h5>
+
+												<p><small>Phone: +251 112305079 <br>
+								Email: ndmch@ephi.gov.et <br>
+								Website: ndmc.ephi.gov.et
+								</small></p>
+							        </p>
+</div>
+
+
+
+							      <div class="card-footer">
+
+											<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Feedback</button>
+
+							      </div>
+							    </div>
+							  </div>
+
+							  <div class="col">
+							    <div class="card h-100">
+
+							      <div class="card-body">
+							        <h5 class="card-title">LOCATION</h5>
+												 <iframe
+									src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3940.185424895946!2d38.7296833!3d9.0468444!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b88b1bfe3c943%3A0xc6a61a365a4eed5b!2sEthiopia%20Public%20Health%20Institute%20(EPHI)!5e0!3m2!1sen!2set!4v1572592292586!5m2!1sen!2set"
+									width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="yes">
+							</iframe>
+							        </p>
+							      </div>
+							      <div class="card-footer">
+											<!--Modal Launch Button-->
+										</div>
+
+
+							      </div>
+							    </div>
+							  </div>
+
+
+
+							</div>
+
+    </div>
+</div>
+
+
+	  <script>
+$('.d-flex').tooltip({
+  selector: "button[rel=tooltip]"
+})
+</script>
+
+<script>
+
+var dataPrev = {
+
+    2020: [['Ethiopian Public Health Institute (EPHI)',2],['HIV and TB Research Directorate',2],['Bacteriology, Parasitology and Zoonosis',0],['Food Science and Nutrition Research Directorate',0],['Health System and Reproductive Health',0]],
+    2022: [
+        ['South Korea', 13],
+        ['Japan', 0],
+        ['Australia', 0],
+        ['Germany', 0],
+        ['Russia', 22],
+        ['China', 51],
+        ['Great Britain', 19],
+        ['United States', 36]
+    ],
+    2023: [
+        ['South Korea', 0],
+        ['Japan', 0],
+        ['Australia', 0],
+        ['Germany', 13],
+        ['Russia', 27],
+        ['China', 32],
+        ['Great Britain', 9],
+        ['United States', 37]
+    ],
+    2024: [
+        ['South Korea', 0],
+        ['Japan', 5],
+        ['Australia', 16],
+        ['Germany', 0],
+        ['Russia', 32],
+        ['China', 28],
+        ['Great Britain', 0],
+        ['United States', 36]
+    ],
+    2025: [
+        ['South Korea', 0],
+        ['Japan', 0],
+        ['Australia', 9],
+        ['Germany', 20],
+        ['Russia', 26],
+        ['China', 16],
+        ['Great Britain', 0],
+        ['United States', 44]
+    ]
+};
+
+var data = {
+    2020: [['Ethiopian Public Health Institute (EPHI)',292],['HIV and TB Research Directorate',92],['Bacteriology, Parasitology and Zoonosis',68],['Food Science and Nutrition Research Directorate',102],['Health System and Reproductive Health',55]],
+
+	  2008: [
+        ['South Korea', 0],
+        ['Japan', 0],
+        ['Australia', 0],
+        ['Germany', 16],
+        ['Russia', 22],
+        ['China', 51],
+        ['Great Britain', 19],
+        ['United States', 36]
+    ],
+    2004: [
+        ['South Korea', 0],
+        ['Japan', 16],
+        ['Australia', 17],
+        ['Germany', 0],
+        ['Russia', 27],
+        ['China', 32],
+        ['Great Britain', 0],
+        ['United States', 37]
+    ],
+    2000: [
+        ['South Korea', 0],
+        ['Japan', 0],
+        ['Australia', 16],
+        ['Germany', 13],
+        ['Russia', 32],
+        ['China', 28],
+        ['Great Britain', 0],
+        ['United States', 36]
+    ]
+};
+
+
+var countries = [{
+    name: 'Ethiopian Public Health Institute (EPHI)',
+    flag: 197582,
+    color: 'rgb(49, 181, 84,0.75)'
+}, {
+    name: 'Food Science and Nutrition Research Directorate',
+    flag: 197604,
+    color: 'rgb(49, 181, 84,0.75)'
+}, {
+    name: 'HIV and TB Research Directorate',
+    flag: 197507,
+    color: 'rgb(49, 181, 84,0.75)'
+}, {
+    name: 'Bacteriology, Parasitology and Zoonosis',
+    flag: 197571,
+    color: 'rgb(49, 181, 84)'
+}, {
+    name: 'Health System and Reproductive Health',
+    flag: 197408,
+    color: 'rgb(240, 240, 240)'
+}];
+
+
+function getData(data) {
+    return data.map(function (country, i) {
+        return {
+            name: country[0],
+            y: country[1],
+            color: countries[i].color
+        };
+    });
+}
+
+var chart = Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Data Submission by Year'
+    },
+    subtitle: {
+
+    },
+    plotOptions: {
+        series: {
+            grouping: false,
+            borderWidth: 0
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        shared: true,
+        headerFormat: '<span style="font-size: 15px">{point.point.name}</span><br/>',
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y} Datasets</b><br/>'
+    },
+		xAxis: {
+				categories: ['Ethiopian Public Health Institute (EPHI)','Food Science and Nutrition Research Directorate','HIV and TB Research Directorate','Bacteriology, Parasitology and Zoonosis','Health System and Reproductive Health'],
+	title: {
+	text: 'Directorate'
+	}
+		},
+    yAxis: [{
+        title: {
+            text: 'Data submission'
+        },
+        showFirstLabel: false
+    }],
+    series: [{
+        color: 'rgb(158, 159, 163)',
+        pointPlacement: -0.2,
+        linkedTo: 'main',
+        data: dataPrev[2020].slice(),
+        name: '2021'
+    }, {
+        name: '2020',
+        id: 'main',
+        dataSorting: {
+            enabled: true,
+            matchByName: true
+        },
+        dataLabels: [{
+            enabled: true,
+            inside: true,
+            style: {
+                fontSize: '16px'
+            }
+        }],
+        data: getData(data[2020]).slice()
+    }],
+    exporting: {
+        allowHTML: true
+    }
+});
+
+var years = [2020, 2021, 2022, 2023, 2024];
+
+years.forEach(function (year) {
+    var btn = document.getElementById(year);
+
+    btn.addEventListener('click', function () {
+
+        document.querySelectorAll('.buttons button.active').forEach(function (active) {
+            active.className = '';
+        });
+        btn.className = 'active';
+
+        chart.update({
+            title: {
+                text: 'Summer Olympics ' + year + ' - Top 5 countries by Gold medals'
+            },
+            subtitle: {
+                text: 'Comparing to results from Summer Olympics ' + (year - 4) + ' - Source: <ahref="https://en.wikipedia.org/wiki/' + (year) + '_Summer_Olympics_medal_table">Wikipedia</a>'
+            },
+            series: [{
+                name: year - 4,
+                data: dataPrev[year].slice()
+            }, {
+                name: year,
+                data: getData(data[year]).slice()
+            }]
+        }, true, false, {
+            duration: 800
+        });
+    });
+});
+
+</script>
+
+<script>
+
+var colors = Highcharts.getOptions().colors,
+    categories = [
+        'Surveillance',
+        'Survey',
+        'Laboratory'
+    ],
+    data = [
+        {
+            y: 4.7,
+            color: colors[2],
+            drilldown: {
+                name: 'Surveillance',
+                categories: [
+                    'Bacteriology, Parasitology and Zoonosis'
+                ],
+                data: [
+                    26
+                ]
+            }
+        },
+        {
+
+            color: colors[1],
+            drilldown: {
+                name: 'Survey',
+                categories: [
+
+                    'Health System and Reproductive Health'
+                ],
+                data: [
+
+                    26.5
+                ]
+            }
+        },
+        {
+
+            color: colors[0],
+            drilldown: {
+                name: 'Laboratory',
+                categories: [
+                    'Food Science and Nutrition Research Directorate',
+                    'HIV and TB Research Directorate'
+                ],
+                data: [
+                    31.5,
+                    16
+                ]
+            }
+        }
+    ],
+    browserData = [],
+    versionsData = [],
+    i,
+    j,
+    dataLen = data.length,
+    drillDataLen,
+    brightness;
+
+
+// Build the data arrays
+for (i = 0; i < dataLen; i += 1) {
+
+    // add browser data
+    browserData.push({
+        name: categories[i],
+        y: data[i].y,
+        color: data[i].color
+    });
+
+    // add version data
+    drillDataLen = data[i].drilldown.data.length;
+    for (j = 0; j < drillDataLen; j += 1) {
+        brightness = 0.2 - (j / drillDataLen) / 5;
+        versionsData.push({
+            name: data[i].drilldown.categories[j],
+            y: data[i].drilldown.data[j],
+            color: Highcharts.color(data[i].color).brighten(brightness).get()
+        });
+    }
+}
+// Create the chart
+Highcharts.chart('container1', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Dataset from EPHI'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Dataset(%)',
+        colorByPoint: true,
+        data: [{
+            name: 'HIV and TB Research Directorate',
+            y: 16,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Bacteriology, Parasitology and Zoonosis',
+            y: 26
+        }, {
+            name: 'Food Science and Nutrition Research Directorate',
+            y: 31.5
+        }, {
+            name: 'Health System and Reproductive Health',
+            y: 26.5
+        }]
+    }]
+});
+
+var colors = Highcharts.getOptions().colors,
+
+    data = [
+	{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'Save the children'
+							],
+							data: [
+									1.4
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'FHI-360'
+							],
+							data: [
+									1.4
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'Care Ethiopia'
+							],
+							data: [
+									8.5
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'Hep age international'
+							],
+							data: [
+									0.4
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'Amref health Africa'
+							],
+							data: [
+									4.3
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'JPIEGO'
+							],
+							data: [
+									12.9
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'CORHA'
+							],
+							data: [
+									1.8
+							]
+					}
+			},
+	{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'FMOH'
+							],
+							data: [
+									0.7
+							]
+					}
+			},
+			{
+
+					color: colors[2],
+					drilldown: {
+
+							categories: [
+									'Oromia HB'
+							],
+							data: [
+									2
+							]
+					}
+			},
+        {
+
+            color: colors[2],
+            drilldown: {
+
+                categories: [
+                    'International Organization for Migration'
+                ],
+                data: [
+                    1.4
+                ]
+            }
+        },
+        {
+
+            color: colors[1],
+            drilldown: {
+
+                categories: [
+                    'Central Statics agency',
+										'John Snow, Inc'
+                ],
+                data: [
+                    40,
+                    23.4
+                ]
+            }
+        },
+        {
+
+            color: colors[0],
+            drilldown: {
+
+                categories: [
+                    'CHAMPS',
+                    'World Health Organization'
+                ],
+                data: [
+                    1.1,
+                    0.7
+                ]
+            }
+        }
+    ],
+    browserData1 = [],
+    versionsData1 = [],
+    i,
+    j,
+    dataLen = data.length,
+    drillDataLen,
+    brightness;
+
+
+// Build the data arrays
+for (i = 0; i < dataLen; i += 1) {
+
+    // add browser data
+    browserData.push({
+        name: categories[i],
+        y: data[i].y,
+        color: data[i].color
+    });
+
+    // add version data
+    drillDataLen = data[i].drilldown.data.length;
+    for (j = 0; j < drillDataLen; j += 1) {
+        brightness = 0.2 - (j / drillDataLen) / 5;
+        versionsData1.push({
+            name: data[i].drilldown.categories[j],
+            y: data[i].drilldown.data[j],
+            color: Highcharts.color(data[i].color).brighten(brightness).get()
+        });
+    }
+}
+Highcharts.chart('container11', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Dataset from Non-EPHI'
+    },
+    subtitle: {
+    },
+
+    plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%']
+        }
+    },
+    tooltip: {
+        valueSuffix: '%'
+    },
+    series: [{
+        name: 'Datasets',
+        data: browserData1,
+        size: '60%',
+        dataLabels: {
+            formatter: function () {
+                return this.y > 3 ? this.point.name : null;
+            },
+            color: '#ffffff',
+            distance: -30
+        }
+    }, {
+        name: 'datasets',
+        data: versionsData1,
+        size: '80%',
+        innerSize: '60%',
+        dataLabels: {
+            formatter: function () {
+                // display only if larger than 1
+                return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
+                    this.y + '%' : null;
+            }
+        },
+        id: 'datasets'
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 400
+            },
+            chartOptions: {
+                series: [{
+                }, {
+                    id: 'datasets',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+            }
+        }]
+    }
+});
+
+
+Highcharts.chart('container6', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Data Submission to EPHI Repository'
+    },
+    subtitle: {
+
+    },
+    xAxis: {
+        categories: ['Food Science and Nutrition Research Directorate','HIV and TB Research Directorate','Bacteriology, Parasitology and Zoonosis','Health System and Reproductive Health'],
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Number of datasets',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        valueSuffix: 'Datasets'
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    legend: {
+        layout: 'bottom',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: '2018',
+        data: [12, 0, 10, 1]
+    }, {
+        name: '2019',
+        data: [2, 12, 4, 0]
+    }, {
+        name: '2020',
+        data: [49, 19, 33, 50]
+    }, {
+        name: '2021',
+        data: [0, 1, 5, 2]
+    }]
+});
+
+
+</script>
+</div>
+<div class="footer">
+	<div class="footer-inner">
+		<div class="footer-content">
+			<span class="bigger-120">
+				<span class="blue bolder">EPHI</span>
+				Application &copy;{{ "now"|date('Y') }}
+				Total Site visits {{ site_visit_count() }}
+			</span>
+
+			&nbsp; &nbsp;
+
+		</div>
+	</div>
+</div>
+
+		<div id="myModalndmc" class="modal fade" role="dialog">
+				<!--Modal--><br><br><br>
+				<div class="modal-dialog">
+						<!--Modal Content-->
+						<div class="modal-content">
+								<!-- Modal Header-->
+								<div class="class-header">
+									<div class="card btn-success" style='background-color:#46AB55'>
+										<h3>NDMC Weekly Update</h3></div>
+										<!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+								</div> <!-- Modal Body-->
+								<div class="modal-body text-center">
+
+									<p>	In this section covid-19 situational updates including a total number of cases, total deaths, and recovered cases described. The global and regional burden of Covid- 19 was also described here.  In this covid -19 weekly update, all newly released covid 19 updates were incorporated. In addition to this home-based isolation and care weekly reports, number of admissions from home-based to hospital, number of cases discharged from hospital to home-based care were clearly described.  Training, supplies, and any events that occurred related to covid 19 were described in detail.
+								</p>
+
+								<div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19" class="btn btn-success">Proceed <i class="fa fa-link"></i> </a>  </div>
+						</div>
+				</div>
+</div>
+</div>
+</div>
+<div id="npi" class="modal fade" role="dialog">
+	 <!--Modal--><br><br><br>
+	 <div class="modal-dialog">
+			 <!--Modal Content-->
+			 <div class="modal-content">
+					 <!-- Modal Header-->
+					 <div class="class-header">
+						 <div class="card btn-success" style='background-color:#46AB55'>
+							 <h3>NPI Weekly Update</h3></div>
+							 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+					 </div> <!-- Modal Body-->
+					 <div class="modal-body text-center"><p>
+Non-pharmaceutical intervention (NPI) weekly update is a covid 19 study update on monitoring COVID-19 prevention practice: Hand hygiene, respiratory hygiene, and physical distance in 15 cities of Ethiopia conducted by Addis Ababa University. It contains weekly study findings on the city level proportions of preventive behavior for hand hygiene, physical distancing, and respiratory hygiene and progress in preventive practices.</p>
+
+					 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/npi.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+			 </div>
+	 </div
+ </div>
+</div>
+</div>
+
+	 <div id="sitrep" class="modal fade" role="dialog">
+			 <!--Modal--><br><br><br>
+			 <div class="modal-dialog">
+					 <!--Modal Content-->
+					 <div class="modal-content">
+							 <!-- Modal Header-->
+							 <div class="class-header">
+								 <div class="card btn-success" style='background-color:#46AB55'>
+									 <h3>SITREP Report</h3></div>
+									 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+							 </div> <!-- Modal Body-->
+							 <div class="modal-body text-center">
+<p>
+									 SITREP report is a daily COVID 19 report from the Ethiopian public health institute in public health emergency management directorates.   COVID 19 daily report contains the global and national daily updates on the number of laboratory tests, new covid cases, new death, and recovered cases described. Case management and infection prevention control, daily home-based isolation, and care were described here. Risk communication and community engagement, administrative and supply issues were indicated on daily basis. Epidemiology and laboratory surveillance </p>
+
+							 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/sitrep.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+						 </div>
+			 </div>
+			 </div
+			</div>
+			</div>
+			 <div id="guide" class="modal fade" role="dialog">
+					 <!--Modal--><br><br><br>
+					 <div class="modal-dialog">
+							 <!--Modal Content-->
+							 <div class="modal-content">
+									 <!-- Modal Header-->
+									 <div class="class-header">
+										 <div class="card btn-success" style='background-color:#46AB55'>
+											 <h3>Guidelines and Protocols</h3></div>
+											 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+									 </div> <!-- Modal Body-->
+									 <div class="modal-body text-center"><p>
+Guidelines are sets of evidence-based recommendations that aid decision-making about care in specific health systems and resource settings. These should be research or evidence-based. Protocols and procedures are the specific way that a policy, rule, or principle is carried out. It can often be thought of as a set of instructions. On this page, you could find different guidelines and protocols developed by disparate organizations.</p>
+
+									 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/guideline.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+								 </div>
+						 </div
+					 </div>
+					</div>
+					</div>
+					 <div id="technical" class="modal fade" role="dialog">
+							 <!--Modal--><br><br><br>
+							 <div class="modal-dialog">
+									 <!--Modal Content-->
+									 <div class="modal-content">
+											 <!-- Modal Header-->
+											 <div class="class-header">
+												 <div class="card btn-success" style='background-color:#46AB55'>
+													 <h3>Technical report</h3></div>
+													 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+											 </div> <!-- Modal Body-->
+											 <div class="modal-body text-center">
+<p>
+													 This page is comprised of technical reports that describe the process, progress, or results of technical or scientific research or the state of a technical or scientific research problem. It might also include recommendations and conclusions of the research. Therefore, on this page, you could find different technical reports produced by governmental and no governmental organizations.</p>
+
+											 <div class="modal-footer"> <a href="https://rtds.ephi.gov.et/covid19/technical.php" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+										 </div>
+								 </div
+							 </div>
+							</div>
+							</div>
+							 <div id="dssp" class="modal fade" role="dialog">
+									 <!--Modal--><br><br><br>
+									 <div class="modal-dialog">
+											 <!--Modal Content-->
+											 <div class="modal-content">
+													 <!-- Modal Header-->
+													 <div class="class-header">
+														 <div class="card btn-success" style='background-color:#46AB55'>
+															 <h3>Data sharing and submission platform</h3></div>
+															 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+													 </div> <!-- Modal Body-->
+													 <div class="modal-body text-center">
+
+													<p>	 The data sharing and submission was undertaken by the data repository and governance team.  NDMC received health and health related data from EPHI Directorates, NGOs, Government organizations and associations. Data received by the highly secured system by providing the data session link and password.  Data owners can easily put the large data without restriction to NDMC on the link and password provided. On the same time NDMC is also sharing data to requesters if necessary requirements fulfilled.  After they finished the data sharing process, the link and password given to requesters to easily access the data. 			</p>		 			 <div class="modal-footer"> <a href="https://survey.ephi.gov.et" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+												 </div>
+										 </div
+									 </div>
+									</div>
+									</div>
+									<div id="pub" class="modal fade" role="dialog">
+								 		 <!--Modal--><br><br><br>
+								 		 <div class="modal-dialog">
+								 				 <!--Modal Content-->
+								 				 <div class="modal-content">
+								 						 <!-- Modal Header-->
+								 						 <div class="class-header">
+								 							 <div class="card btn-success" style='background-color:#46AB55'><br>
+								 								 <h3>Publications</h3></div>
+								 								 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+								 						 </div> <!-- Modal Body-->
+								 						 <div class="modal-body text-center">
+<p>
+								 								 The Ethiopian Public Health Institute has been researching priority public health and nutrition issues, generate, translate and disseminate scientific and technological knowledge as one of the main objectives of the establishment. Since then the conducted research has also been published in different research journals for the scientific community. Here on this page, you could find a list of articles conducted by different directorates found in EPHI and archived using Mendeley.</p>
+
+								 						 <div class="modal-footer"> <a href="https://www.mendeley.com/community/ef9f08bb-5165-39ed-b5aa-5ef1eeb9dba0/documents/" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+								 					 </div>
+								 			 </div
+								 		 </div>
+								 		</div>
+								 		</div>
+										<div id="gov" class="modal fade" role="dialog">
+											 <!--Modal--><br><br><br>
+											 <div class="modal-dialog">
+													 <!--Modal Content-->
+													 <div class="modal-content">
+															 <!-- Modal Header-->
+															 <div class="class-header">
+																 <div class="card btn-success" style='background-color:#46AB55'>
+																	 <h3>Government documents</h3></div>
+																	 <!--Close/Cross Button--> <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+															 </div> <!-- Modal Body-->
+															 <div class="modal-body text-center">
+	<p>
+																	 This page includes information resources produced by local, state, and federal governments. They can include the texts of laws, regulations, statistics, scientific and technical information, maps, and detailed analyses of exceptionally wide and sophisticated topics.</p>
+
+															 <div class="modal-footer"> <a href="https://www.mendeley.com/community/ef9f08bb-5165-39ed-b5aa-5ef1eeb9dba0/documents/" class="btn btn-success">Proceed <i class="fa fa-paper-plane"></i> </a>  </div>
+														 </div>
+												 </div
+											 </div>
+											</div>
+											</div>
+
+														</html>
+   </body>

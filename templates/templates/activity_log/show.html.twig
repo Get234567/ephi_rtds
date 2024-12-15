@@ -1,0 +1,297 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ActivityLog
+{% endblock %}
+
+
+{% block stylesheet %}
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    <h1>ActivityLog</h1>
+
+    <table class="table stripe">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ activity_log.id }}</td>
+            </tr>
+            <tr>
+                <th>RequestType</th>
+                <td>{{ activity_log.RequestType }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ activity_log.Status }}</td>
+            </tr>
+            <tr>
+                <th>Remark</th>
+                <td>{{ activity_log.Remark }}</td>
+            </tr>
+            <tr>
+                <th>ItemID</th>
+                <td>{{ activity_log.ItemID }}
+                </td>
+            </tr>
+            <tr>
+                <th>ItemType</th>
+                <td>{{ activity_log.ItemType }}</td>
+            </tr>
+            <tr>
+                <th>RequestedDate</th>
+                <td>{{ activity_log.RequestedDate ? activity_log.RequestedDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ApprovedDate</th>
+                <td>{{ activity_log.ApprovedDate ? activity_log.ApprovedDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+
+            <tr></tr>
+
+
+        </tbody>
+    </table>
+
+    <button class="accordion" id="cont">Read More...</button>
+    <div class="panel">
+        <p
+            class="haha">
+            {#*************************************#}
+
+            {% if type == 'Study' %}
+                <h3>Requested study</h3>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ study.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>IrbCode</th>
+                            <td>{{ study.IrbCode }}</td>
+                        </tr>
+                        <tr>
+                            <th>YearConducted</th>
+                            <td>{{ study.YearConducted |date('Y-m-d')}}</td>
+                        </tr>
+                        <tr>
+                            <th>YearPublished</th>
+                            <td>{{ study.YearPublished |date('Y-m-d') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Budget</th>
+                            <td>{{ study.Budget }}</td>
+                        </tr>
+                        <tr>
+                            <th>Comment</th>
+                            <td>{{ study.comment }}</td>
+                        </tr>
+                        <tr>
+                            <th>Objective</th>
+                            <td>{{ study.Objective }}</td>
+                        </tr>
+                        <tr>
+                            <th>ResearchQuestion</th>
+                            <td>{{ study.ResearchQuestion }}</td>
+                        </tr>
+                        <tr>
+                            <th>Comment</th>
+                            <td>{{ study.comment }}</td>
+                        </tr>
+                        <tr>
+                            <th>Remark</th>
+                            <td>{{ study.Remark }}</td>
+                        </tr>
+                        <tr>
+                            <th>Summary</th>
+                            <td>{{ study.Summary }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ study.Description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Geography</th>
+                            <td>{{ study.Geography }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>TimePeriodCoverageStart</th>
+                            <td>{{ study.TimePeriodCoverageStart |date('Y-m-d') }}</td>
+                        </tr>
+                        <tr>
+                            <th>TimePeriodCoverageEnd</th>
+                            <td>{{ study.TimePeriodCoverageEnd  |date('Y-m-d')}}</td>
+                        </tr>
+                        <tr>
+                            <th>Link</th>
+                            <td>
+                                <a href="{{ path('study_show', {'id': study.id}) }}" target="_blank">Here</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            {% endif %}
+
+
+            {% if type == 'Dataset' %}
+  
+        <h3>Requested Dataset</h3>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ dataset.Name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Label</th>
+                            <td>{{ dataset.Label }}</td>
+                        </tr>
+                        <tr>
+                            <th>Format</th>
+                            <td>{{ dataset.Format }}</td>
+                        </tr>
+                        <tr>
+                            <th>TimePeriodCoverageStart</th>
+                            <td>{{ dataset.TimePeriodCoverageStart |date('Y-m-d') }}</td>
+                        </tr>
+                         <tr>
+                            <th>TimePeriodCoverageEnd</th>
+                            <td>{{ dataset.TimePeriodCoverageEnd |date('Y-m-d') }}</td>
+                        </tr>
+                        <tr>
+                            <th>CoverageLocation</th>
+                            <td>{{ dataset.CoverageLocation }}</td>
+                        </tr>
+                        <tr>
+                            <th>CoverageSex</th>
+                            <td>{{ dataset.CoverageSex }}</td>
+                        </tr>
+                        <tr>
+                            <th>Keywords</th>
+                            <td>{{ dataset.Keywords | join (',') }}</td>
+                        </tr>
+                        <tr>
+                            <th>RawFormat</th>
+                            <td>{{ dataset.RawFormat }}</td>
+                        </tr>
+                        <tr>
+                            <th>Summary</th>
+                            <td>{{ dataset.Summary }}</td>
+                        </tr>
+                        <tr>
+                            <th>Remark</th>
+                            <td>{{ dataset.Remark }}</td>
+                        </tr>
+   
+                      
+                        <tr>
+                            <th>Link</th>
+                            <td>
+                                <a href="{{ path('dataset_show', {'id': dataset.id}) }}" target="_blank">Here</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+        
+            {% endif %}
+
+
+            {#*************************************#}
+
+        </p>
+    </div>
+
+
+    <a class="btn btn-primary" href=" {{ path('activity_log_index') }}" >back to list</a>
+
+    <a class="btn btn-info" href="{{ path('approve', {'id': activity_log.id}) }}" onclick = "return confirm('Are you sure you want to approve?')" >Approve</a>
+  
+
+<button class="btn btn-warning" data-toggle="collapse" data-target="#rejectremark">Pending</button>
+
+ <a class="btn btn-danger" href="{{ path('reject', {'id': activity_log.id}) }}" onclick = "return confirm('Are you sure you want to approve?')" >Reject</a> 
+
+<div id="rejectremark" class="collapse">
+<form action="{{path('reject',{'id': activity_log.id})}}" method="POST">
+<div class="form-group">
+  <label for="remark">Remark:</label>
+  <textarea class="form-control" rows="5" name="remark" id="remark"></textarea>
+</div>
+<input type="hidden" value="{{activity_log.id}}" name="id"/> 
+  
+  
+<button class="btn btn-success" onclick = "return confirm('Are you sure you want to approve?')" >Submit</button>
+</form>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    document.getElementById("cont").innerHTML = "Read more ...";
+
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    document.getElementById("cont").innerHTML = "Read less";
+                }
+            });
+        }
+    </script>
+{% endblock %}

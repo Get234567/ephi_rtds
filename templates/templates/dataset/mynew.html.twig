@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumb %}
+  <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home')}}">Home</a>
+							</li>
+  <li>
+								<i class=""></i>
+								<a href="{{ path('mydataset')}}">Dataset</a>
+							</li>
+							<li class="active">New Dataset</li>
+{% endblock %}
+{% block pageheader %}
+    <a href="{{ path('mydataset') }}" class="btn btn-sm btn-primary">back to list</a>
+{% endblock %}
+
+
+{% block body %}
+ 
+<div>
+    {{ include('dataset/_form.html.twig') }}
+</div>
+ 
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affiliation{% endblock %}
+{% block breadcrumb %}
+  <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home')}}">Home</a>
+							</li>
+							<li class="active">Affiliation</li>
+{% endblock %}
+{% block nopageheader %}
+    <a class="btn btn-primary" href="{{ path('affiliation_new') }}">Create new</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Affiliation</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for affiliation in affiliations %}
+            <tr>
+                <td>{{ affiliation.id }}</td>
+                <td>{{ affiliation.name }}</td>
+                <td>{{ affiliation.description }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('affiliation_show', {'id': affiliation.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-success" href="{{ path('affiliation_edit', {'id': affiliation.id}) }}"><i class="fa fa-pencil"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

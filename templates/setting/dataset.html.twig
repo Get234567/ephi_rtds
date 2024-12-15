@@ -1,0 +1,19 @@
+{% extends 'setting/add_show.html.twig' %}
+{% block menu %}
+   <div class="col-md-3">
+   <ul>
+    <li><a href="{{ path('dataset_async',{set:"datasetformat"}) }}">Dataset Format</a></li>
+    <li><a href="{{ path('dataset_async',{set:"geospatial"}) }}">Geospatial</a></li>
+    <li><a href=" ?dataset=vfdgvd">Demographic Group</a></li>
+    <li><a href=" ">Study Design</a></li>
+    <li><a href="{{ path('dataset_async',{set:"recordtype"}) }}">Record Type</a></li>
+    <li><a href=" ">Coverage Type</a></li>
+    <li><a href=" ">Publication Status</a></li>
+    <li><a href=" ">Microdata Tabulation Status</a></li>
+    <li><a href=" ">Confidentiality</a></li>
+    <li><a href=" ">Cause Of Death</a></li>
+   </ul>
+   </div>
+   
+
+{% endblock %}

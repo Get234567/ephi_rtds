@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JoinStudy index{% endblock %}
+
+{% block body %}
+    <h1>JoinStudy index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Token</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for join_study in join_studies %}
+            <tr>
+                <td>{{ join_study.id }}</td>
+                <td>{{ join_study.token }}</td>
+                <td>
+                    <a href="{{ path('join_study_show', {'id': join_study.id}) }}">show</a>
+                    <a href="{{ path('join_study_edit', {'id': join_study.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('join_study_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+
+
+   {% endblock %}
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+<li > Setting</li>
+							<li class=""> <a href="{{ path('submission_index') }}">ownerid</a> </li>
+							<li class="active"> Edit owner true</li>
+{% endblock %}
+{% block pageheader %}
+ <a href="{{ path( 'submission_index') }}" class="btn btn-sm btn-success">Back to list</a>
+{% endblock %}
+
+
+{% block body %}
+ <div class="col-md-8 m-auto">
+       {{ form_start(form) }}
+                        <div class="form-group">
+            <label>{{ form_label(form.owner_id) }}</label>
+            {{ form_widget(form.owner_id,{'attr':{'class':''}})}}
+            <div class="help-block with-errors"></div>
+        </div>
+        {% if form.submitted %}
+        <div class="form-group">
+            <label>{{ form_label(form.submitted) }}</label>
+            {{ form_widget(form.submitted,{'attr':{'class':''}})}}
+            <div class="help-block with-errors"></div>
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label>{{ form_label(form.yearss) }}</label>
+            {{ form_widget(form.yearss,{'attr':{'class':'form-control ckeditor'}})}}
+            <div class="help-block with-errors"></div>
+        </div>
+
+   <button class="btn btn-sm btn-success">{{ button_label|default('Update') }}</button>
+{{ form_end(form) }}
+
+  </div>
+{% endblock %}

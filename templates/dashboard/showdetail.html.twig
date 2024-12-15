@@ -1,0 +1,771 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}
+    {{dataset.name }}
+{% endblock %}
+
+
+{% block body %}
+
+
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{path('main')}}">Home</a>
+        </li>
+        <li>
+            <a href="{{path('main',{ search:dataset.name })}}">Search</a>
+        </li>
+        <li>
+            <a href="{{path('main',{ search:dataset.name })}}">Search Reasults</a>
+        </li>
+
+    </ul>
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            {% if dataset %}
+
+
+                <h4 style= "padding-left: 1.4rem">{{dataset.name}}</h4>
+                <hr/>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">Description</div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                            {# <tr>
+            <td>
+                Format:</td>
+            <td>{{dataset.format }}</td>
+        </tr>
+        <tr>
+            <td>
+                Coverage Sex:</td>
+            <td>{{dataset.coverageSex }}</td>
+        </tr>
+
+        <tr>
+            <td>
+                Location:</td>
+            <td>{{dataset.location }}</td>
+        </tr>
+        <tr>
+            <td>
+                Publication Year:</td>
+            <td>{{dataset.publicationYear| date() }}</td>
+        </tr>
+        <tr>
+            <td>
+                Datasets</td>
+            <td>
+                <select class="width-100" form="download" name="attachment[]" multiple="multiple">
+                    {% for attachment in attachments %}
+                        <option value="{{ attachment.id}}">
+                            {{ attachment.dataset.name }}.
+
+                            {% set ex = attachment.attachment| split(".",2) %}
+                            {{ ex.1}}
+                        </option>
+                    {% endfor %}
+                </select>
+            </td>
+
+        </tr> #}
+
+             <tr>
+<th>Id</th>
+{% if dataset.id < 10  %}
+{% set add = '000' %}
+{% elseif dataset.id < 100 %}
+
+{% set add = '00' %}
+{% elseif dataset.id < 1000 %}
+
+{% set add = '0' %}
+
+
+{% endif %}
+
+<td>EPHI-DS{{ add }}{{ dataset.id }}</td>
+</tr>
+<tr>
+<th>Name</th>
+<td>{{ dataset.name|raw }}</td>
+</tr>
+
+<tr>
+<th>Format</th>
+<td>{{ dataset.format }}</td>
+</tr>
+<tr>
+<th>Coverage Location</th>
+<td>{{ dataset.coverageLocation }}</td>
+</tr>
+{# <tr>
+    <th>CoverageAge</th>
+    <td>{{ dataset.coverageAge }}</td>
+</tr> #}
+<tr>
+<th>Coverage Sex</th>
+<td>{{ dataset.coverageSex }}</td>
+</tr>
+<tr>
+<th>Abstract</th>
+<td>{{ dataset.abstract|raw }}</td>
+</tr>
+
+<tr>
+<th>Additional Material </th>
+<td>{{ dataset.codeBook ? 'Yes' : 'No' }}</td>
+</tr>
+{% if dataset.codeBookFileName %}
+<tr>
+<th>Additional Material</th>
+<td>
+<a href="{{ asset('dataset/' ~ dataset.codeBookFileName) }}" class="btn btn-success">Download</a>
+</td>
+</tr>
+{% endif %}
+
+
+
+<tr>
+<th>Keywords</th>
+<td>
+<ul>
+{% for key in  dataset.keywords  %}
+{% if key != '' %}
+<li>{{ key }}</li>
+{% endif %}
+
+{% endfor %}
+</ul>
+</td>
+</tr>
+<tr>
+<th>Recommended</th>
+<td>{{ dataset.recommended ? 'Yes' : 'No' }}</td>
+</tr>
+<tr>
+<th>Location</th>
+<td>{{ dataset.location }}</td>
+</tr>
+<tr>
+<th>Cleaned</th>
+<td>{{ dataset.cleaned ? 'Yes' : 'No' }}</td>
+</tr>
+<tr>
+<th>Cleaned Format</th>
+<td>{{ dataset.cleanedFormat }}</td>
+</tr>
+<tr>
+<th>RawFormat</th>
+<td>{{ dataset.rawFormat }}</td>
+</tr>
+<tr>
+<th>Comment</th>
+<td>{{ dataset.comment|raw }}</td>
+</tr>
+<tr>
+<th>Remark</th>
+<td>{{ dataset.remark|raw }}</td>
+</tr>
+<tr>
+<th>Note</th>
+<td>{{ dataset.note|raw }}</td>
+</tr>
+
+<tr>
+<th>Treatment</th>
+<td>{{ dataset.treatment }}</td>
+</tr>
+<tr>
+<th>Date Data Collection Started</th>
+<td>{{ dataset.timePeriodCoverageStart ? dataset.timePeriodCoverageStart|date('Y-m-d') : ''  }}</td>
+</tr>
+<tr>
+<th>Date Data Collection End</th>
+<td>{{ dataset.timePeriodCoverageEnd ? dataset.timePeriodCoverageEnd|date('Y-m-d') : ''  }}</td>
+</tr>
+<tr>
+<th>Title</th>
+<td>{{ dataset.title }}</td>
+</tr>
+<tr>
+<th>Data Type
+</th>
+<td>{{ dataset.dataType }}</td>
+</tr>
+<tr>
+<th>PublicationYear</th>
+<td>{{ dataset.publicationYear ? dataset.publicationYear|date('Y') : '' }}</td>
+</tr>
+<tr>
+<th>SugestedCitation</th>
+<td>{{ dataset.sugestedCitation|raw }}</td>
+</tr>
+<tr>
+<th>OtherIdType</th>
+<td>{{ dataset.otherIdType }}</td>
+</tr>
+<tr>
+<th>Description</th>
+<td>{{ dataset.description|raw }}</td>
+</tr>
+<tr>
+<th>Dataset study design</th>
+<td>{{ dataset.studyDesign.name|raw }}</td>
+</tr>
+<tr>
+<th>Date Data Archived</th>
+<td>{{ dataset.recievedDate ? dataset.recievedDate|date('Y-m-d') : '' }}</td>
+</tr>
+<tr>
+<th>Date Data Cataloged</th>
+<td>{{ dataset.catalogCompletedDate ? dataset.catalogCompletedDate|date('Y-m-d') : '' }}</td>
+</tr>
+
+
+<tr>
+<th>Data Generating Unit</th>
+<td>{{ dataset.workunit }}</td>
+</tr>
+<tr>
+
+
+
+<th>URL</th>
+<td><a class="js-emaillink" href="https://rtds.ephi.gov.et/public/showdetail/{{ dataset.id }}">https://rtds.ephi.gov.et/public/showdetail/{{ dataset.id }}</a><p><button class="js-emailcopybtn">Copy url</button></p></td>
+</tr>
+
+<tr>
+<th>Tags</th>
+<td>
+<ul>
+{% for tag in  dataset.tags  %}
+<li>{{ tag }}</li>
+{% endfor %}
+</ul>
+</td>
+</tr>
+<tr></tr>
+
+    </tbody>
+</table>
+
+</div>
+{% if dataset.published ? 'Yes' %}
+<b> Published</b>
+{% else %}
+<b>Unpublished</b>{% endif %}<br><br>
+
+{% if dataset.IsRestricted ? 'Yes' %}
+<b>   Restricted Access</b>
+{% else %}
+<b>   Open Access</b>{% endif %}<br><br>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+<div class="col-md-4">
+
+<hr/>
+{% for data in dataset %}
+
+<p>{{data.keywords}}</p>
+
+{% endfor %}
+
+
+</div>
+
+<div class="col-md-12">
+{# <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#contact_dialog"> #}
+{# <button class="btn btn-sm btn-success" data-toggle="tooltip" data-target="#restrict-div"> #}
+{# <i class="fa fa-download"></i> #}
+{# Request Dataset</button> <br>#}
+
+{% if dataset.isRestricted %}
+<button class="btn btn-sm btn-success" data-toggle="collapse" data-target="#demo"><i class="fa fa-download"></i>
+Request Data</button>
+{# <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#contact_dialog">
+<i class="fa fa-download"></i>
+Request Data</button><br> #}
+<div id="demo" class="collapse ">
+
+<div class="panel panel-info" >
+
+<div class="panel-heading" >
+Reasons for access restriction
+</div>
+<div class="panel-body" >
+{{ dataset.DescriptionOfRestriction|raw }}
+
+
+            {% if dataset.isExternal ? 'Yes' %}
+                  <b>Go to provider </b><br>
+                <a href="{{ dataset.ExternalLink|striptags|raw  }}">{{ dataset.ExternalLink|striptags|raw  }}</a>
+
+          {% endif %}
+
+
+
+</div>
+{%  else %}
+<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#contact_dialog">
+<i class="fa fa-download"></i>
+Request Dataset</button>
+{% endif %}
+
+<br><br>
+<br><br>
+
+
+
+</div>
+<div class="modal fade" id="contact_dialog" role="dialog">
+<div class="modal-dialog" style=" width: 650px; margin: auto;">
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Request Download</h4>
+    </div>
+    <div class="modal-body">
+
+
+<div id="smartwizard">
+<ul>
+<li>
+<a href="#step-1">Step 1<br/>
+<small></small>
+</a>
+</li>
+<li>
+<a href="#step-2">Step 2<br/>
+<small></small>
+</a>
+</li>
+<li>
+<a href="#step-3">Step 3<br/>
+<small></small>
+</a>
+</li>
+
+
+
+
+</ul>
+
+
+<div>
+
+<div id="step-1">
+<div id="form-step-0" role="form" data-toggle="validator">
+
+
+
+        <form id="myForm"  action="{{ path('request_download') }}" method="POST" enctype="multipart/form-data" id="download">
+            <input type="text" class="width-100" name="Dataset" required hidden value="{{dataset.id}}">
+
+            <fieldset>
+
+{% if user %}
+{# {% if user.userInfo %} #}
+
+<label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="Name" required value="{{user.userInfo.FirstName}}" readonly>
+
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="MiddleName" required value="{{user.userInfo.MiddleName}}" readonly>
+
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="LastName" required  value="{{user.userInfo.LastName}}" readonly >
+
+                    </span>
+                </label>
+
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="Phone" required value="{{user.userInfo.Phone}}" readonly>
+
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="email" class="width-100" name="Email" required value="{{user.Email}}" readonly>
+
+                    </span>
+                </label>
+{% else %}
+
+
+
+
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="Name" required placeholder="First Name" pattern="([a-zA-Z]+)">
+
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="MiddleName" required placeholder="Middle Name" pattern="([a-zA-Z]+)">
+
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="LastName" required placeholder="Last Name" pattern="([a-zA-Z]+)">
+
+                    </span>
+                </label>
+
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="width-100" name="Phone" required placeholder="Phone Number" pattern="([+ 0-9]{10,16})">
+
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <input type="email" class="width-100" name="Email" required placeholder="Email">
+
+                    </span>
+                </label>
+
+{# {% endif %} #}
+{% endif %}
+
+</div>
+
+</div>
+<div id="step-2">
+
+<div id="form-step-1" role="form" data-toggle="validator">
+<div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <select class="width-100" name="Reasonselect" id="select" required>
+                            <option value="">--Select Reason --</option>
+                            <option value="Program">For Program</option>
+                            <option value="Research">For Research</option>
+
+                            <option value="other">Other</option>
+                        </select>
+                    </span>
+                </label>
+
+                <div class="space-6"></div>
+
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <textarea class="form-control width-100 hidden" name="Reason" id="reason"  placeholder="Reason"></textarea>
+                    </span>
+                </label>
+                <div class="space-6"></div>
+
+                <label class="block clearfix">
+                Intended use of the data
+                    <span class="block input-icon input-icon-right">
+                        <textarea class="form-control width-100 ckeditor" name="objective" id="objective"   placeholder="Objectives" required></textarea>
+                    </span>
+                </label>
+                <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <select class="width-100" name="Affliationselect" id="Affliationselect" required>
+                            <option value="">--Select Affliation --</option>
+                       {% if affliations  %}
+
+                          {% for affliation in affliations %}
+
+                            <option value="{{affliation.name}}">{{ affliation.name }}</option>
+
+
+                          {% endfor %}
+                       {% endif %}
+
+                            <option value="other">Other</option>
+                        </select>
+                    </span>
+                </label>
+
+                <div class="space-6"></div>
+
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                        <textarea class="form-control width-100 hidden" name="Affliation" id="Affliation"  placeholder="Affliation"></textarea>
+                    </span>
+                </label>
+
+                 {# <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                    <label id="Program"><b>Please upload support letter for proof of legitimacy</b></label>
+                    <label id="Research"><b>Please upload support letter and ethical clearance for proof of legitimacy</b></label>
+                        <input type="file" class="width-100" name="file">
+
+                    </span>
+                </label> #}
+               
+    {# {% if dataset.isRestricted %}
+                 <div class="space-6"></div>
+                <label class="block clearfix">
+                    <span class="block input-icon input-icon-right">
+                    <label>Please upload file for restriction request</label>
+                        <input type="file" class="width-100" name="restriction_file"  multiple="true">
+
+                    </span>
+                </label>
+               {% endif %} #}
+                               </div>
+
+</div>
+<div id="step-3">
+
+<div id="form-step-2" role="form" data-toggle="validator">
+<div class="space-6"></div>
+
+
+                <div class="space-6"></div>
+               <div style="overflow-y: scroll; height:200px;">
+               <h3>Terms and conditions</h3>
+             {{ get_terrms_of_reference() }}
+
+                 </div>
+
+
+
+
+                <label>
+                    <input type="checkbox" value="1" required id="agrement" name="agrement">I agree
+                </label>
+                <input type="submit" class="width-100 btn btn-sm btn-success" value="Send Request">
+            </fieldset>
+
+
+        </form>
+
+
+</div>
+</div>
+</div>
+{# end of smart wizard #}
+
+
+
+
+
+    </div>
+</div>
+</div>
+</div>
+{# <div style="padding:20px">
+<a class="btn btn-sm btn-success " href="{{ path('print_single',{name: app.request.get('name')}) }}">Print
+</a>
+{# <a class="btn btn-sm btn-danger "  href="getCSV/{{app.request.get('name')}}">Export</a> #}
+
+{# </div>  #}
+
+{% endif %}
+
+
+</div>
+</div>
+
+</div></div>{% endblock %}{% block javascripts %}
+<script src="{{ asset('assets/j/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+<script src="{{asset('assets/js/Leaflet.SelectAreaFeature.js')}}"></script>
+<script src="{{asset('assets/js/L.Control.Locate.min.js')}}" charset="utf-8"></script>
+
+
+<script src="{{ asset('assets/j/validator.min.js')}}"></script>
+<script type="text/javascript">
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');
+copyEmailBtn.addEventListener('click', function(event) {
+  // Select the email link anchor text
+  var emailLink = document.querySelector('.js-emaillink');
+  var range = document.createRange();
+  range.selectNode(emailLink);
+  window.getSelection().addRange(range);
+
+  try {
+    // Now that we've selected the anchor text, execute the copy command
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copy url command was ' + msg);
+  } catch(err) {
+    console.log('Oops, unable to copy');
+  }
+
+  // Remove the selections - NOTE: Should use
+  // removeRange(range) when it is supported
+  window.getSelection().removeAllRanges();
+});
+</script>
+<script type="text/javascript" src="{{ asset('assets/js/jquery.smartWizard.min.js')}}"></script>
+
+
+
+<script>
+
+$("#select").change(function () {
+
+
+
+if ($(this).val() == 'other')
+$('#reason').removeClass('hidden');
+else
+$('#reason').addClass('hidden');
+
+
+
+});
+$("#select").change(function () {
+
+
+
+if ($(this).val() == 'Program')
+$('#Program').removeClass('hidden');
+else
+$('#Program').addClass('hidden');
+
+
+
+});
+$("#select").change(function () {
+
+
+
+if ($(this).val() == 'Research')
+$('#Research').removeClass('hidden');
+else
+$('#Research').addClass('hidden');
+
+
+
+});
+$("#Affliationselect").change(function () {
+if ($(this).val() == 'other')
+$('#Affliation').removeClass('hidden');
+else
+$('#Affliation').addClass('hidden');
+
+
+
+});
+
+$('#agrement').change(function(){
+
+var checkedStatus = this.checked;
+//if(checkedStatus){
+
+$('.btn-finish').attr('disabled',!checkedStatus)
+
+
+
+$(this).prop('checked', checkedStatus);
+
+
+});
+
+var btnFinish = $('<button></button>').text('Finish').addClass('btn btn-info btn-finish hidden').on('click', function () {
+if (!$(this).hasClass('disabled')) {
+var elmForm = $("#myForm");
+if (elmForm) {
+elmForm.validator('validate');
+var elmErr = elmForm.find('.has-error');
+if (elmErr && elmErr.length > 0) {
+    alert('Please fill all required fields before you submit!!');
+    return false;
+} else {
+    elmForm.submit();
+    return false;
+}
+}
+}
+});
+$('#smartwizard').smartWizard({
+selected: 0,
+theme: 'arrows',
+transitionEffect: 'fade',
+toolbarSettings: {
+toolbarPosition: 'bottom',
+//toolbarExtraButtons: [btnFinish]
+},
+anchorSettings: {
+markDoneStep: true, // add done css
+markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
+removeDoneStepOnNavigateBack: true, // While navigate back done step after active step will be cleared
+enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+}
+});
+
+
+$("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
+
+var elmForm = $("#form-step-" + stepNumber);
+// stepDirection === 'forward' :- this condition allows to do the form validation
+// only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+if (stepDirection === 'forward' && elmForm) {
+elmForm.validator('validate');
+var elmErr = elmForm.children('.has-error');
+if (elmErr && elmErr.length > 0) { // Form validation failed
+return false;
+}
+}
+return true;
+});
+
+$("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) { // Enable finish button only on last step
+$('.btn-finish').addClass('hidden');
+console.log(stepNumber);
+console.log(stepDirection);
+if (stepNumber == 2 && stepDirection == 'forward') {
+
+$('.sw-btn-next').addClass('hidden');
+$('.btn-finish').removeClass('hidden');
+
+} else {
+
+//$('.btn-finish').addClass('hidden');
+$('.sw-btn-next').removeClass('hidden');
+
+}
+});
+
+
+</script><br><br>{% endblock %}

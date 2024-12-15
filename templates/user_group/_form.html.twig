@@ -1,0 +1,12 @@
+
+{{ form_start(form) }}
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name) }}
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description) }}
+
+    {{ form_widget(form._token,{"attr":{"type":"hidden"}}) }}
+
+    <br>
+    <button class="btn btn-success"><span class="fa fa-save"> </span> {{ button_label|default('Save') }}</button>
+{{ form_end(form,{"render_rest":false}) }}

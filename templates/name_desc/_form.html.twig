@@ -1,0 +1,38 @@
+{{ form_start(form) }}
+   
+<div class="form-group">
+	<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name</label>
+			<div class="col-sm-9">
+            {{ form_widget(form.name,{'attr':{'class':'form-control','placeholder':'Name'}}) }}
+			
+				</div>
+				</div>
+
+
+                <div class="form-group mt-5">
+	<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Description</label>
+			<div class="col-sm-9">
+            {{ form_widget(form.description,{'attr':{'class':'form-control ckeditor','placeholder':'Description','type':'textarea'}}) }}
+	
+				</div>
+				</div>
+
+			{% if form.parent %}
+			<br>
+		  <div class="form-group ">
+	<label class="col-sm-3 control-label" for="form-field-1">Parent</label>
+			<div class="col-sm-9">	         
+			{{ form_widget(form.parent,{'attr':{'class':'form-control'}}) }}
+			</div>
+				</div>
+			{% endif %}
+    
+  
+    {{ form_widget(form.description) }}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+hkhdsfglsdgflkshgdljfhsjk
+{% block javascripts %}
+   
+   {% endblock %}

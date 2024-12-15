@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block pageheader %} <a href="{{ path('download_request_index') }}" class="btn btn-sm btn-success">back to list</a>{% endblock %}
+
+{% block body %}
+    <h1>Download Request</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Name</th>
+                <td>{{ download_request.Name }} {{ download_request.MiddleName }} {{ download_request.LastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ download_request.Email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ download_request.Phone }}</td>
+            </tr>
+            <tr>
+                <th>Reason</th>
+                <td>{{ download_request.Reason }}</td>
+            </tr>
+            <tr>
+                <th>Objective</th>
+                <td>{{ download_request.objective }}</td>
+            </tr>
+            <tr>
+                <th>Attachment</th>
+                <td>{{ download_request.Attachment ? download_request.Attachment|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Requested Date</th>
+                <td>{{ download_request.RequestedDate ? download_request.RequestedDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="h3">About Requested dataset</th>
+
+            </tr>
+            <tr>
+                <th>Dataset label</th>
+                <td>{{ download_request.dataset.label }}</td>
+            </tr>
+            <tr>
+                <th>Dataset name</th>
+                <td>{{ download_request.dataset.name }}</td>
+            </tr>
+            <tr>
+                <th>Dataset titile</th>
+                <td>{{ download_request.dataset.title }}</td>
+            </tr>
+
+           {% if download_request.File %}
+            <tr>
+                <th>More info</th>
+                <td><a class="btn btn-success" href="{{ asset( 'uploads/dwn_req/' ~ download_request.File ) }}">Download</a></td>
+            </tr>
+           {% endif %}
+        </tbody>
+    </table>
+
+                  {% if is_allowed(app.user,'approver1') or is_allowed(app.user,'approver2') or is_allowed(app.user,'approver3') %}
+
+       <a class="btn btn-sm btn-success" onclick="return confirm('request is going to approve?')" href="{{ path('approve_dataset_download_request', {'id': download_request.id}) }}">approve</a>
+
+<a  class="btn btn-sm btn-danger" id="lpend">Reject</a>
+								 <br> <br> <br>
+            <div class="fin hidden" >
+            <form id="frm" method="post" action="{{ path('reject_dataset_download_request', {'id': download_request.id}) }}">
+            <textarea rows="4" cols="50" name= "message"></textarea>
+            <a  class="btn btn-danger" id="sbmt" onclick="return confirm('Are you sure you want to reject?')" >Confirm</a>
+            </form>
+            </div>
+                  {% endif %}
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+   <script>
+      $("#lpend").click(function(){
+        $(".fin").toggleClass("hidden");
+        });
+        $("#sbmt").click(function(){
+        $("#frm").submit();
+        });
+   </script>
+{% endblock %}

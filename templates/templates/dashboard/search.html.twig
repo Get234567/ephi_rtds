@@ -1,0 +1,141 @@
+{% extends 'dashboard.html.twig' %}
+
+
+
+
+{% block body %}
+
+<ul class="breadcrumb">
+  <li><a href="{{path('main')}}">Home</a></li>
+
+  <li class="active">Search Reasults</li>
+
+</ul>
+
+
+<div class="row">
+
+<div class="col-md-1"></div>
+<div class="col-md-8">
+
+
+<div class="search-area well no-margin-bottom">
+												<form action="{{path('main')}}" class="form-inline" method="GET">
+													<div class="row">
+														<div class="col-md-4">
+															<div class="input-group">
+															  <input type="text" class="form-control" id="searchdata" name="search">
+                            	<div class="input-group-btn">
+																	<button type="submit" class="btn btn-primary btn-sm">
+																		<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+																	</button>
+																</div>
+
+															</div>
+														</div>
+													</div>
+												</form>
+
+
+												<div class="space space-4"></div>
+												<span class="grey">About  {{datasets| length }} results </span>
+											</div>
+
+
+{% if datasets %}
+<p>Didn't find what you were looking for?<a href="{{path('advanced-search')}}"> Try advanced search.</a></p>
+
+
+
+<hr style="border:5px solid #438EB9;"/>
+   {% for data in datasets %}
+   <div class="row search-page" id="search-page-2">
+										<div class="col-xs-12 col-md-10 col-md-offset-1">
+
+											<div class="search-results">
+												<div class="search-result">
+													<h5 class="search-title">
+														<a href="{{path('showdetail',{ id:data.id })}}">{{ data.name }}</a>
+													</h5>
+
+                            <p>{{data.timePeriodCoverageStart | date('M,Y') }} - {{data.timePeriodCoverageEnd | date('M,Y') }}</p>
+
+
+                              {{ data.description|striptags|raw|length > 50 ? data.description|striptags|raw|slice(0, 200) ~ '...' : data.description|striptags|raw }}
+<br>
+
+
+
+{% if data.dataType %}
+                <p><a href="{{path('main',{ dataType:data.dataType.id })}}">{{ data.dataType }}</a></p>
+{% endif %}
+												</div>
+
+
+
+											</div>
+
+
+										</div>
+									</div>
+
+       {% endfor %}
+ <div class="pull-right">{{ knp_pagination_render(datasets) }}</div>
+        </p>
+{% endif %}
+ {% if datasets| length <=0 %}
+     <h4 class="text-danger">Empty Search Reasult</h4>
+ {% endif %}
+
+  {# end of div 8 #}
+</div>
+
+<div class="col-md-2">
+
+{% if datasets %}
+{%  if app.request.get('' ~ 'search') %}
+<div class="panel panel-success">
+  <div class="panel-heading">Sort Dataset By</div>
+  <div class="panel-body">
+
+<ul>
+<li ><a  href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'name'})}}">By Name</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'publicationYear'})}}">Publication Year</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'downloadCount'})}}">Most requested</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'size'})}}">Size</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'dataType'})}}">Data Type</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'coverageAge'})}}">Coverage Age</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby:'coverageSex'})}}">Coverage Sex</a></li>
+</ul>
+
+</div>
+</div>
+<div class="panel panel-success">
+  <div class="panel-heading">Sort Dataset By</div>
+  <div class="panel-body">
+  <li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby: app.request.get('' ~ 'sortby'),type: 'ASC' })}}">Title (A-Z)</a></li>
+<li><a href="{{path('main',{search:app.request.get('' ~ 'search'),sortby: app.request.get('' ~ 'sortby'),type: 'DESC'})}}"> Title (Z-A)</a></li>
+
+
+
+</div>
+</div>
+{% endif %}
+{% endif %}
+</div>
+
+{# end of div 2 #}
+
+
+
+     </div>
+     {# <a href="{{path('main')}}getCSV/{{app.request.get('search')}}" class="btn btn-success pull-right btn-sm">Export</a> #}
+     <p><strong>Related searches </strong>
+       {% for data in datasets %}
+       {% for d in data.keywords  %}
+                  <a href="{{path('main',{ keywords:d })}}">{{d }}</a>|
+        {% endfor %}
+        {% endfor %}
+     </div>
+     <br><br><br>
+{% endblock %}

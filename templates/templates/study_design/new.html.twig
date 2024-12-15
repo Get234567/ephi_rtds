@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StudyDesign{% endblock %}
+
+{% block body %}
+    <h1>Create new StudyDesign</h1>
+
+    {{ include('study_design/_form.html.twig') }}
+
+    <a href="{{ path('study_design_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'print.html.twig' %}
+
+{% block title %}{{datasets[0].name }}{% endblock %}
+
+
+
+{% block body %}
+ 
+
+
+<div class="row">
+
+  <div class="col-md-7">
+  {% if datasets %}
+
+
+    {% for data in datasets %}
+        <h2>{{data.name}}</h2>
+        <hr/>
+
+        <div class="panel panel-default">
+    <div class="panel-heading">Description</div>
+    <div class="panel-body">
+    <table class="table table-bordered" >
+        <tbody>
+        <tr>
+        <td> Format:</td>
+          <td>{{data.format }}</td>
+        </tr>
+        <tr>
+        <td> Coverage Sex:</td>
+          <td>{{data.coverageSex }}</td>
+        </tr>
+        <tr>
+        <td> Coverage AGe:</td>
+          <td>{{data.coverageAge }}</td>
+        </tr>
+        <tr>
+        <td> Size:</td>
+          <td>{{data.size }}</td>
+        </tr>
+        <tr>
+        <td> Location:</td>
+          <td>{{data.location }}</td>
+        </tr>
+        <tr>
+        <td> Publication Year:</td>
+          <td>{{data.publicationYear| date() }}</td>
+        </tr>
+        <tr>
+        <td> Data Type:</td>
+          <td>{{data.dataType }}</td>
+        </tr>
+        <tr>
+        <td> Description:</td>
+          <td>{{data.description }}</td>
+        </tr>
+        <tr>
+        <td> Time Period Start:</td>
+          <td>{{data.timePeriodCoverageStart| date() }}</td>
+        </tr>
+        <tr>
+        <td> Time Period End:</td>
+          <td>{{data.timePeriodCoverageEnd| date() }}</td>
+        </tr>
+        </tbody>
+        </table>
+    
+    </div>
+  </div>
+        
+        <p>{{data.publicationYear | date() }}</p>
+        
+
+    {% endfor %}
+
+
+ 
+
+  {% endif %}
+
+    
+
+</div>
+      
+    
+      </div>
+     </div>
+     </div>
+     
+    
+{% endblock %}
+
+
+

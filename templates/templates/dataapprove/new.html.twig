@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Data approver{% endblock %}
+
+{% block body %}
+    <h1>Create new </h1>
+
+    {{ include('dataapprove/_form.html.twig') }}
+
+    <a href="{{ path('dataapprove_type_index') }}">back to list</a>
+{% endblock %}

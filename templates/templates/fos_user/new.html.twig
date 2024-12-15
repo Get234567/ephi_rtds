@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+{% block pageheader %}
+
+    <a class="btn btn-success" href="{{ path('fos_user_index') }}">back to list</a>
+{% endblock %}
+{% block breadcrumb %}
+    <li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+                                <li>
+								<i class="ace-icon fa fa-users"></i>
+								<a href="{{ path('fos_user_index') }}">User list</a>
+							</li>
+							<li class="active">New</li>
+{% endblock %}
+{% block body %}
+
+
+    {{ include('fos_user/_form.html.twig',{'class':'fa fa-save'}) }}
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+{% block pageheader %}
+	<h2> Rejected requests</h2>
+{% endblock %}
+
+{% block body %}
+
+
+</tbody>
+</table>
+
+<div class="table-responsive">
+			 <table class="table table-bordered table-condensed">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>FullNames</th>
+						<th>Email</th>
+
+						<th>Request Reason</th>
+						<th>Rejection Message</th>
+						<th>Restricted</th>
+						<th>Legitimacy File</th>
+						<th>RequestedDate</th>
+						{# <th>Directorate</th>
+						<th>NDMC</th>
+						<th>Department</th>
+						<th>actions</th> #}
+					</tr>
+				</thead>
+				<tbody>
+					{% set id = 1 %}
+					{% for download_request in download_requests %}
+						<tr style="vertical-align:middle">
+							<td  >{{ id }}
+								{% set id = id+1  %}</td>
+							<td >{{ download_request.Name }}
+								{{ download_request.MiddleName }}
+								{{ download_request.LastName }}</td>
+							<td >{{ download_request.Email }}</td>
+
+							<td >{{ download_request.Reason|raw }}</td>
+							<td >{{ download_request.rejectionMessage|raw }}</td>
+
+							<td >
+								{% if download_request.dataset.isRestricted %}
+									<p class="badge badge-danger">Yes</p>
+									<p>
+										<form method="post" class="inline" action="{{ path('download_restriction') }}" class="form-inline">
+											<input name="restriction" value="{{ download_request.id}}" hidden/>
+											<button class="btn btn-sm btn-success inline" type="submit">
+												<i class="fa fa-download"></i>
+												download</button>
+
+
+										</form>
+
+									</p>
+
+								{% else %}
+									<span class="badge badge-success">Not Restricted</span>
+								{% endif %}
+
+							</td>
+
+							<td >
+								{% if download_request.file %}
+
+									<p>
+										<form method="post" class="inline" action="{{ path('download_legitimacy') }}" class="form-inline">
+											<input name="legitimacy" value="{{ download_request.id}}" hidden/>
+											<button class="btn btn-sm btn-success inline" type="submit">
+												<i class="fa fa-download"></i>
+												download</button>
+
+
+										</form>
+
+									</p>
+
+
+								{% endif %}
+
+							</td>
+
+							<td >{{ download_request.RequestedDate ? download_request.RequestedDate|date('Y-m-d') : '' }}</td>
+
+
+							{# <td>
+								<span class="label label-danger"><i class="fa fa-arrow-right"></i> {{download_request.approver1 }}</span>
+							</td>
+
+	<td>
+								<span class="label label-danger"><i class="fa fa-arrow-right"></i>{{download_request.approver2 }}</span>
+							</td>
+
+							<td >
+								<span class="label label-danger"> {{download_request.approver3 }} <i style=" transform: rotate(180deg);" class="fa fa-share"></i></span>
+							</td>
+
+
+							<td >
+								{% if is_allowed(app.user,'approver1') or is_allowed(app.user,'approver2') or is_allowed(app.user,'approver3') %}
+
+									<a class="btn btn-sm btn-success" href="{{ path('download_request_show', {'id': download_request.id}) }}">Detail</a>
+
+
+								{% endif %}
+							</td>  #}
+						</tr>
+
+						{% set stat = "default" %}
+
+					{% else %}
+						<tr>
+							<td colspan="15">no records found</td>
+						</tr>
+	{% endfor %}
+				</tbody>
+			</table>
+		<div class="pull-right">
+				{{ knp_pagination_render(download_requests)}}</div>
+
+		</div>
+
+        </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+$('td').css("vertical-align","middle");
+</script>
+
+{% endblock %}

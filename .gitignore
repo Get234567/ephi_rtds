@@ -1,0 +1,20 @@
+vendor/
+/vendor
+.env
+_covid12.php
+var/
+public/dataset   
+public/profile_pic  
+public/npi
+piblic/sitrep
+public/update
+RDTSUserManual.pdf  
+public/technical  
+public/uploads
+EPHI.pdf  
+public/protocol     
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

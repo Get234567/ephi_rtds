@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}data owner index{% endblock %}
+
+{% block body %}
+    <h1>data owner index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>owner id</th>
+                <th>Parent</th>
+                <th>Data owner</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set n=1 %}
+        {% for row in data %}
+            <tr>
+                <td>{{ n }}</td>
+                {% set n=n+1 %}
+            <tr>
+                <td>{{ row.ownerid}}</td>
+                <td>{{ row.Parentid }}</td>
+                <td>{{ row.unit }}</td>
+                <td>
+                    <a href="{{ path('Data_unit_show', {'id': row.id}) }}" class="btn btn-sm btn-success"><span class="fa fa-eye" title="View detail"></span></a>
+                    <a href="{{ path( 'Data_unit_edit', {'id': row.id}) }}" class="btn btn-sm btn-warning"><span class="fa fa-edit" title="Edit"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('Data_unit_new') }}">Create new</a>
+{% endblock %}

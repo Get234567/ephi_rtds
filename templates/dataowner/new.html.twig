@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New data owner{% endblock %}
+
+{% block body %}
+    <h1>Create new data owner</h1>
+
+    {{ include('dataowner/_form.html.twig') }}
+
+    <a href="{{ path('Data_unit_index') }}">back to list</a>
+{% endblock %}

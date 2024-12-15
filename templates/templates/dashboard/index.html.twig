@@ -1,0 +1,645 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Dataset index{% endblock %}
+
+
+{% block stylesheets %}
+    {{parent()}}
+   
+{% endblock %}
+{% block body %}
+
+
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-5">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Search Data</div>
+  <div class="panel-body">
+ <form action="{{path('main')}}" method="GET" class="form-inline">
+  <div class="form-group">
+    <label for="searchdata">Name:</label>
+    <input type="text" class="form-control" id="searchdata" name="search">
+     <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Search</button>
+  </div>
+<div class="advanced">
+    <a href="{{ path('advanced-search')}}" class="btn" id="advanced">Advanced Search>></a>
+  </div>
+ 
+</form> 
+  
+  </div>
+</div>
+
+
+
+
+</div>
+<div class="col-md-5">
+
+ 
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Search Directorate Offices/ Partner Institutes</div>
+  <div class="panel-body">
+{{form(directorateform)}}
+  
+  </div>
+</div>
+
+
+</div>
+
+
+  
+    
+<div class="row">
+<div class="col-md-12">
+   <div class="btn-group pull-right">
+    <a href="{{ path('admindashboard',{type:'bar'}) }}" class="btn btn-danger" >BarChart</a>
+    <a href="{{ path('admindashboard',{type:'pie'}) }}" class="btn btn-warning">PieChart</a>
+    <a href="{{ path('admindashboard',{type:'doughnut'}) }}" class="btn btn-primary">Doughnut</a>
+</div>
+</div>
+
+
+
+
+
+
+<div class="row">
+
+<div class="col-md-6">
+<div class="col-md-10">
+  <div class="panel panel-default">
+  <div class="panel-body">
+
+  <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input type="date" class="form-control" id="from" name="_fromdate">
+  </div>
+  <div class="form-group">
+    <label for="to">To:</label>
+    <input type="date" class="form-control" id="to" name="_todate">
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Search</button>
+</form>
+ <canvas id="myChart" width="100" height="100"></canvas>
+  
+
+  </div>
+  </div>
+</div>
+
+     </div>
+
+<div class="col-md-6">
+
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    
+    
+  <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input type="date" class="form-control" id="from" name="_fromdate">
+  </div>
+  <div class="form-group">
+    <label for="to">To:</label>
+    <input type="date" class="form-control" id="to" name="_todate">
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Search</button>
+</form>
+  <canvas id="myChart2" width="100" height="100"></canvas>
+    </div>
+
+</div>
+
+</div>
+
+
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    
+    
+  <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input type="date" class="form-control" id="from" name="_fromdate">
+  </div>
+  <div class="form-group">
+    <label for="to">To:</label>
+    <input type="date" class="form-control" id="to" name="_todate">
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Search </button>
+</form>
+  <canvas id="myChart22" width="100" height="100"></canvas>
+    </div>
+
+</div>
+
+     </div>
+     </div>
+     </div>
+
+
+
+
+ <div class="row"> 
+
+
+
+ <div class="col-md-6">
+
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    
+    
+  <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input type="date" class="form-control" id="from" name="_fromdate">
+  </div>
+  <div class="form-group">
+    <label for="to">To:</label>
+    <input type="date" class="form-control" id="to" name="_todate">
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Search</button>
+</form>
+  <canvas id="myChart3" width="100" height="100"></canvas>
+    </div>
+
+</div>
+</div>
+
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+          
+          
+        <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+        <div class="form-group">
+          <label for="from">From:</label>
+          <input type="date" class="form-control" id="from" name="_fromdate">
+        </div>
+        <div class="form-group">
+          <label for="to">To:</label>
+          <input type="date" class="form-control" id="to" name="_todate">
+        </div>
+      
+        <button type="submit" class="btn btn-default">Search </button>
+      </form>
+        <canvas id="myChart32" width="100" height="100"></canvas>
+          </div>
+
+      </div>
+
+     </div>
+     </div>
+
+
+ 
+
+     </div>
+     </div>
+ 
+
+ <div class="row"> 
+
+
+
+ <div class="col-md-6">
+
+
+ <div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+    
+    
+  <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+  <div class="form-group">
+    <label for="from">From:</label>
+    <input type="date" class="form-control" id="from" name="_fromdate">
+  </div>
+  <div class="form-group">
+    <label for="to">To:</label>
+    <input type="date" class="form-control" id="to" name="_todate">
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Search</button>
+</form>
+  <canvas id="myChart4" width="100" height="100"></canvas>
+    </div>
+
+</div>
+</div>
+
+
+ <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+          
+          
+        <form class="form-inline" action="{{path('admindashboard')}}" method="POST">
+        <div class="form-group">
+          <label for="from">From:</label>
+          <input type="date" class="form-control" id="from" name="_fromdate">
+        </div>
+        <div class="form-group">
+          <label for="to">To:</label>
+          <input type="date" class="form-control" id="to" name="_todate">
+        </div>
+      
+        <button type="submit" class="btn btn-default">Search </button>
+      </form>
+        <canvas id="myChart42" width="100" height="100"></canvas>
+          </div>
+
+      </div>
+
+     </div>
+     </div>
+
+
+ 
+
+ <div class="col-md-6">
+
+
+ 
+
+      </div>
+
+     </div>
+     </div>
+     </div>
+ 
+
+ 
+
+
+
+     </div>
+
+
+     </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{parent()}}
+    
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <script src="{{asset('assets/js/moment.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('assets/js/daterangepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
+  <script src="{{asset('assets/js/bootstrap-timepicker.min.js')}}"></script>
+
+  <script src="{{asset('assets/js/daterangepicker.min.js')}}"></script>
+    
+    
+    <script>
+    
+  
+
+    $('form').submit(function(){
+        $('.btn-submit').attr('data-dismiss','modal');
+
+
+
+
+    });
+
+
+    </script>
+
+
+    
+    
+    <script type="text/javascript">
+     
+   
+ 
+var ctx = document.getElementById('myChart');
+
+
+
+var myChart = new Chart(ctx, {
+    type: '{{ type }}',
+    data: {
+        labels:  [ {% for l in label %}
+                          "{{ l }}", 
+                      {% endfor %}],
+        datasets: [{
+            label: 'dataset submitted by directorate',
+            data:  [ {% for d in datal %}
+                        {{ d }}, 
+                    {% endfor %}],
+            backgroundColor: [
+                'rgba(32, 99, 200, 1.0)',
+                'rgba(54, 162, 235, 1.0)',
+                'rgba(255, 206, 200, 1.0)',
+                'rgba(10, 192, 192, 1.0)',
+                'rgba(153, 102, 255, 1.0)',
+                'rgba(255, 159, 64, 1.0)'
+            ],
+           
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+      responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+ 
+
+
+
+
+
+// graph 2
+
+
+
+ 
+var ctx = document.getElementById('myChart2');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:  [ {% for l in label %}
+                          "{{ l }}", 
+                      {% endfor %}],
+        datasets: [
+          {
+            label: [ {% for l in label %}
+                          "{{ l }}", 
+                      {% endfor %}],
+            data:  [ {% for d in datal %}
+                        {{ d }}, 
+                    {% endfor %}],
+                    
+            backgroundColor: 'rgba(32, 99, 200, 1.0)',
+           
+            
+           
+        },
+           {
+            label: [ {% for l in label %}
+                          "{{ l }}", 
+                      {% endfor %}],
+            data:  [ {% for d in datal %}
+                        {{ d }}, 
+                    {% endfor %}],
+                    
+            backgroundColor: 'rgba(32, 200, 99, 1.0)',
+           
+            
+           
+        }
+        
+        
+        ]
+    },
+    options: {
+      responsive: true,
+     
+        scales: {
+            yAxes: [{
+               stacked:true
+            }],
+            xAxes: [{
+               stacked:true
+            }]
+        }
+    }
+});
+
+
+// graph 2 2
+
+
+
+ 
+var ctx = document.getElementById('myChart22');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:  [ {% for l in label %}
+                          "{{ l }}", 
+                      {% endfor %}],
+        datasets: [
+          {
+            label: 'dataset submitted by directorate',
+            data:  [ {% for d in datal %}
+                        {{ d }}, 
+                    {% endfor %}],
+                    
+            backgroundColor: 'rgba(32, 99, 200, 1.0)',
+           
+            
+           
+        },
+           {
+            label: 'dataset submitted by directorate',
+            data:  [ {% for d in datal %}
+                        {{ d }}, 
+                    {% endfor %}],
+                    
+            backgroundColor: 'rgba(32, 200, 99, 1.0)',
+           
+            
+           
+        }
+        
+        
+        ]
+    },
+    options: {
+     responsive: true,
+        scales: {
+            yAxes: [{
+               stacked:false
+            }],
+            xAxes: [{
+               stacked:true
+            }]
+        }
+    }
+});
+
+
+
+
+//graph 3
+
+
+var ctx = document.getElementById('myChart3');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in dataset3 %}
+                          "{{ dd.name }}", 
+                      {% endfor %}],
+
+        datasets: [
+         
+         {% for d in dataset3 %}
+          {
+
+            label: '{{ d.year }}',
+            data: [ {{ d.total }}],                
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+       
+        },
+         
+         {% endfor %}
+        
+        ]
+    },
+    options: {
+     responsive: true,
+        scales: {
+            yAxes: [{
+               stacked:true
+            }],
+            xAxes: [{
+               stacked:true
+            }]
+        }
+    }
+});
+
+
+
+
+// graph 3 2
+
+
+
+
+var ctx = document.getElementById('myChart32');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in dataset3 %}
+                          "{{ dd.name }}", 
+                      {% endfor %}],
+
+        datasets: [
+         
+         {% for d in dataset3 %}
+          {
+
+            label: '{{ d.year }}',
+            data: [ {{ d.total }}],                
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+       
+        },
+         
+         {% endfor %}
+        
+        ]
+    },
+    options: {
+     responsive: true,
+        scales: {
+            yAxes: [{
+               stacked:false
+            }],
+            xAxes: [{
+               stacked:false
+            }]
+        }
+    }
+});
+
+
+
+// graph 4 1
+
+
+
+
+var ctx = document.getElementById('myChart4');
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels:  [ {% for dd in dataset4 %}
+                          "{{ dd.workunit_name }}", 
+                      {% endfor %}],
+
+        datasets: [
+         
+         {% for d in dataset4 %}
+          {
+
+            label: '{{ d.demo_name }}',
+            data: [ {{ d.total }}],                
+            backgroundColor: 'rgba(32, {{ random(50, 200) }}, {{ random(50, 200) }}, 1.0)',
+       
+        },
+         
+         {% endfor %}
+        
+        ]
+    },
+    options: {
+     responsive: true,
+        scales: {
+            yAxes: [{
+               stacked:false
+            }],
+            xAxes: [{
+               stacked:false
+            }]
+        }
+    }
+});
+
+
+
+
+
+
+
+
+    </script>
+    
+
+
+{% endblock %} #}

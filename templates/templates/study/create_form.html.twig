@@ -1,0 +1,257 @@
+{% block stylesheets %}
+    <link href="{{asset('assets/css/smart_wizard.css')}}" rel="stylesheet" type="text/css"/>
+
+    <link href="{{asset('assets/css/smart_wizard_theme_arrows.css')}}" rel="stylesheet" type="text/css"/>
+
+
+{% endblock %}
+
+<div class="widget-box widget-color-blue2">
+    <div class="widget-header widget-header-blue widget-header-flat">
+        <h4 class="widget-title lighter">
+            Study</h4>
+
+        <div class="widget-toolbar"></div>
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            {{ form_start(form,{'attr':{'id': 'myForm','role':'form','data-toggle':'validator'} }) }}
+                  {{ form_widget(form._token,{'attr':{'type':'hidden'}})}}
+
+            <!-- SmartWizard html -->
+            <div id="smartwizard">
+                <ul>
+                    <li>
+                        <a href="#step-1">Step 1<br/>
+                                <small></small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-2">Step 2<br/>
+                                    <small></small>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-3">Step 3<br/>
+                                        <small></small>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <div>
+                                <div id="step-1">
+                                    <div class="hr hr-dotted hr-double"></div>
+                                    <div id="form-step-0" role="form" data-toggle="validator">
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.title) }}</label>
+                                            {{ form_widget(form.title,{'attr':{'class':'form-control'}})}}
+                                         
+                                          
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.irbCode) }}</label>
+                                            {{ form_widget(form.irbCode,{'attr':{'class':'form-control'}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.studyType) }}</label>
+                                            {{ form_widget(form.studyType,{'attr':{'class':''}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.workUnit) }}</label>
+                                            {{ form_widget(form.workUnit,{'attr':{'class':''}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>{{form_label(form.projectOwner)}}</label>
+                                            {{ form_widget(form.projectOwner,{'attr':{'class':'form-control'}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="step-2">
+                                    <div class="hr hr-dotted hr-double"></div>
+                                    <div id="form-step-1" role="form" data-toggle="validator">
+
+
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.objective) }}</label>
+                                            {{ form_widget(form.objective,{'attr':{'class':'ckeditor'}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.description) }}</label>
+                                            {{ form_widget(form.description,{'attr':{'class':'ckeditor'}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.geography) }}</label>
+                                            {{ form_widget(form.geography,{'attr':{'class':''}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div id="step-3">
+                                    <div class="hr hr-dotted hr-double"></div>
+                                    <div id="form-step-2" role="form" data-toggle="validator">
+                                        <div class="form-group">
+                                            <label>{{form_label(form.budget)}}</label>
+                                            <div class="row">
+                                            <div class="col-xs-8">
+                                            {{ form_widget(form.budget,{'attr':{'class':'form-control inline'}})}}
+                                            </div>
+                                            <div class="col-xs-2">
+                                             {{ form_widget(form.cur,{'attr':{'class':'form-control inline'}}) }}
+   </div></div>
+
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        {% if edit == "1" %}
+                                        
+                                         <div class="form-group">
+                                            <label>{{ form_label(form.Proposal) }}</label>
+                                            {{ form_widget(form.Proposal,{'attr':{'class':''}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.clearance) }}</label>
+                                            {{ form_widget(form.clearance,{'attr':{'class':''}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                            
+                                        {% else %}
+
+
+                                             <div class="form-group">
+                                            <label>{{ form_label(form.Proposal) }}</label>
+                                            {{ form_widget(form.Proposal,{'attr':{'class':'','required':true}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form_label(form.clearance) }}</label>
+                                            {{ form_widget(form.clearance,{'attr':{'class':'','required':true}})}}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        {{ form_end(form,{"render_rest":false}) }}
+                    </div>
+                    <!-- /.widget-main -->
+                </div>
+
+                <!-- /.widget-body -->
+            </div>
+            {% block javascripts %}
+                <script src="{{ asset('assets/j/jquery.min.js') }}"></script>
+                <script src="{{ asset('assets/j/validator.min.js')}}"></script>
+
+                <script type="text/javascript" src="{{ asset('assets/js/jquery.smartWizard.min.js')}}"></script>
+                {# <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script> #}
+               
+<script src="{{ asset('assets/ckeditor/ckeditor.js')}}"></script>
+ 
+  
+                <script type="text/javascript">
+                
+
+
+                    $(document).ready(function () { // Toolbar extra buttons
+                        var btnFinish = $('<button></button>').text('Finish').addClass('btn btn-info btn-finish hidden').on('click', function () {
+                            if (!$(this).hasClass('disabled')) {
+                                var elmForm = $("#myForm");
+                                if (elmForm) {
+                                    elmForm.validator('validate');
+                                    var elmErr = elmForm.find('.has-error');
+                                    if (elmErr && elmErr.length > 0) {
+                                        alert('Fill all required input field');
+                                        return false;
+                                    } else {
+                                        elmForm.submit();
+                                        return false;
+                                    }
+                                }
+                            }
+                        });
+
+                        var btnCancel = $('<button></button>').text('Reset').addClass('btn btn-danger').on('click', function () {
+                            $('#smartwizard').smartWizard("reset");
+                            $('#myForm').find("input, textarea").val("");
+                        });
+
+                        // Smart Wizard
+                        $('#smartwizard').smartWizard({
+                            selected: 0,
+                            theme: 'arrows',
+                            transitionEffect: 'fade',
+                            toolbarSettings: {
+                                toolbarPosition: 'bottom',
+                                toolbarExtraButtons: [btnFinish]
+                            },
+                            anchorSettings: {
+                                markDoneStep: true, // add done css
+                                markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
+                                removeDoneStepOnNavigateBack: true, // While navigate back done step after active step will be cleared
+                                enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+                            }
+                        });
+
+                        $("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
+
+                            var elmForm = $("#form-step-" + stepNumber);
+                            // stepDirection === 'forward' :- this condition allows to do the form validation
+                            // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+                            if (stepDirection === 'forward' && elmForm) {
+                                elmForm.validator('validate');
+                                var elmErr = elmForm.children('.has-error');
+                                if (elmErr && elmErr.length > 0) { // Form validation failed
+                                    return false;
+                                }
+                            }
+                            return true;
+                        });
+
+
+                        $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) { // Enable finish button only on last step
+
+                            console.log(stepNumber);
+                            console.log(stepDirection);
+                            if (stepNumber == 2 && stepDirection == 'forward') {
+
+                                $('.sw-btn-next').addClass('hidden');
+                                $('.btn-finish').removeClass('hidden');
+
+                            } else {
+
+                                $('.btn-finish').addClass('hidden');
+                                $('.sw-btn-next').removeClass('hidden');
+
+                            }
+                        });
+
+                    });
+                </script>
+
+
+            {% endblock %}

@@ -1,0 +1,587 @@
+<ul class="nav nav-list">
+
+	{% if is_allowed(app.user,'dsh_srch_dt') or is_allowed(app.user,'dsh_srch_drct') or is_allowed(app.user,'vis_shw') %}
+
+
+		<li class="active">
+			<a href="{{ path('home')}}">
+				<i class="menu-icon fa fa-tachometer"></i>
+				<span class="menu-text">
+					Dashboard
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+	{% endif %}
+	{% if  is_allowed(app.user,'dtst_new')  or is_allowed(app.user,'std_new') %}
+
+
+		<li>
+			<a href="{{ path('myresearch')}}">
+				<i class="menu-icon fa fa-tachometer"></i>
+				<span class="menu-text">
+					My Dashboard
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+	{% endif %}
+	{% if  is_allowed(app.user,'reviewer')  %}
+		<li>
+			<a href="{{ path('myreview')}}">
+				<i class="menu-icon fa fa-comments"></i>
+				<span class="menu-text">
+					My Review
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+
+	{% endif %}
+	{% if  is_allowed(app.user,'dtst_show_index')   %}
+		<li class="">
+			<a href="{{ path('dataset_index')}}">
+				<i class="menu-icon fa fa-database"></i>
+				<span class="menu-text">
+					Dataset
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+	{% endif %}
+
+	{% if  is_allowed(app.user,'std_show_indx')    %}
+		<li class="">
+			<a href="{{ path('study_index')}}">
+				<i class="menu-icon fa fa-book"></i>
+				<span class="menu-text">
+					Study
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+	{% endif %}
+
+	{% if  is_allowed(app.user,'setting_vw')   %}
+		<li class="">
+			<a href="#" class="dropdown-toggle">
+				<i class="menu-icon fa fa-gear"></i>
+				<span class="menu-text">
+					Setting
+				</span>
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">
+				<li class="">
+					<a href="{{ path('site') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Site Information
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('dataapprove_type_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Data approver
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('Data_unit_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+					Data Generating Unit
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('submission_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Data Submission status
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('percentage_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+									percentage_index
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				<li class="">
+					<a href="{{ path('affiliation_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Affiliation
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('email_message_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Email Messages
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('currency_index') }}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Currency
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				<li class="">
+					<a href="" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+
+						Dataset
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+
+					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="">
+							<a href="{{ path('dataset_format_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Dataset format
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('data_type_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Dataset Type
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('geospatial_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Geospatial
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('demographic_group_index') }}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Demographic group
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('study_design_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Study Design
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('record_type_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Record Type
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('coverage_type_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Coverage Type
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('publication_status_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Publication status
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('microdata_tabulation_status_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Microdata Tabulation status
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('confidentiality_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Confidentiality
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('cause_of_death_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Cause of death
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('dataset_category_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Dataset Category
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+
+						Study
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+
+					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="">
+							<a href="{{ path('study_type_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Study Type
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('funding_source_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Funding Source
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+						<li class="">
+							<a href="{{ path('tag_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Tags
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						{#
+															<li class="">
+																<a href="{{ path('research_team_index')}}">
+																	<i class="menu-icon fa fa-caret-right"></i>
+																	Study Team
+																</a>
+
+																<b class="arrow"></b>
+															</li>
+															<li class="">
+																<a href="{{ path('research_team_index')}}">
+																	<i class="menu-icon fa fa-caret-right"></i>
+																	 Team Members
+																</a>
+
+																<b class="arrow"></b>
+															</li> #}
+
+						<li class="">
+							<a href="{{ path('involvement_type_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Research Involvment Type
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+
+					</ul>
+				</li>
+				<li class="">
+					<a href="" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+
+						WorkUnit
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+
+					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="">
+							<a href="{{ path('work_unit_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Work Unit
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{ path('work_unit_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Parent Work Unit
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+
+					</ul>
+				</li>
+				<li class="">
+					<a href="" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+
+						Project
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+
+					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="">
+							<a href="{{ path('milestone_index')}}">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Project Milestone
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+
+					</ul>
+				</li>
+			</ul>
+		</li>
+	{% endif %}
+
+	{% if  is_allowed(app.user,'usr_list_show')    %}
+		<li class="">
+			<a href="" class="dropdown-toggle">
+				<i class="menu-icon fa fa-user"></i>
+				User
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+
+			<b class="arrow"></b>
+
+			<ul class="submenu">
+				<li class="">
+					<a href="{{ path('fos_user_index')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						List
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('dh_doctrine_audit_list_audits')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Activity
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('signup_request_index')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						User requests
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="{{ path('user_group_index')}}">
+						<i class="menu-icon fa fa-caret-right"></i>
+						User group
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				{% if  is_allowed(app.user,'sys_conf')   %}
+					<li class="">
+						<a href="{{ path('config') }}">
+							<i class="menu-icon fa fa-cog"></i>
+							<span class="menu-text">
+								User setting
+							</span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+
+
+				{% endif %}
+
+
+			</ul>
+		</li>
+
+
+	{% endif %}
+
+{% if is_allowed(app.user,'std_frst_apprv') or is_allowed(app.user,'all_req_indx') or is_allowed(app.user,'download_request_index') or is_allowed(app.user,'req_stat_v') %}
+
+
+	<li class="">
+		<a href="" class="dropdown-toggle">
+			<i class="menu-icon  	fa fa-question-circle"></i>
+			Requests
+			<b class="arrow fa fa-angle-down"></b>
+		</a>
+
+		<b class="arrow"></b>
+
+		<ul class="submenu">
+			{% if  is_allowed(app.user,'all_req_indx')   %}
+				<li class="">
+					<a href="{{ path('activity_log_index')}}">
+						<i class="menu-icon fa fa-upload"></i>
+						<span class="menu-text">
+							Upload Requests
+						</span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+			{% endif %}
+
+			{% if  is_allowed(app.user,'dtst_ext_req_appr')  or is_allowed(app.user,'req_stat_v')  %}
+				<li class="">
+					<a href="{{ path('download_request_index')}}">
+						<i class="menu-icon fa fa-download"></i>
+						<span class="menu-text">
+							Download Request
+						</span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+		<li class="">
+			<a href="{{ path('rejected_download_request')}}">
+				<i class="menu-icon fa fa-download"></i>
+				<span class="menu-text">
+					Rejected Requests
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+
+	{% endif %}
+			{% if  is_allowed(app.user,'std_frst_apprv')   %}
+				<li class="">
+					<a href="{{ path('study_request')}}">
+						<i class="menu-icon fa fa-download"></i>
+						<span class="menu-text">
+							New Studies
+						</span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+			{% endif %}
+
+
+		</ul>
+	</li>
+{% endif %}
+
+	{% if  is_allowed(app.user,'add_tm_mem')   %}
+		{# <li class="">
+								<a href="{{ path('researcher_new')}}">
+									<i class="menu-icon fa fa-users"></i>
+									<span class="menu-text"> Add Team Member </span>
+								</a>
+								<b class="arrow"></b>
+							</li> #}
+	{% endif %}
+	{% if false and is_allowed(app.user,'all_req_indx')   %}
+		<li class="">
+			<a href="{{ path('activity_log_index')}}">
+				<i class="menu-icon fa fa-upload"></i>
+				<span class="menu-text">
+					Upload Requests
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+
+	{% endif %}
+	{% if  false and is_allowed(app.user,'dtst_ext_req_appr')   %}
+		<li class="">
+			<a href="{{ path('download_request_index')}}">
+				<i class="menu-icon fa fa-download"></i>
+				<span class="menu-text">
+					Download Request
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+	{% endif %}
+
+	{% if  false and is_allowed(app.user,'dtst_ext_req_appr')   %}
+		<li class="">
+			<a href="{{ path('rejected_download_request')}}">
+				<i class="menu-icon fa fa-download"></i>
+				<span class="menu-text">
+					Rejected Requests
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+
+	{% endif %}
+	{% if  is_allowed(app.user,'survey_v')   %}
+
+		<li class="">
+			<a href="{{path('save_query_index')}}">
+				<i class="menu-icon fa fa-bar-chart"></i>
+				<span class="menu-text">
+					Report
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+
+	{% endif %}
+	{% if  is_allowed(app.user,'survey_v')   %}
+
+		<li class="">
+			<a href="http://10.1.1.24/ephisurvey/admin/">
+				<i class="menu-icon fa fa-bar-chart"></i>
+				<span class="menu-text">
+					Survey
+				</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+
+	{% endif %}
+
+
+</ul>
+<!-- /.nav-list -->
